@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/patriksimek/node-mssql#readme"
-
-    >mssql (v4.0.1)</a>
+    <a href="https://github.com/patriksimek/node-mssql#readme">mssql (v4.0.1)</a>
 </h1>
 <h4>Microsoft SQL Server client for Node.js.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.mssql">module mssql</a><ol>
 
@@ -3248,13 +3241,13 @@
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;ConnectionError&#x27;
+    this.name = 'ConnectionError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -3271,7 +3264,7 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">class ConnectionPool extends base.ConnectionPool {
   _poolCreate () {
-    return new base.Promise((resolve, reject) =&#x3e; {
+    return new base.Promise((resolve, reject) =&gt; {
       const cfg = {
         userName: this.config.user,
         password: this.config.password,
@@ -3284,18 +3277,18 @@
       cfg.options.port = this.config.port
       cfg.options.connectTimeout = this.config.connectionTimeout || this.config.timeout || 15000
       cfg.options.requestTimeout = this.config.requestTimeout != null ? this.config.requestTimeout : 15000
-      cfg.options.tdsVersion = cfg.options.tdsVersion || &#x27;7_4&#x27;
+      cfg.options.tdsVersion = cfg.options.tdsVersion || '7_4'
       cfg.options.rowCollectionOnDone = false
       cfg.options.rowCollectionOnRequestCompletion = false
       cfg.options.useColumnNames = false
-      cfg.options.appName = cfg.options.appName || &#x27;node-mssql&#x27;
+      cfg.options.appName = cfg.options.appName || 'node-mssql'
 
       // tedious always connect via tcp when port is specified
       if (cfg.options.instanceName) delete cfg.options.port
 
       if (isNaN(cfg.options.requestTimeout)) cfg.options.requestTimeout = 15000
       if (cfg.options.requestTimeout === Infinity) cfg.options.requestTimeout = 0
-      if (cfg.options.requestTimeout &#x3c; 0) cfg.options.requestTimeout = 0
+      if (cfg.options.requestTimeout &lt; 0) cfg.options.requestTimeout = 0
 
       if (this.config.debug) {
         cfg.options.debug = {
@@ -3308,7 +3301,7 @@
 
       const tedious = new tds.Connection(cfg)
 
-      tedious.once(&#x27;connect&#x27;, err =&#x3e; {
+      tedious.once('connect', err =&gt; {
         if (err) {
           err = new base.ConnectionError(err)
           return reject(err)
@@ -3317,30 +3310,30 @@
         resolve(tedious)
       })
 
-      tedious.on(&#x27;error&#x27;, err =&#x3e; {
-        if (err.code === &#x27;ESOCKET&#x27;) {
+      tedious.on('error', err =&gt; {
+        if (err.code === 'ESOCKET') {
           tedious.hasError = true
           return
         }
 
-        this.emit(&#x27;error&#x27;, err)
+        this.emit('error', err)
       })
 
       if (this.config.debug) {
-        tedious.on(&#x27;debug&#x27;, msg =&#x3e; this._debug(msg))
+        tedious.on('debug', msg =&gt; this._debug(msg))
       }
     })
   }
 
   _poolValidate (tedious) {
-    return new base.Promise((resolve, reject) =&#x3e; {
-      resolve(!tedious.closed &#x26;&#x26; !tedious.hasError)
+    return new base.Promise((resolve, reject) =&gt; {
+      resolve(!tedious.closed &amp;&amp; !tedious.hasError)
     })
   }
 
   _poolDestroy (tedious) {
-    return new base.Promise((resolve, reject) =&#x3e; {
-      tedious.once(&#x27;end&#x27;, () =&#x3e; {
+    return new base.Promise((resolve, reject) =&gt; {
+      tedious.once('end', () =&gt; {
         resolve()
       })
 
@@ -3354,15 +3347,15 @@
 ## Connection Pools
 
 ```javascript
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
-const pool1 = new sql.<span class="apidocCodeKeywordSpan">ConnectionPool</span>(config, err =&#x3e; {
+const pool1 = new sql.<span class="apidocCodeKeywordSpan">ConnectionPool</span>(config, err =&gt; {
 // ... error checks
 
 // Query
 
 pool1.request() // or: new sql.Request(pool1)
-.query(&#x27;select 1 as number&#x27;, (err, result) =&#x3e; {
+.query('select 1 as number', (err, result) =&gt; {
     // ... error checks
 ...</pre></li>
     </ul>
@@ -3485,14 +3478,14 @@ pool1.request() // or: new sql.Request(pool1)
   return {type: TYPES.DateTime2, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -3531,18 +3524,18 @@ sql.BigInt
   return {type: TYPES.Decimal, precision, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.input(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)               // varchar(3)
-request.input(&#x22;name&#x22;, sql.VarChar(50), &#x22;abc&#x22;)           // varchar(50)
-request.input(&#x22;name&#x22;, sql.VarChar(sql.MAX), &#x22;abc&#x22;)      // varchar(MAX)
-request.output(&#x22;name&#x22;, sql.VarChar)                     // varchar(8000)
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.DateTime2(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -3888,20 +3881,20 @@ List of supported data types:
    */
 
   acquire (request, callback) {
-    debug(&#x27;ps: acquire&#x27;)
+    debug('ps: acquire')
 
     if (!this._acquiredConnection) {
-      setImmediate(callback, new PreparedStatementError(&#x27;Statement is not prepared. Call prepare() first.&#x27;, &#x27;ENOTPREPARED&#x27;))
+      setImmediate(callback, new PreparedStatementError('Statement is not prepared. Call prepare() first.', 'ENOTPREPARED'))
       return this
     }
 
     if (this._activeRequest) {
-      setImmediate(callback, new TransactionError(&#x22;Can&#x27;t acquire connection for the request. There is another request in progress
-.&#x22;, &#x27;EREQINPROG&#x27;))
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
       return this
     }
 
-    debug(&#x27;ps: acquire ok&#x27;)
+    debug('ps: acquire ok')
 
     this._activeRequest = request
     setImmediate(callback, null, this._acquiredConnection)
@@ -3916,11 +3909,11 @@ List of supported data types:
    */
 
   release (connection) {
-    debug(&#x27;ps: release&#x27;)
+    debug('ps: release')
 
     if (connection === this._acquiredConnection) {
       this._activeRequest = null
-      debug(&#x27;ps: release ok&#x27;)
+      debug('ps: release ok')
     }
 
     return this
@@ -3935,12 +3928,12 @@ List of supported data types:
    */
 
   input (name, type) {
-    if ((/(--| |\/\*|\*\/|&#x27;)/).test(name)) {
-      throw new PreparedStatementError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new PreparedStatementError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
-    if (arguments.length &#x3c; 2) {
-      throw new PreparedStatementError(&#x27;Invalid number of arguments. 2 arguments expected.&#x27;, &#x27;EARGS&#x27;)
+    if (arguments.length &lt; 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
     }
 
     if (type instanceof Function) {
@@ -3969,12 +3962,12 @@ List of supported data types:
    */
 
   output (name, type) {
-    if (/(--| |\/\*|\*\/|&#x27;)/.test(name)) {
-      throw new PreparedStatementError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if (/(--| |\/\*|\*\/|')/.test(name)) {
+      throw new PreparedStatementError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
-    if (arguments.length &#x3c; 2) {
-      throw new PreparedStatementError(&#x27;Invalid number of arguments. 2 arguments expected.&#x27;, &#x27;EARGS&#x27;)
+    if (arguments.length &lt; 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
     }
 
     if (type instanceof Function) type = type()
@@ -4001,13 +3994,13 @@ omited, method returns Promise.
    */
 
   prepare (statement, callback) {
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       this._prepare(statement, callback)
       return this
     }
 
-    return new PromiseLibrary((resolve, reject) =&#x3e; {
-      this._prepare(statement, err =&#x3e; {
+    return new PromiseLibrary((resolve, reject) =&gt; {
+      this._prepare(statement, err =&gt; {
         if (err) return reject(err)
         resolve(this)
       })
@@ -4021,12 +4014,12 @@ omited, method returns Promise.
    */
 
   _prepare (statement, callback) {
-    debug(&#x27;ps: prepare&#x27;)
+    debug('ps: prepare')
 
-    if (typeof statement === &#x27;function&#x27;) {
+    if (typeof statement === 'function') {
       callback = statement ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-- EREQINPROG (`TransactionError`) - Can&#x27;t rollback transaction. There is a request in progress.
+- EREQINPROG (`TransactionError`) - Can't rollback transaction. There is a request in progress.
 
 ## Prepared Statement
 
@@ -4069,13 +4062,13 @@ __Example__
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;PreparedStatementError&#x27;
+    this.name = 'PreparedStatementError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4148,32 +4141,32 @@ __Example__
   */
 
   _bulk (table, callback) {
-    super._bulk(table, err =&#x3e; {
+    super._bulk(table, err =&gt; {
       if (err) return callback(err)
 
       table._makeBulk()
 
       if (!table.name) {
-        return callback(new base.RequestError(&#x27;Table name must be specified for bulk insert.&#x27;, &#x27;ENAME&#x27;))
+        return callback(new base.RequestError('Table name must be specified for bulk insert.', 'ENAME'))
       }
 
-      if (table.name.charAt(0) === &#x27;@&#x27;) {
-        return callback(new base.RequestError(&#x22;You can&#x27;t use table variables for bulk insert.&#x22;, &#x27;ENAME&#x27;))
+      if (table.name.charAt(0) === '@') {
+        return callback(new base.RequestError("You can't use table variables for bulk insert.", 'ENAME'))
       }
 
       const errors = []
       const errorHandlers = {}
       let hasReturned = false
 
-      const handleError = (doReturn, connection, info) =&#x3e; {
+      const handleError = (doReturn, connection, info) =&gt; {
         let err = new Error(info.message)
         err.info = info
-        err = new base.RequestError(err, &#x27;EREQUEST&#x27;)
+        err = new base.RequestError(err, 'EREQUEST')
 
         if (this.stream) {
-          this.emit(&#x27;error&#x27;, err)
+          this.emit('error', err)
         } else {
-          if (doReturn &#x26;&#x26; !hasReturned) {
+          if (doReturn &amp;&amp; !hasReturned) {
             if (connection) {
               for (let event in errorHandlers) {
                 connection.removeListener(event, errorHandlers[event])
@@ -4191,8 +4184,8 @@ __Example__
         errors.push(err)
       }
 
-      const handleInfo = msg =&#x3e; {
-        this.emit(&#x27;info&#x27;, {
+      const handleInfo = msg =&gt; {
+        this.emit('info', {
           message: msg.message,
           number: msg.number,
           state: msg.state,
@@ -4203,37 +4196,37 @@ __Example__
         })
       }
 
-      this.parent.acquire(this, (err, connection) =&#x3e; {
+      this.parent.acquire(this, (err, connection) =&gt; {
         if (err) return callback(err)
 
         if (this.canceled) {
-          debug(&#x27;req: canceled&#x27;)
+          debug('req: canceled')
           this.parent.release(connection)
-          return callback(new base.RequestError(&#x27;Canceled.&#x27;, &#x27;ECANCEL&#x27;))
+          return callback(new base.RequestError('Canceled.', 'ECANCEL'))
         }
 
-        this._cancel = () =&#x3e; {
-          debug(&#x27;req: cancel&#x27;)
+        this._cancel = () =&gt; {
+          debug('req: cancel')
           connection.cancel()
         }
 
         // attach handler to handle multiple error messages
-        connection.on(&#x27;infoMessage&#x27;, errorHandlers.infoMessage = handleInfo)
-        connection.on(&#x27;errorMessage&#x27;, errorHandlers.errorMessage = handleError.bind(null, false, connection))
-        connection.on(&#x27;error&#x27;, errorHandlers.error = handleError.bind(null, true, connection))
+        connection.on('infoMessage', errorHandlers.infoMessage = handleInfo)
+        connection.on('errorMessage', errorHandlers.errorMessage = handleError.bind(null, false, connection))
+        connection.on('error', errorHandlers.error = handleError.bind(null, true, connection))
 
-        const done = (err, rowCount) =&#x3e; {
+        const done = (err, rowCount) =&gt; {
           // to make sure we handle no-sql errors as well
-          if (err &#x26;&#x26; (!errors.length || (errors.length &#x26;&#x26; err.message !== errors[errors.length - 1].message))) {
-            err = new base.RequestError(err, &#x27;EREQUEST&#x27;)
-            if (this.stream) this.emit(&#x27;error&#x27;, err)
+          if (err &amp;&amp; (!errors.length || (errors.length &amp;&amp; err.message !== errors[errors.length - 1].message))) {
+            err = new base.RequestError(err, 'EREQUEST')
+            if (this.stream) this.emit('error', err)
             errors.push(err)
           }
 
           this._cancel = null
 
           let error
-          if (errors.length &#x26;&#x26; !this.stream) {
+          if (errors.length &amp;&amp; !this.stream) {
             error = errors.pop()
             error.precedingErrors = errors
           }
@@ -4267,7 +4260,7 @@ __Example__
 
         if (table.create) {
           const objectid = table.temporary ? `tempdb..[${table.name}]` : table.path
-          const req = new tds.Request(`if object_id(&#x27;${objectid.replace(/&#x27;/g, &#x27;\&#x27;\&#x27;&#x27;)}&#x27;) is null ${table.declare()}`, err =&#x3e; {
+          const req = new tds.Request(`if object_id('${objectid.replace(/'/g, '\'\'')}') is null ${table.declare()}`, err =&gt; {
             if (err) return done(err)
 
             connection.execBulkLoad(bulk)
@@ -4275,14 +4268,14 @@ __Example__
 
           connection.execSqlBa ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
-sql.connect(config, err =&#x3e; {
+sql.connect(config, err =&gt; {
 // ... error checks
 
 // Query
 
-new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 1 as number&#x27;, (err, result) =&#x3e; {
+new sql.<span class="apidocCodeKeywordSpan">Request</span>().query('select 1 as number', (err, result) =&gt; {
     // ... error checks
 
     console.dir(result)
@@ -4326,13 +4319,13 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
         this.state = message.sqlstate // err.sqlstate is returned by msnodesql driver
       }
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;RequestError&#x27;
+    this.name = 'RequestError'
     if ((/^\[Microsoft\]\[SQL Server Native Client 11\.0\](?:\[SQL Server\])?([\s\S]*)$/).exec(this.message)) {
       this.message = RegExp.$1
     }
@@ -4506,17 +4499,17 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
     this.name = parsed.name
     this.schema = parsed.schema
     this.database = parsed.database
-    this.path = (this.database ? `[${this.database}].` : &#x27;&#x27;) + (this.schema ? `[${this.schema}].` : &#x27;&#x27;) + `[${this.name}]`
-    this.temporary = this.name.charAt(0) === &#x27;#&#x27;
+    this.path = (this.database ? `[${this.database}].` : '') + (this.schema ? `[${this.schema}].` : '') + `[${this.name}]`
+    this.temporary = this.name.charAt(0) === '#'
   }
 
   this.columns = []
   this.rows = []
 
-  Object.defineProperty(this.columns, &#x27;add&#x27;, {
+  Object.defineProperty(this.columns, 'add', {
     value (name, column, options) {
       if (column == null) {
-        throw new Error(&#x27;Column data type is not defined.&#x27;)
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
         column = column()
@@ -4532,7 +4525,7 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
   }
   )
 
-  Object.defineProperty(this.rows, &#x27;add&#x27;, {
+  Object.defineProperty(this.rows, 'add', {
     value () {
       return this.push(Array.prototype.slice.call(arguments))
     }
@@ -4548,14 +4541,14 @@ If omitted, returns [Promise](#promises).
 __Example__
 
 ```javascript
-const table = new sql.<span class="apidocCodeKeywordSpan">Table</span>(&#x27;table_name&#x27;) // or temporary table, e.g. #temptable
+const table = new sql.<span class="apidocCodeKeywordSpan">Table</span>('table_name') // or temporary table, e.g. #temptable
 table.create = true
-table.columns.add(&#x27;a&#x27;, sql.Int, {nullable: true, primary: true})
-table.columns.add(&#x27;b&#x27;, sql.VarChar(50), {nullable: false})
-table.rows.add(777, &#x27;test&#x27;)
+table.columns.add('a', sql.Int, {nullable: true, primary: true})
+table.columns.add('b', sql.VarChar(50), {nullable: false})
+table.rows.add(777, 'test')
 
 const request = new sql.Request()
-request.bulk(table, (err, result) =&#x3e; {
+request.bulk(table, (err, result) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -4617,7 +4610,7 @@ request.bulk(table, (err, result) =&#x3e; {
   constructor (parent) {
     super(parent)
 
-    this._abort = () =&#x3e; {
+    this._abort = () =&gt; {
       if (!this._rollbackRequested) {
         // transaction interrupted because of XACT_ABORT
 
@@ -4626,31 +4619,31 @@ request.bulk(table, (err, result) =&#x3e; {
         // defer releasing so connection can switch from SentClientRequest to LoggedIn state
         setImmediate(this.parent.release.bind(this.parent), pc)
 
-        this._acquiredConnection.removeListener(&#x27;rollbackTransaction&#x27;, this._abort)
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
         this._acquiredConnection = null
         this._aborted = true
 
-        this.emit(&#x27;rollback&#x27;, true)
+        this.emit('rollback', true)
       }
     }
   }
 
   _begin (isolationLevel, callback) {
-    super._begin(isolationLevel, err =&#x3e; {
+    super._begin(isolationLevel, err =&gt; {
       if (err) return callback(err)
 
-      debug(&#x27;tran: begin&#x27;)
+      debug('tran: begin')
 
-      this.parent.acquire(this, (err, connection) =&#x3e; {
+      this.parent.acquire(this, (err, connection) =&gt; {
         if (err) return callback(err)
 
         this._acquiredConnection = connection
-        this._acquiredConnection.on(&#x27;rollbackTransaction&#x27;, this._abort)
+        this._acquiredConnection.on('rollbackTransaction', this._abort)
 
-        connection.beginTransaction(err =&#x3e; {
+        connection.beginTransaction(err =&gt; {
           if (err) err = new base.TransactionError(err)
 
-          debug(&#x27;tran: begin ok&#x27;)
+          debug('tran: begin ok')
 
           callback(err)
         }, this.name, this.isolationLevel)
@@ -4659,19 +4652,19 @@ request.bulk(table, (err, result) =&#x3e; {
   }
 
   _commit (callback) {
-    super._commit(err =&#x3e; {
+    super._commit(err =&gt; {
       if (err) return callback(err)
 
-      debug(&#x27;tran: commit&#x27;)
+      debug('tran: commit')
 
-      this._acquiredConnection.commitTransaction(err =&#x3e; {
+      this._acquiredConnection.commitTransaction(err =&gt; {
         if (err) err = new base.TransactionError(err)
 
-        this._acquiredConnection.removeListener(&#x27;rollbackTransaction&#x27;, this._abort)
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
         this.parent.release(this._acquiredConnection)
         this._acquiredConnection = null
 
-        if (!err) debug(&#x27;tran: commit ok&#x27;)
+        if (!err) debug('tran: commit ok')
 
         callback(err)
       })
@@ -4679,19 +4672,19 @@ request.bulk(table, (err, result) =&#x3e; {
   }
 
   _rollback (callback) {
-    super._rollback(err =&#x3e; {
+    super._rollback(err =&gt; {
       if (err) return callback(err)
 
-      debug(&#x27;tran: rollback&#x27;)
+      debug('tran: rollback')
 
-      this._acquiredConnection.rollbackTransaction(err =&#x3e; {
+      this._acquiredConnection.rollbackTransaction(err =&gt; {
         if (err) err = new base.TransactionError(err)
 
-        this._acquiredConnection.removeListener(&#x27;rollbackTransaction&#x27;, this._abort)
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
         this.parent.release(this._acquiredConnection)
         this._acquiredConnection = null
 
-        if (!err) debug(&#x27;tran: rollback ok&#x27;)
+        if (!err) debug('tran: rollback ok')
 
         callback(err)
       })
@@ -4742,13 +4735,13 @@ __Example__
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;TransactionError&#x27;
+    this.name = 'TransactionError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4878,9 +4871,9 @@ __Example__
         // Stored procedure
 
         let result2 = await pool.request()
-            .input(&#x27;input_parameter&#x27;, sql.Int, value)
-            .output(&#x27;output_parameter&#x27;, sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
-            .execute(&#x27;procedure_name&#x27;)
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
+            .execute('procedure_name')
 
         console.dir(result2)
     } catch (err) {
@@ -4948,7 +4941,7 @@ __Example__
   const values = Array.prototype.slice.call(arguments)
   const strings = values.shift()
 
-  return new driver.Request()._template(&#x27;batch&#x27;, strings, values)
+  return new driver.Request()._template('batch', strings, values)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 - **batch** - T-SQL command to be executed.
@@ -4959,8 +4952,8 @@ __Example__
 
 ```javascript
 const request = new sql.Request()
-request.<span class="apidocCodeKeywordSpan">batch</span>(&#x27;create procedure #temporary as select * from table&#x27;, (err, result
-) =&#x3e; {
+request.<span class="apidocCodeKeywordSpan">batch</span>('create procedure #temporary as select * from table', (err, result
+) =&gt; {
     // ... error checks
 })
 ```
@@ -4984,16 +4977,16 @@ __Errors__
   if (globalConnection) {
     // remove event handlers from the global connection
     for (let event in globalConnectionHandlers) {
-      for (let i = 0, l = globalConnectionHandlers[event].length; i &#x3c; l; i++) {
+      for (let i = 0, l = globalConnectionHandlers[event].length; i &lt; l; i++) {
         globalConnection.removeListener(event, globalConnectionHandlers[event][i])
       }
     }
 
     // attach error handler to prevent process crash in case of error
-    globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
-      if (globalConnectionHandlers[&#x27;error&#x27;]) {
-        for (let i = 0, l = globalConnectionHandlers[&#x27;error&#x27;].length; i &#x3c; l; i++) {
-          globalConnectionHandlers[&#x27;error&#x27;][i].call(globalConnection, err)
+    globalConnection.on('error', err =&gt; {
+      if (globalConnectionHandlers['error']) {
+        for (let i = 0, l = globalConnectionHandlers['error'].length; i &lt; l; i++) {
+          globalConnectionHandlers['error'][i].call(globalConnection, err)
         }
       }
     })
@@ -5003,12 +4996,12 @@ __Errors__
     return gc.close(callback)
   }
 
-  if (typeof callback === &#x27;function&#x27;) {
+  if (typeof callback === 'function') {
     setImmediate(callback)
     return null
   }
 
-  return new PromiseLibrary((resolve, reject) =&#x3e; {
+  return new PromiseLibrary((resolve, reject) =&gt; {
     resolve(globalConnection)
   })
 }</pre></li>
@@ -5041,11 +5034,11 @@ const request = new sql.Request(/* [pool or transaction] */)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function connect(config, callback) {
-  if (globalConnection) throw new Error(&#x27;Global connection already exists. Call sql.close() first.&#x27;)
+  if (globalConnection) throw new Error('Global connection already exists. Call sql.close() first.')
   globalConnection = new driver.ConnectionPool(config)
 
   for (let event in globalConnectionHandlers) {
-    for (let i = 0, l = globalConnectionHandlers[event].length; i &#x3c; l; i++) {
+    for (let i = 0, l = globalConnectionHandlers[event].length; i &lt; l; i++) {
       globalConnection.on(event, globalConnectionHandlers[event][i])
     }
   }
@@ -5056,12 +5049,12 @@ const request = new sql.Request(/* [pool or transaction] */)
 ## Quick Example
 
 ```javascript
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
-async () =&#x3e; {
+async () =&gt; {
     try {
-        const pool = await sql.<span class="apidocCodeKeywordSpan">connect</span>(&#x27;mssql://username:password@localhost/database
-&#x27;)
+        const pool = await sql.<span class="apidocCodeKeywordSpan">connect</span>('mssql://username:password@localhost/database
+')
         const result = await sql.query`select * from mytable where id = ${value}`
         console.dir(result)
     } catch (err) {
@@ -5118,7 +5111,7 @@ async () =&#x3e; {
     }
 })()
 
-sql.<span class="apidocCodeKeywordSpan">on</span>(&#x27;error&#x27;, err =&#x3e; {
+sql.<span class="apidocCodeKeywordSpan">on</span>('error', err =&gt; {
     // ... error handler
 })
 ```
@@ -5142,24 +5135,24 @@ sql.<span class="apidocCodeKeywordSpan">on</span>(&#x27;error&#x27;, err =&#x3e;
   const values = Array.prototype.slice.call(arguments)
   const strings = values.shift()
 
-  return new driver.Request()._template(&#x27;query&#x27;, strings, values)
+  return new driver.Request()._template('query', strings, values)
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
 (async function () {
 try {
     let pool = await sql.connect(config)
     let result1 = await pool.request()
-        .input(&#x27;input_parameter&#x27;, sql.Int, value)
-        .<span class="apidocCodeKeywordSpan">query</span>(&#x27;select * from mytable where id = @input_parameter&#x27;)
+        .input('input_parameter', sql.Int, value)
+        .<span class="apidocCodeKeywordSpan">query</span>('select * from mytable where id = @input_parameter')
 
     console.dir(result1)
 
     // Stored procedure
 
     let result2 = await pool.request()
-        .input(&#x27;input_parameter&#x27;, sql.Int, value)
+        .input('input_parameter', sql.Int, value)
 ...</pre></li>
     </ul>
 
@@ -5189,15 +5182,15 @@ module.exports.exports.close = function close (callback) {
   if (globalConnection) {
 // remove event handlers from the global connection
 for (let event in globalConnectionHandlers) {
-  for (let i = 0, l = globalConnectionHandlers[event].length; i &#x3c; l; i++) {
+  for (let i = 0, l = globalConnectionHandlers[event].length; i &lt; l; i++) {
     globalConnection.<span class="apidocCodeKeywordSpan">removeListener</span>(event, globalConnectionHandlers[event][i])
   }
 }
 
 // attach error handler to prevent process crash in case of error
-globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
-  if (globalConnectionHandlers[&#x27;error&#x27;]) {
-    for (let i = 0, l = globalConnectionHandlers[&#x27;error&#x27;].length; i &#x3c; l; i++) {
+globalConnection.on('error', err =&gt; {
+  if (globalConnectionHandlers['error']) {
+    for (let i = 0, l = globalConnectionHandlers['error'].length; i &lt; l; i++) {
 ...</pre></li>
     </ul>
 
@@ -5262,7 +5255,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5297,7 +5290,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5332,7 +5325,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5367,7 +5360,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5402,7 +5395,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5437,7 +5430,7 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5461,14 +5454,14 @@ globalConnection.on(&#x27;error&#x27;, err =&#x3e; {
   return {type: TYPES.DateTime2, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -5488,7 +5481,7 @@ sql.BigInt
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5523,7 +5516,7 @@ sql.BigInt
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5547,18 +5540,18 @@ sql.BigInt
   return {type: TYPES.Decimal, precision, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.input(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)               // varchar(3)
-request.input(&#x22;name&#x22;, sql.VarChar(50), &#x22;abc&#x22;)           // varchar(50)
-request.input(&#x22;name&#x22;, sql.VarChar(sql.MAX), &#x22;abc&#x22;)      // varchar(MAX)
-request.output(&#x22;name&#x22;, sql.VarChar)                     // varchar(8000)
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.DateTime2(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -5574,7 +5567,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5609,7 +5602,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5644,7 +5637,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5679,7 +5672,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5714,7 +5707,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5749,7 +5742,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5784,7 +5777,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5819,7 +5812,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5854,7 +5847,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5889,7 +5882,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5924,7 +5917,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5959,7 +5952,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -5994,7 +5987,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6029,7 +6022,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6064,7 +6057,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6099,7 +6092,7 @@ List of supported data types:
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6213,14 +6206,14 @@ List of supported data types:
   return {type: TYPES.DateTime2, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">DateTime2</span>(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -6259,18 +6252,18 @@ sql.BigInt
   return {type: TYPES.Decimal, precision, scale}
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-request.input(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)               // varchar(3)
-request.input(&#x22;name&#x22;, sql.VarChar(50), &#x22;abc&#x22;)           // varchar(50)
-request.input(&#x22;name&#x22;, sql.VarChar(sql.MAX), &#x22;abc&#x22;)      // varchar(MAX)
-request.output(&#x22;name&#x22;, sql.VarChar)                     // varchar(8000)
-request.output(&#x22;name&#x22;, sql.VarChar, &#x22;abc&#x22;)              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input(&#x22;name&#x22;, sql.Decimal, 155.33)              // decimal(18, 0)
-request.input(&#x22;name&#x22;, sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
-request.input(&#x22;name&#x22;, sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.<span class="apidocCodeKeywordSpan">Decimal</span>(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input(&#x22;name&#x22;, sql.DateTime2, new Date())        // datetime2(7)
-request.input(&#x22;name&#x22;, sql.DateTime2(5), new Date())     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 ```
 
 List of supported data types:
@@ -6611,9 +6604,9 @@ List of supported data types:
         // Stored procedure
 
         let result2 = await pool.request()
-            .input(&#x27;input_parameter&#x27;, sql.Int, value)
-            .output(&#x27;output_parameter&#x27;, sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
-            .execute(&#x27;procedure_name&#x27;)
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
+            .execute('procedure_name')
 
         console.dir(result2)
     } catch (err) {
@@ -6673,17 +6666,17 @@ List of supported data types:
     this.name = parsed.name
     this.schema = parsed.schema
     this.database = parsed.database
-    this.path = (this.database ? `[${this.database}].` : &#x27;&#x27;) + (this.schema ? `[${this.schema}].` : &#x27;&#x27;) + `[${this.name}]`
-    this.temporary = this.name.charAt(0) === &#x27;#&#x27;
+    this.path = (this.database ? `[${this.database}].` : '') + (this.schema ? `[${this.schema}].` : '') + `[${this.name}]`
+    this.temporary = this.name.charAt(0) === '#'
   }
 
   this.columns = []
   this.rows = []
 
-  Object.defineProperty(this.columns, &#x27;add&#x27;, {
+  Object.defineProperty(this.columns, 'add', {
     value (name, column, options) {
       if (column == null) {
-        throw new Error(&#x27;Column data type is not defined.&#x27;)
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
         column = column()
@@ -6699,7 +6692,7 @@ List of supported data types:
   }
   )
 
-  Object.defineProperty(this.rows, &#x27;add&#x27;, {
+  Object.defineProperty(this.rows, 'add', {
     value () {
       return this.push(Array.prototype.slice.call(arguments))
     }
@@ -6715,14 +6708,14 @@ If omitted, returns [Promise](#promises).
 __Example__
 
 ```javascript
-const table = new sql.<span class="apidocCodeKeywordSpan">Table</span>(&#x27;table_name&#x27;) // or temporary table, e.g. #temptable
+const table = new sql.<span class="apidocCodeKeywordSpan">Table</span>('table_name') // or temporary table, e.g. #temptable
 table.create = true
-table.columns.add(&#x27;a&#x27;, sql.Int, {nullable: true, primary: true})
-table.columns.add(&#x27;b&#x27;, sql.VarChar(50), {nullable: false})
-table.rows.add(777, &#x27;test&#x27;)
+table.columns.add('a', sql.Int, {nullable: true, primary: true})
+table.columns.add('b', sql.VarChar(50), {nullable: false})
+table.rows.add(777, 'test')
 
 const request = new sql.Request()
-request.bulk(table, (err, result) =&#x3e; {
+request.bulk(table, (err, result) =&gt; {
 ...</pre></li>
     </ul>
 
@@ -6753,13 +6746,13 @@ request.bulk(table, (err, result) =&#x3e; {
     }
   }
 
-  if (t.columns.length === 1 &#x26;&#x26; t.columns[0].name === JSON_COLUMN_ID) {
-    for (let i = 0; i &#x3c; recordset.length; i++) {
+  if (t.columns.length === 1 &amp;&amp; t.columns[0].name === JSON_COLUMN_ID) {
+    for (let i = 0; i &lt; recordset.length; i++) {
       t.rows.add(JSON.stringify(recordset[i]))
     }
   } else {
-    for (let i = 0; i &#x3c; recordset.length; i++) {
-      t.rows.add.apply(t.rows, t.columns.map(col =&#x3e; recordset[i][col.name]))
+    for (let i = 0; i &lt; recordset.length; i++) {
+      t.rows.add.apply(t.rows, t.columns.map(col =&gt; recordset[i][col.name]))
     }
   }
 
@@ -6780,30 +6773,30 @@ request.bulk(table, (err, result) =&#x3e; {
     <li>description and source-code<pre class="apidocCodePre">function parseName(name) {
   const length = name.length
   let cursor = -1
-  let buffer = &#x27;&#x27;
+  let buffer = ''
   let escaped = false
   const path = []
 
-  while (++cursor &#x3c; length) {
+  while (++cursor &lt; length) {
     const char = name.charAt(cursor)
-    if (char === &#x27;[&#x27;) {
+    if (char === '[') {
       if (escaped) {
         buffer += char
       } else {
         escaped = true
       }
-    } else if (char === &#x27;]&#x27;) {
+    } else if (char === ']') {
       if (escaped) {
         escaped = false
       } else {
-        throw new Error(&#x27;Invalid table name.&#x27;)
+        throw new Error('Invalid table name.')
       }
-    } else if (char === &#x27;.&#x27;) {
+    } else if (char === '.') {
       if (escaped) {
         buffer += char
       } else {
         path.push(buffer)
-        buffer = &#x27;&#x27;
+        buffer = ''
       }
     } else {
       buffer += char
@@ -6837,7 +6830,7 @@ request.bulk(table, (err, result) =&#x3e; {
       }
 
     default:
-      throw new Error(&#x27;Invalid table name.&#x27;)
+      throw new Error('Invalid table name.')
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6858,7 +6851,7 @@ request.bulk(table, (err, result) =&#x3e; {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function _makeBulk() {
-  for (let i = 0; i &#x3c; this.columns.length; i++) {
+  for (let i = 0; i &lt; this.columns.length; i++) {
     const col = this.columns[i]
     switch (col.type) {
       case TYPES.Xml:
@@ -6891,26 +6884,26 @@ request.bulk(table, (err, result) =&#x3e; {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function declare() {
-  const pkey = this.columns.filter(col =&#x3e; col.primary === true).map(col =&#x3e; col.name)
-  const cols = this.columns.map(col =&#x3e; {
+  const pkey = this.columns.filter(col =&gt; col.primary === true).map(col =&gt; col.name)
+  const cols = this.columns.map(col =&gt; {
     const def = [`[${col.name}] ${declareType(col.type, col)}`]
 
     if (col.nullable === true) {
-      def.push(&#x27;null&#x27;)
+      def.push('null')
     } else if (col.nullable === false) {
-      def.push(&#x27;not null&#x27;)
+      def.push('not null')
     }
 
-    if (col.primary === true &#x26;&#x26; pkey.length === 1) {
-      def.push(&#x27;primary key&#x27;)
+    if (col.primary === true &amp;&amp; pkey.length === 1) {
+      def.push('primary key')
     }
 
-    return def.join(&#x27; &#x27;)
+    return def.join(' ')
   })
 
-  const constraint = pkey.length &#x3e; 1 ? `, constraint PK_${this.temporary ? this.name.substr(1) : this.name} primary key (${pkey.
-join(&#x27;, &#x27;)})` : &#x27;&#x27;
-  return `create table ${this.path} (${cols.join(&#x27;, &#x27;)}${constraint})`
+  const constraint = pkey.length &gt; 1 ? `, constraint PK_${this.temporary ? this.name.substr(1) : this.name} primary key (${pkey.
+join(', ')})` : ''
+  return `create table ${this.path} (${cols.join(', ')}${constraint})`
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6944,7 +6937,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -6979,7 +6972,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7014,7 +7007,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7049,7 +7042,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7084,7 +7077,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7119,7 +7112,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7149,9 +7142,9 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         // Stored procedure
 
         let result2 = await pool.request()
-            .input(&#x27;input_parameter&#x27;, sql.Int, value)
-            .output(&#x27;output_parameter&#x27;, sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
-            .execute(&#x27;procedure_name&#x27;)
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.<span class="apidocCodeKeywordSpan">VarChar</span>(50))
+            .execute('procedure_name')
 
         console.dir(result2)
     } catch (err) {
@@ -7170,7 +7163,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7205,7 +7198,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7240,7 +7233,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">() =&#x3e; `[sql.${key}]`</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">() =&gt; `[sql.${key}]`</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -7273,13 +7266,13 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;ConnectionError&#x27;
+    this.name = 'ConnectionError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7309,11 +7302,11 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
     this._connected = false
     this._connecting = false
 
-    if (typeof this.config === &#x27;string&#x27;) {
+    if (typeof this.config === 'string') {
       try {
         this.config = ConnectionString.resolve(this.config, driver.name)
       } catch (ex) {
-        if (typeof callback === &#x27;function&#x27;) {
+        if (typeof callback === 'function') {
           return callback(ex)
         }
         throw ex
@@ -7331,7 +7324,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
       this.config.options.instanceName = RegExp.$2
     }
 
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       this.connect(callback)
     }
   }
@@ -7354,10 +7347,10 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
    */
 
   acquire (requester, callback) {
-    debug(&#x27;conn: acquire&#x27;)
+    debug('conn: acquire')
 
-    if (typeof callback === &#x27;function&#x27;) {
-      this._acquire().then(connection =&#x3e; callback(null, connection)).catch(callback)
+    if (typeof callback === 'function') {
+      this._acquire().then(connection =&gt; callback(null, connection)).catch(callback)
       return this
     }
 
@@ -7366,7 +7359,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
 
   _acquire () {
     if (!this.pool) {
-      return Promise.reject(new ConnectionError(&#x27;Connection not yet open.&#x27;, &#x27;ENOTOPEN&#x27;))
+      return Promise.reject(new ConnectionError('Connection not yet open.', 'ENOTOPEN'))
     }
 
     return this.pool.acquire()
@@ -7380,7 +7373,7 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
    */
 
   release (connection) {
-    debug(&#x27;conn: release&#x27;)
+    debug('conn: release')
 
     this.pool.release(connection)
     return this
@@ -7396,13 +7389,13 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
    */
 
   connect (callback) {
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       this._connect(callback)
       return this
     }
 
-    return new PromiseLibrary((resolve, reject) =&#x3e; {
-      return this._connect(err =&#x3e; {
+    return new PromiseLibrary((resolve, reject) =&gt; {
+      return this._connect(err =&gt; {
         if (err) return reject(err)
         resolve(this)
       })
@@ -7416,19 +7409,19 @@ join(&#x27;, &#x27;)})` : &#x27;&#x27;
 
   _connect (callback) {
     if (this._connected) {
-      return callback(new ConnectionError(&#x27;Database is already connected! Call close before connecting to different database.&#x27;, &#x27;
-EALREADYCONNECTED&#x27;))
+      return callback(new ConnectionError('Database is already connected! Call close before connecting to different database.', '
+EALREADYCONNECTED'))
     }
 
     if (this._connecting) {
-      return callback(new ConnectionError(&#x27;Already connecting to database! Call close before connecting to different database.&#x27;, &#x27;
-EALREADYCONNECTING&#x27;))
+      return callback(new ConnectionError('Already connecting to database! Call close before connecting to different database.', '
+EALREADYCONNECTING'))
     }
 
     this._connecting = true
 
     // create one testing connection to check if everything is ok
-    this._poolCreate().then((connection) =&#x3e; {
+    this._poolCreate().then((connection) =&gt; {
       this._poolDestroy(connection)
       if (!this._connecting) {
         // close was called before connection was established
@@ -7453,15 +7446,15 @@ EALREADYCONNECTING&#x27;))
 ## Connection Pools
 
 ```javascript
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
-const pool1 = new sql.<span class="apidocCodeKeywordSpan">ConnectionPool</span>(config, err =&#x3e; {
+const pool1 = new sql.<span class="apidocCodeKeywordSpan">ConnectionPool</span>(config, err =&gt; {
 // ... error checks
 
 // Query
 
 pool1.request() // or: new sql.Request(pool1)
-.query(&#x27;select 1 as number&#x27;, (err, result) =&#x3e; {
+.query('select 1 as number', (err, result) =&gt; {
     // ... error checks
 ...</pre></li>
     </ul>
@@ -7505,20 +7498,20 @@ pool1.request() // or: new sql.Request(pool1)
    */
 
   acquire (request, callback) {
-    debug(&#x27;ps: acquire&#x27;)
+    debug('ps: acquire')
 
     if (!this._acquiredConnection) {
-      setImmediate(callback, new PreparedStatementError(&#x27;Statement is not prepared. Call prepare() first.&#x27;, &#x27;ENOTPREPARED&#x27;))
+      setImmediate(callback, new PreparedStatementError('Statement is not prepared. Call prepare() first.', 'ENOTPREPARED'))
       return this
     }
 
     if (this._activeRequest) {
-      setImmediate(callback, new TransactionError(&#x22;Can&#x27;t acquire connection for the request. There is another request in progress
-.&#x22;, &#x27;EREQINPROG&#x27;))
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
       return this
     }
 
-    debug(&#x27;ps: acquire ok&#x27;)
+    debug('ps: acquire ok')
 
     this._activeRequest = request
     setImmediate(callback, null, this._acquiredConnection)
@@ -7533,11 +7526,11 @@ pool1.request() // or: new sql.Request(pool1)
    */
 
   release (connection) {
-    debug(&#x27;ps: release&#x27;)
+    debug('ps: release')
 
     if (connection === this._acquiredConnection) {
       this._activeRequest = null
-      debug(&#x27;ps: release ok&#x27;)
+      debug('ps: release ok')
     }
 
     return this
@@ -7552,12 +7545,12 @@ pool1.request() // or: new sql.Request(pool1)
    */
 
   input (name, type) {
-    if ((/(--| |\/\*|\*\/|&#x27;)/).test(name)) {
-      throw new PreparedStatementError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new PreparedStatementError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
-    if (arguments.length &#x3c; 2) {
-      throw new PreparedStatementError(&#x27;Invalid number of arguments. 2 arguments expected.&#x27;, &#x27;EARGS&#x27;)
+    if (arguments.length &lt; 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
     }
 
     if (type instanceof Function) {
@@ -7586,12 +7579,12 @@ pool1.request() // or: new sql.Request(pool1)
    */
 
   output (name, type) {
-    if (/(--| |\/\*|\*\/|&#x27;)/.test(name)) {
-      throw new PreparedStatementError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if (/(--| |\/\*|\*\/|')/.test(name)) {
+      throw new PreparedStatementError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
-    if (arguments.length &#x3c; 2) {
-      throw new PreparedStatementError(&#x27;Invalid number of arguments. 2 arguments expected.&#x27;, &#x27;EARGS&#x27;)
+    if (arguments.length &lt; 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
     }
 
     if (type instanceof Function) type = type()
@@ -7618,13 +7611,13 @@ omited, method returns Promise.
    */
 
   prepare (statement, callback) {
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       this._prepare(statement, callback)
       return this
     }
 
-    return new PromiseLibrary((resolve, reject) =&#x3e; {
-      this._prepare(statement, err =&#x3e; {
+    return new PromiseLibrary((resolve, reject) =&gt; {
+      this._prepare(statement, err =&gt; {
         if (err) return reject(err)
         resolve(this)
       })
@@ -7638,12 +7631,12 @@ omited, method returns Promise.
    */
 
   _prepare (statement, callback) {
-    debug(&#x27;ps: prepare&#x27;)
+    debug('ps: prepare')
 
-    if (typeof statement === &#x27;function&#x27;) {
+    if (typeof statement === 'function') {
       callback = statement ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-- EREQINPROG (`TransactionError`) - Can&#x27;t rollback transaction. There is a request in progress.
+- EREQINPROG (`TransactionError`) - Can't rollback transaction. There is a request in progress.
 
 ## Prepared Statement
 
@@ -7686,13 +7679,13 @@ __Example__
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;PreparedStatementError&#x27;
+    this.name = 'PreparedStatementError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7735,13 +7728,13 @@ __Example__
   _template (method, strings, values) {
     let command = [strings[0]]
 
-    for (let index = 0; index &#x3c; values.length; index++) {
+    for (let index = 0; index &lt; values.length; index++) {
       let value = values[index]
       this.input(`param${index + 1}`, value)
       command.push(`@param${index + 1}`, strings[index + 1])
     }
 
-    return this[method](command.join(&#x27;&#x27;))
+    return this[method](command.join(''))
   }
 
   /**
@@ -7755,22 +7748,22 @@ __Example__
    */
 
   input (name, type, value) {
-    if ((/(--| |\/\*|\*\/|&#x27;)/).test(name)) {
-      throw new RequestError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new RequestError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
     if (arguments.length === 1) {
-      throw new RequestError(&#x27;Invalid number of arguments. At least 2 arguments expected.&#x27;, &#x27;EARGS&#x27;)
+      throw new RequestError('Invalid number of arguments. At least 2 arguments expected.', 'EARGS')
     } else if (arguments.length === 2) {
       value = type
       type = getTypeByValue(value)
     }
 
     // support for custom data types
-    if (value &#x26;&#x26; typeof value.valueOf === &#x27;function&#x27; &#x26;&#x26; !(value instanceof Date)) value = value.valueOf()
+    if (value &amp;&amp; typeof value.valueOf === 'function' &amp;&amp; !(value instanceof Date)) value = value.valueOf()
 
     if (value === undefined) value = null // undefined to null
-    if (typeof value === &#x27;number&#x27; &#x26;&#x26; isNaN(value)) value = null // NaN to null
+    if (typeof value === 'number' &amp;&amp; isNaN(value)) value = null // NaN to null
     if (type instanceof Function) type = type()
 
     this.parameters[name] = {
@@ -7800,19 +7793,19 @@ values. Optional.
   output (name, type, value) {
     if (!type) { type = TYPES.NVarChar }
 
-    if ((/(--| |\/\*|\*\/|&#x27;)/).test(name)) {
-      throw new RequestError(`SQL injection warning for param &#x27;${name}&#x27;`, &#x27;EINJECT&#x27;)
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new RequestError(`SQL injection warning for param '${name}'`, 'EINJECT')
     }
 
     if ((type === TYPES.Text) || (type === TYPES.NText) || (type === TYPES.Image)) {
-      throw new RequestError(&#x27;Deprecated types (Text, NText, Image) are not supported as OUTPUT parameters.&#x27;, &#x27;EDEPRECATED&#x27;)
+      throw new RequestError('Deprecated types (Text, NText, Image) are not supported as OUTPUT parameters.', 'EDEPRECATED')
     }
 
     // support for custom data types
-    if (value &#x26;&#x26; typeof value.valueOf === &#x27;function&#x27; &#x26;&#x26; !(value instanceof Date)) value = value.valueOf()
+    if (value &amp;&amp; typeof value.valueOf === 'function' &amp;&amp; !(value instanceof Date)) value = value.valueOf()
 
     if (value === undefined) value = null // undefined to null
-    if (typeof value === &#x27;number&#x27; &#x26;&#x26; isNaN(value)) value = null // NaN to null
+    if (typeof value === 'number' &amp;&amp; isNaN(value)) value = null // NaN to null
     if (type instanceof Function) type = type()
 
     this.parameters[name] = {
@@ -7838,20 +7831,20 @@ values. Optional.
    */
 
   batch (batch, callback) {
-    if (this.stream == null &#x26;&#x26; this.connection) this.stream = this.connection.config.stream
+    if (this.stream == null &amp;&amp; this.connection) this.stream = this.connection.config.stream
     this.rowsAffected = 0
 
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       this._batch(batc ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-const sql = require(&#x27;mssql&#x27;)
+const sql = require('mssql')
 
-sql.connect(config, err =&#x3e; {
+sql.connect(config, err =&gt; {
 // ... error checks
 
 // Query
 
-new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 1 as number&#x27;, (err, result) =&#x3e; {
+new sql.<span class="apidocCodeKeywordSpan">Request</span>().query('select 1 as number', (err, result) =&gt; {
     // ... error checks
 
     console.dir(result)
@@ -7895,13 +7888,13 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
         this.state = message.sqlstate // err.sqlstate is returned by msnodesql driver
       }
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;RequestError&#x27;
+    this.name = 'RequestError'
     if ((/^\[Microsoft\]\[SQL Server Native Client 11\.0\](?:\[SQL Server\])?([\s\S]*)$/).exec(this.message)) {
       this.message = RegExp.$1
     }
@@ -7931,7 +7924,7 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
 
     this.parent = parent || globalConnection
     this.isolationLevel = ISOLATION_LEVEL.READ_COMMITTED
-    this.name = &#x27;&#x27;
+    this.name = ''
   }
 
   get connected () {
@@ -7948,20 +7941,20 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
    */
 
   acquire (request, callback) {
-    debug(&#x27;tran: acquire&#x27;)
+    debug('tran: acquire')
 
     if (!this._acquiredConnection) {
-      setImmediate(callback, new TransactionError(&#x27;Transaction has not begun. Call begin() first.&#x27;, &#x27;ENOTBEGUN&#x27;))
+      setImmediate(callback, new TransactionError('Transaction has not begun. Call begin() first.', 'ENOTBEGUN'))
       return this
     }
 
     if (this._activeRequest) {
-      setImmediate(callback, new TransactionError(&#x22;Can&#x27;t acquire connection for the request. There is another request in progress
-.&#x22;, &#x27;EREQINPROG&#x27;))
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
       return this
     }
 
-    debug(&#x27;tran: acquire ok&#x27;)
+    debug('tran: acquire ok')
 
     this._activeRequest = request
     setImmediate(callback, null, this._acquiredConnection)
@@ -7976,11 +7969,11 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
    */
 
   release (connection) {
-    debug(&#x27;tran: release&#x27;)
+    debug('tran: release')
 
     if (connection === this._acquiredConnection) {
       this._activeRequest = null
-      debug(&#x27;tran: release ok&#x27;)
+      debug('tran: release ok')
     }
 
     return this
@@ -8002,22 +7995,22 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
       isolationLevel = undefined
     }
 
-    if (typeof callback === &#x27;function&#x27;) {
-      this._begin(isolationLevel, err =&#x3e; {
+    if (typeof callback === 'function') {
+      this._begin(isolationLevel, err =&gt; {
         if (!err) {
-          this.emit(&#x27;begin&#x27;)
-          debug(&#x27;tran: begin ok&#x27;)
+          this.emit('begin')
+          debug('tran: begin ok')
         }
         callback(err)
       })
       return this
     }
 
-    return new PromiseLibrary((resolve, reject) =&#x3e; {
-      this._begin(isolationLevel, err =&#x3e; {
+    return new PromiseLibrary((resolve, reject) =&gt; {
+      this._begin(isolationLevel, err =&gt; {
         if (err) return reject(err)
-        this.emit(&#x27;begin&#x27;)
-        debug(&#x27;tran: begin ok&#x27;)
+        this.emit('begin')
+        debug('tran: begin ok')
         resolve(this)
       })
     })
@@ -8031,10 +8024,10 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
    */
 
   _begin (isolationLevel, callback) {
-    debug(&#x27;tran: begin&#x27;)
+    debug('tran: begin')
 
     if (this._acquiredConnection) {
-      return setImmediate(callback, new TransactionError(&#x27;Transaction has already begun.&#x27;, &#x27;EALREADYBEGUN&#x27;))
+      return setImmediate(callback, new TransactionError('Transaction has already begun.', 'EALREADYBEGUN'))
     }
 
     this._aborted = false
@@ -8053,22 +8046,22 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
    */
 
   commit (callback) {
-    if (typeof callback === &#x27;function&#x27;) {
-      this._commit(err =&#x3e; {
+    if (typeof callback === 'function') {
+      this._commit(err =&gt; {
         if (!err) {
-          this.emit(&#x27;commit&#x27;)
-          debug(&#x27;tran: commit&#x27;)
+          this.emit('commit')
+          debug('tran: commit')
         }
         callback(err)
       })
       return this
     }
 
-    return new PromiseLibrary((resolve, reject) =&#x3e; {
-      this._commit(err =&#x3e; {
+    return new PromiseLibrary((resolve, reject) =&gt; {
+      this._commit(err =&gt; {
         if (err) return reject(err)
-        this.emit(&#x27;commit&#x27;)
-        debug(&#x27;tran: commit&#x27;)
+        this.emit('commit')
+        debug('tran: commit')
         resolve()
       })
     })
@@ -8081,10 +8074,10 @@ new sql.<span class="apidocCodeKeywordSpan">Request</span>().query(&#x27;select 
    */
 
   _commit (callback) {
-    debug(&#x27;tran: commit&#x27;)
+    debug('tran: commit')
 
     if (this._aborted) {
-      return setImmediate(callback, new TransactionError(&#x27;Transaction has been aborted.&#x27;, &#x27; ...</pre></li>
+      return setImmediate(callback, new TransactionError('Transaction has been aborted.', ' ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 ```
 
@@ -8129,13 +8122,13 @@ __Example__
       super(message.message)
       this.code = message.code || code
 
-      Object.defineProperty(this, &#x27;originalError&#x27;, {enumerable: true, value: message})
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
       super(message)
       this.code = code
     }
 
-    this.name = &#x27;TransactionError&#x27;
+    this.name = 'TransactionError'
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -8161,49 +8154,49 @@ __Example__
     <ul>
     <li>description and source-code<pre class="apidocCodePre">parse = function (string) {
   let cursor = 0
-  let parsing = &#x27;name&#x27;
+  let parsing = 'name'
   let param = null
-  let buffer = &#x27;&#x27;
+  let buffer = ''
   let quotes = null
   const parsed = {}
   const original = {}
 
-  Object.defineProperty(parsed, &#x27;__original__&#x27;, {value: original})
-  Object.defineProperty(parsed, &#x27;toString&#x27;, {
+  Object.defineProperty(parsed, '__original__', {value: original})
+  Object.defineProperty(parsed, 'toString', {
     value () {
       const out = []
       for (const key in this) {
         if (IGNORE_KEYS.indexOf(key) === -1) {
-          const esc = original[key].escape || [&#x27;&#x27;, &#x27;&#x27;]
-          out.push(`${original[key].name}=${esc[0] || &#x27;&#x27;}${this[key]}${esc[1] || &#x27;&#x27;}`)
+          const esc = original[key].escape || ['', '']
+          out.push(`${original[key].name}=${esc[0] || ''}${this[key]}${esc[1] || ''}`)
         }
       }
-      return out.join(&#x27;;&#x27;)
+      return out.join(';')
     }
   })
 
-  while (cursor &#x3c; string.length) {
+  while (cursor &lt; string.length) {
     const char = string.charAt(cursor)
     switch (char) {
-      case &#x27;=&#x27;:
-        if (parsing === &#x27;name&#x27;) {
+      case '=':
+        if (parsing === 'name') {
           buffer = buffer.trim()
           param = buffer.toLowerCase()
           original[param] = {name: buffer}
-          parsing = &#x27;value&#x27;
-          buffer = &#x27;&#x27;
+          parsing = 'value'
+          buffer = ''
         } else {
           buffer += char
         }
         break
 
-      case &#x27;\&#x27;&#x27;: case &#x27;&#x22;&#x27;:
-        if (parsing === &#x27;value&#x27;) {
+      case '\'': case '"':
+        if (parsing === 'value') {
           if (!buffer.trim().length) {
             // value is wrapped in qotes
             original[param].escape = [char, char]
             quotes = char
-            buffer = &#x27;&#x27;
+            buffer = ''
           } else if (quotes) {
             if (char === quotes) {
               // found same char as used for wrapping quotes
@@ -8216,7 +8209,7 @@ __Example__
                 parsed[param] = buffer
                 param = null
                 parsing = null
-                buffer = &#x27;&#x27;
+                buffer = ''
                 quotes = null
               }
             } else {
@@ -8226,56 +8219,56 @@ __Example__
             buffer += char
           }
         } else {
-          throw new Error(&#x27;Invalid connection string.&#x27;)
+          throw new Error('Invalid connection string.')
         }
         break
 
-      case &#x27;{&#x27;:
-        if (parsing === &#x27;value&#x27;) {
+      case '{':
+        if (parsing === 'value') {
           if (buffer.trim().length === 0) {
             // value is wrapped in qotes
-            original[param].escape = [&#x27;{&#x27;, &#x27;}&#x27;]
-            quotes = &#x27;{}&#x27;
-            buffer = &#x27;&#x27;
+            original[param].escape = ['{', '}']
+            quotes = '{}'
+            buffer = ''
           } else {
             buffer += char
           }
         } else {
-          throw new Error(&#x27;Invalid connection string.&#x27;)
+          throw new Error('Invalid connection string.')
         }
         break
 
-      case &#x27;}&#x27;:
-        if (parsing === &#x27;value&#x27;) {
-          if (quotes === &#x27;{}&#x27;) {
+      case '}':
+        if (parsing === 'value') {
+          if (quotes === '{}') {
             // end of value
             parsed[param] = buffer
             param = null
             parsing = null
-            buffer = &#x27;&#x27;
+            buffer = ''
             quotes = null
           } else {
             buffer += char
           }
         } else {
-          throw new Error(&#x27;Invalid connection string.&#x27;)
+          throw new Error('Invalid connection string.')
         }
         break
 
-      case &#x27;;&#x27;:
-        if (parsing === &#x27;value&#x27;) {
+      case ';':
+        if (parsing === 'value') {
           if (quotes) {
             buffer += char
           } else {
             // end of value
             parsed[param] = buffer
             param = null
-            parsing = &#x27;name&#x27;
-            buffer = &#x27;&#x27;
+            parsing = 'name'
+            buffer = ''
           }
         } else {
-          buffer = &#x27;&#x27;
-          parsing = &#x27;name&#x27;
+          buffer = ''
+          parsing = 'name'
         }
         break
 
@@ -8286,7 +8279,7 @@ __Example__
     cursor++
   }
 
-  if (parsing === &#x27;value&#x27;) {
+  if (parsing === 'value') {
     // end of value
     parsed[param] = buffer
   }
@@ -8294,7 +8287,7 @@ __Example__
   return parsed
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  if (arguments[i] !== null &#x26;&#x26; arguments[i] !== undefined) {
+  if (arguments[i] !== null &amp;&amp; arguments[i] !== undefined) {
     return arguments[i]
   }
 }
@@ -8306,8 +8299,8 @@ let instance
 let user
 let password
 
-const path = parsed.pathname.substr(1).split(&#x27;/&#x27;)
-if (path.length &#x3e; 1) {
+const path = parsed.pathname.substr(1).split('/')
+if (path.length &gt; 1) {
   instance = path.shift()
 ...</pre></li>
     </ul>
@@ -8324,36 +8317,36 @@ if (path.length &#x3e; 1) {
     <li>description and source-code<pre class="apidocCodePre">resolve = function (string, driver) {
   const parsed = /^(mssql|tedious|msnodesql|tds):\/\//i.test(string) ? parseConnectionURI(string) : parseConnectionString(string
 )
-  const stream = (parsed.stream || &#x27;&#x27;).toLowerCase()
-  const encrypt = (parsed.encrypt || &#x27;&#x27;).toLowerCase()
+  const stream = (parsed.stream || '').toLowerCase()
+  const encrypt = (parsed.encrypt || '').toLowerCase()
 
-  if (driver === &#x27;msnodesqlv8&#x27;) {
-    parsed.driver = &#x27;SQL Server Native Client 11.0&#x27;
+  if (driver === 'msnodesqlv8') {
+    parsed.driver = 'SQL Server Native Client 11.0'
 
     if (parsed.__original__) {
-      parsed.__original__.driver = {name: &#x27;Driver&#x27;, escape: [&#x27;{&#x27;, &#x27;}&#x27;]}
+      parsed.__original__.driver = {name: 'Driver', escape: ['{', '}']}
     }
 
     return {connectionString: parsed.toString()}
   }
 
-  let user = parsed.uid || parsed.uid || parsed[&#x27;user id&#x27;]
-  let server = parsed.server || parsed.address || parsed.addr || parsed[&#x27;data source&#x27;] || parsed[&#x27;network address&#x27;]
+  let user = parsed.uid || parsed.uid || parsed['user id']
+  let server = parsed.server || parsed.address || parsed.addr || parsed['data source'] || parsed['network address']
 
   const config = {
     password: oror(parsed.pwd, parsed.password),
-    database: oror(parsed.database, parsed[&#x27;initial catalog&#x27;]),
-    connectionTimeout: oror(parsed.connectionTimeout, parsed.timeout, parsed[&#x27;connect timeout&#x27;], parsed[&#x27;connection timeout&#x27;]),
-    requestTimeout: oror(parsed.requestTimeout, parsed[&#x27;request timeout&#x27;]),
-    stream: stream === &#x27;true&#x27; || stream === &#x27;yes&#x27; || stream === &#x27;1&#x27;,
+    database: oror(parsed.database, parsed['initial catalog']),
+    connectionTimeout: oror(parsed.connectionTimeout, parsed.timeout, parsed['connect timeout'], parsed['connection timeout']),
+    requestTimeout: oror(parsed.requestTimeout, parsed['request timeout']),
+    stream: stream === 'true' || stream === 'yes' || stream === '1',
     options: {
-      encrypt: encrypt === &#x27;true&#x27; || encrypt === &#x27;yes&#x27; || encrypt === &#x27;1&#x27;
+      encrypt: encrypt === 'true' || encrypt === 'yes' || encrypt === '1'
     }
   }
 
   if (parsed.useUTC != null) {
     const utc = parsed.useUTC.toLowerCase()
-    config.options.useUTC = utc === &#x27;true&#x27; || utc === &#x27;yes&#x27; || utc === &#x27;1&#x27;
+    config.options.useUTC = utc === 'true' || utc === 'yes' || utc === '1'
   }
   if (config.connectionTimeout != null) {
     config.connectionTimeout = parseInt(config.connectionTimeout, 10)
@@ -8371,7 +8364,7 @@ if (path.length &#x3e; 1) {
     server = server.trim()
 
     if (/^np:/i.test(server)) {
-      throw new Error(&#x27;Connection via Named Pipes is not supported.&#x27;)
+      throw new Error('Connection via Named Pipes is not supported.')
     }
 
     if (/^tcp:/i.test(server)) {
@@ -8388,8 +8381,8 @@ if (path.length &#x3e; 1) {
       config.port = parseInt(RegExp.$2.trim(), 10)
     }
 
-    if (server === &#x27;.&#x27; || server === &#x27;(.)&#x27; || server.toLowerCase() === &#x27;(localdb)&#x27; || server.toLowerCase() === &#x27;(local)&#x27;) {
-      server = &#x27;localhost&#x27;
+    if (server === '.' || server === '(.)' || server.toLowerCase() === '(localdb)' || server.toLowerCase() === '(local)') {
+      server = 'localhost'
     }
   }
 
@@ -8403,11 +8396,11 @@ this.config = config
 this._connected = false
 this._connecting = false
 
-if (typeof this.config === &#x27;string&#x27;) {
+if (typeof this.config === 'string') {
   try {
     this.config = ConnectionString.<span class="apidocCodeKeywordSpan">resolve</span>(this.config, driver.name)
   } catch (ex) {
-    if (typeof callback === &#x27;function&#x27;) {
+    if (typeof callback === 'function') {
       return callback(ex)
     }
     throw ex
@@ -8430,22 +8423,22 @@ if (typeof this.config === &#x27;string&#x27;) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">(value, type, options) =&#x3e; {
+    <li>description and source-code<pre class="apidocCodePre">(value, type, options) =&gt; {
   if (value == null) {
     return null
   }
 
   switch (typeof value) {
-    case &#x27;string&#x27;:
-      return `N&#x27;${value.replace(/&#x27;/g, &#x27;\&#x27;\&#x27;&#x27;)}&#x27;`
+    case 'string':
+      return `N'${value.replace(/'/g, '\'\'')}'`
 
-    case &#x27;number&#x27;:
+    case 'number':
       return value
 
-    case &#x27;boolean&#x27;:
+    case 'boolean':
       return value ? 1 : 0
 
-    case &#x27;object&#x27;:
+    case 'object':
       if (value instanceof Date) {
         let ns = value.getUTCMilliseconds() / 1000
         if (value.nanosecondDelta != null) {
@@ -8453,16 +8446,16 @@ if (typeof this.config === &#x27;string&#x27;) {
         }
         const scale = options.scale == null ? 7 : options.scale
 
-        if (scale &#x3e; 0) {
+        if (scale &gt; 0) {
           ns = String(ns).substr(1, scale + 1)
         } else {
-          ns = &#x27;&#x27;
+          ns = ''
         }
 
-        return `N&#x27;${value.getUTCFullYear()}-${zero(value.getUTCMonth() + 1)}-${zero(value.getUTCDate())} ${zero(value.getUTCHours
-())}:${zero(value.getUTCMinutes())}:${zero(value.getUTCSeconds())}${ns}&#x27;`
+        return `N'${value.getUTCFullYear()}-${zero(value.getUTCMonth() + 1)}-${zero(value.getUTCDate())} ${zero(value.getUTCHours
+())}:${zero(value.getUTCMinutes())}:${zero(value.getUTCSeconds())}${ns}'`
       } else if (Buffer.isBuffer(value)) {
-        return `0x${value.toString(&#x27;hex&#x27;)}`
+        return `0x${value.toString('hex')}`
       }
 
       return null
@@ -8483,12 +8476,12 @@ if (typeof this.config === &#x27;string&#x27;) {
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">(type, options) =&#x3e; {
+    <li>description and source-code<pre class="apidocCodePre">(type, options) =&gt; {
   switch (type) {
     case TYPES.VarChar: case TYPES.VarBinary:
-      return `${type.declaration} (${options.length &#x3e; 8000 ? &#x27;MAX&#x27; : (options.length == null ? &#x27;MAX&#x27; : options.length)})`
+      return `${type.declaration} (${options.length &gt; 8000 ? 'MAX' : (options.length == null ? 'MAX' : options.length)})`
     case TYPES.NVarChar:
-      return `${type.declaration} (${options.length &#x3e; 4000 ? &#x27;MAX&#x27; : (options.length == null ? &#x27;MAX&#x27; : options.length)})`
+      return `${type.declaration} (${options.length &gt; 4000 ? 'MAX' : (options.length == null ? 'MAX' : options.length)})`
     case TYPES.Char: case TYPES.NChar: case TYPES.Binary:
       return `${type.declaration} (${options.length == null ? 1 : options.length})`
     case TYPES.Decimal: case TYPES.Numeric:
@@ -8524,7 +8517,7 @@ scale})`
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">register = function (jstype, sqltype) {
-  for (let index = 0; index &#x3c; this.length; index++) {
+  for (let index = 0; index &lt; this.length; index++) {
     let item = this[index]
     if (item.js === jstype) {
       this.splice(index, 1)
@@ -8540,7 +8533,7 @@ scale})`
   return null
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-- `sql.Table` -&#x3e; `sql.TVP`
+- `sql.Table` -&gt; `sql.TVP`
 
 Default data type for unknown object is `sql.NVarChar`.
 
@@ -8617,7 +8610,7 @@ sql.map.register(Number, sql.BigInt)
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">entityify = function (){return this.replace(/&#x26;/g,&#x22;&#x26;amp;&#x22;).replace(/&#x3c;/g,&#x22;&#x26;lt;&#x22;).replace(/&#x3e;/g,&#x22;&#x26;gt;&#x22;
+    <li>description and source-code<pre class="apidocCodePre">entityify = function (){return this.replace(/&amp;/g,"&amp;amp;").replace(/&lt;/g,"&amp;lt;").replace(/&gt;/g,"&amp;gt;"
 )}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -8631,7 +8624,7 @@ sql.map.register(Number, sql.BigInt)
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">isAlpha = function ( ){return this&#x3e;=&#x22;a&#x22;&#x26;&#x26;this&#x3c;=&#x22;z\uffff&#x22;||this&#x3e;=&#x22;A&#x22;&#x26;&#x26;this&#x3c;=&#x22;Z\uffff&#x22;}</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">isAlpha = function ( ){return this&gt;="a"&amp;&amp;this&lt;="z\uffff"||this&gt;="A"&amp;&amp;this&lt;="Z\uffff"}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -8644,8 +8637,8 @@ sql.map.register(Number, sql.BigInt)
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">isDigit = function (){return this&#x3e;=&#x22;0&#x22;&#x26;&#x26;
-this&#x3c;=&#x22;9&#x22;}</pre></li>
+    <li>description and source-code<pre class="apidocCodePre">isDigit = function (){return this&gt;="0"&amp;&amp;
+this&lt;="9"}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -8659,7 +8652,7 @@ this&#x3c;=&#x22;9&#x22;}</pre></li>
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">supplant = function (e){return this.replace(/\{([^{}]*)\}/g,function(t,n){var r=e[n];return typeof
-r==&#x22;string&#x22;||typeof r==&#x22;number&#x22;?r:t})}</pre></li>
+r=="string"||typeof r=="number"?r:t})}</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
@@ -8778,10 +8771,10 @@ r==&#x22;string&#x22;||typeof r==&#x22;number&#x22;?r:t})}</pre></li>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Buffer(arg, encodingOrOffset, length) {
   // Common case.
-  if (typeof arg === &#x27;number&#x27;) {
-    if (typeof encodingOrOffset === &#x27;string&#x27;) {
+  if (typeof arg === 'number') {
+    if (typeof encodingOrOffset === 'string') {
       throw new Error(
-        &#x27;If encoding is specified then the first argument must be a string&#x27;
+        'If encoding is specified then the first argument must be a string'
       );
     }
     return Buffer.allocUnsafe(arg);
@@ -8875,41 +8868,41 @@ r==&#x22;string&#x22;||typeof r==&#x22;number&#x22;?r:t})}</pre></li>
     <li>description and source-code<pre class="apidocCodePre">function compare(target, start, end, thisStart, thisEnd) {
 
   if (!(target instanceof Buffer))
-    throw new TypeError(&#x27;Argument must be a Buffer&#x27;);
+    throw new TypeError('Argument must be a Buffer');
   if (arguments.length === 1)
     return compare_(this, target);
 
   if (start === undefined)
     start = 0;
-  else if (start &#x3c; 0)
-    throw new RangeError(&#x27;out of range index&#x27;);
+  else if (start &lt; 0)
+    throw new RangeError('out of range index');
   else
-    start &#x3e;&#x3e;&#x3e;= 0;
+    start &gt;&gt;&gt;= 0;
 
   if (end === undefined)
     end = target.length;
-  else if (end &#x3e; target.length)
-    throw new RangeError(&#x27;out of range index&#x27;);
+  else if (end &gt; target.length)
+    throw new RangeError('out of range index');
   else
-    end &#x3e;&#x3e;&#x3e;= 0;
+    end &gt;&gt;&gt;= 0;
 
   if (thisStart === undefined)
     thisStart = 0;
-  else if (thisStart &#x3c; 0)
-    throw new RangeError(&#x27;out of range index&#x27;);
+  else if (thisStart &lt; 0)
+    throw new RangeError('out of range index');
   else
-    thisStart &#x3e;&#x3e;&#x3e;= 0;
+    thisStart &gt;&gt;&gt;= 0;
 
   if (thisEnd === undefined)
     thisEnd = this.length;
-  else if (thisEnd &#x3e; this.length)
-    throw new RangeError(&#x27;out of range index&#x27;);
+  else if (thisEnd &gt; this.length)
+    throw new RangeError('out of range index');
   else
-    thisEnd &#x3e;&#x3e;&#x3e;= 0;
+    thisEnd &gt;&gt;&gt;= 0;
 
-  if (thisStart &#x3e;= thisEnd)
-    return (start &#x3e;= end ? 0 : -1);
-  else if (start &#x3e;= end)
+  if (thisStart &gt;= thisEnd)
+    return (start &gt;= end ? 0 : -1);
+  else if (start &gt;= end)
     return 1;
 
   return compareOffset(this, target, start, thisStart, end, thisEnd);
@@ -8941,7 +8934,7 @@ r==&#x22;string&#x22;||typeof r==&#x22;number&#x22;?r:t})}</pre></li>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function equals(b) {
   if (!(b instanceof Buffer))
-    throw new TypeError(&#x27;Argument must be a Buffer&#x27;);
+    throw new TypeError('Argument must be a Buffer');
 
   if (this === b)
     return true;
@@ -8962,49 +8955,49 @@ r==&#x22;string&#x22;||typeof r==&#x22;number&#x22;?r:t})}</pre></li>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function fill(val, start, end, encoding) {
   // Handle string cases:
-  if (typeof val === &#x27;string&#x27;) {
-    if (typeof start === &#x27;string&#x27;) {
+  if (typeof val === 'string') {
+    if (typeof start === 'string') {
       encoding = start;
       start = 0;
       end = this.length;
-    } else if (typeof end === &#x27;string&#x27;) {
+    } else if (typeof end === 'string') {
       encoding = end;
       end = this.length;
     }
 
-    if (encoding !== undefined &#x26;&#x26; typeof encoding !== &#x27;string&#x27;) {
-      throw new TypeError(&#x27;encoding must be a string&#x27;);
+    if (encoding !== undefined &amp;&amp; typeof encoding !== 'string') {
+      throw new TypeError('encoding must be a string');
     }
     var normalizedEncoding = internalUtil.normalizeEncoding(encoding);
     if (normalizedEncoding === undefined) {
-      throw new TypeError(&#x27;Unknown encoding: &#x27; + encoding);
+      throw new TypeError('Unknown encoding: ' + encoding);
     }
 
     if (val.length === 0) {
-      // Previously, if val === &#x27;&#x27;, the Buffer would not fill,
+      // Previously, if val === '', the Buffer would not fill,
       // which is rather surprising.
       val = 0;
     } else if (val.length === 1) {
       var code = val.charCodeAt(0);
-      if ((normalizedEncoding === &#x27;utf8&#x27; &#x26;&#x26; code &#x3c; 128) ||
-          normalizedEncoding === &#x27;latin1&#x27;) {
+      if ((normalizedEncoding === 'utf8' &amp;&amp; code &lt; 128) ||
+          normalizedEncoding === 'latin1') {
         // Fast path: If `val` fits into a single byte, use that numeric value.
         val = code;
       }
     }
-  } else if (typeof val === &#x27;number&#x27;) {
-    val = val &#x26; 255;
+  } else if (typeof val === 'number') {
+    val = val &amp; 255;
   }
 
   // Invalid ranges are not set to a default, so can range check early.
-  if (start &#x3c; 0 || end &#x3e; this.length)
-    throw new RangeError(&#x27;Out of range index&#x27;);
+  if (start &lt; 0 || end &gt; this.length)
+    throw new RangeError('Out of range index');
 
-  if (end &#x3c;= start)
+  if (end &lt;= start)
     return this;
 
-  start = start &#x3e;&#x3e;&#x3e; 0;
-  end = end === undefined ? this.length : end &#x3e;&#x3e;&#x3e; 0;
+  start = start &gt;&gt;&gt; 0;
+  end = end === undefined ? this.length : end &gt;&gt;&gt; 0;
 
   binding.fill(this, val, start, end, encoding);
 
@@ -9095,14 +9088,14 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function inspect() {
-  var str = &#x27;&#x27;;
+  var str = '';
   var max = exports.INSPECT_MAX_BYTES;
-  if (this.length &#x3e; 0) {
-    str = this.toString(&#x27;hex&#x27;, 0, max).match(/.{2}/g).join(&#x27; &#x27;);
-    if (this.length &#x3e; max)
-      str += &#x27; ... &#x27;;
+  if (this.length &gt; 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ');
+    if (this.length &gt; max)
+      str += ' ... ';
   }
-  return &#x27;&#x3c;&#x27; + this.constructor.name + &#x27; &#x27; + str + &#x27;&#x3e;&#x27;;
+  return '&lt;' + this.constructor.name + ' ' + str + '&gt;';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9158,7 +9151,7 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function readDoubleBE(offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 8, this.length);
   return binding.readDoubleBE(this, offset);
@@ -9176,17 +9169,17 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function readDoubleLE(offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 8, this.length);
   return binding.readDoubleLE(this, offset);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  if (count &#x3c; 1) {
+  if (count &lt; 1) {
     return points
   }
 
-  for (let i = 1; i &#x3c;= count; i++) {
+  for (let i = 1; i &lt;= count; i++) {
     const point = new Point()
     points.push(point)
     point.x = buffer.<span class="apidocCodeKeywordSpan">readDoubleLE</span>(buffer.position)
@@ -9209,7 +9202,7 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function readFloatBE(offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
   return binding.readFloatBE(this, offset);
@@ -9227,7 +9220,7 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function readFloatLE(offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
   return binding.readFloatLE(this, offset);
@@ -9245,11 +9238,11 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readInt16BE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 2, this.length);
-  var val = this[offset + 1] | (this[offset] &#x3c;&#x3c; 8);
-  return (val &#x26; 0x8000) ? val | 0xFFFF0000 : val;
+  var val = this[offset + 1] | (this[offset] &lt;&lt; 8);
+  return (val &amp; 0x8000) ? val | 0xFFFF0000 : val;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9264,11 +9257,11 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readInt16LE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 2, this.length);
-  var val = this[offset] | (this[offset + 1] &#x3c;&#x3c; 8);
-  return (val &#x26; 0x8000) ? val | 0xFFFF0000 : val;
+  var val = this[offset] | (this[offset + 1] &lt;&lt; 8);
+  return (val &amp; 0x8000) ? val | 0xFFFF0000 : val;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9283,13 +9276,13 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readInt32BE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
 
-  return (this[offset] &#x3c;&#x3c; 24) |
-      (this[offset + 1] &#x3c;&#x3c; 16) |
-      (this[offset + 2] &#x3c;&#x3c; 8) |
+  return (this[offset] &lt;&lt; 24) |
+      (this[offset + 1] &lt;&lt; 16) |
+      (this[offset + 2] &lt;&lt; 8) |
       (this[offset + 3]);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9305,21 +9298,21 @@ module.exports.exports.removeListener = module.exports.exports.off = function re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readInt32LE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
 
   return (this[offset]) |
-      (this[offset + 1] &#x3c;&#x3c; 8) |
-      (this[offset + 2] &#x3c;&#x3c; 16) |
-      (this[offset + 3] &#x3c;&#x3c; 24);
+      (this[offset + 1] &lt;&lt; 8) |
+      (this[offset + 2] &lt;&lt; 16) |
+      (this[offset + 3] &lt;&lt; 24);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     attribute: 0x01,
     pointOffset: 0
   })
 } else {
-  for (let i = 1; i &#x3c;= count; i++) {
+  for (let i = 1; i &lt;= count; i++) {
     figures.push({
       attribute: buffer.readUInt8(buffer.position),
       pointOffset: buffer.<span class="apidocCodeKeywordSpan">readInt32LE</span>(buffer.position + 1)
@@ -9343,11 +9336,11 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readInt8 = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 1, this.length);
   var val = this[offset];
-  return !(val &#x26; 0x80) ? val : (0xff - val + 1) * -1;
+  return !(val &amp; 0x80) ? val : (0xff - val + 1) * -1;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9362,19 +9355,19 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readIntBE = function (offset, byteLength, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, byteLength, this.length);
 
   var i = byteLength;
   var mul = 1;
   var val = this[offset + --i];
-  while (i &#x3e; 0 &#x26;&#x26; (mul *= 0x100))
+  while (i &gt; 0 &amp;&amp; (mul *= 0x100))
     val += this[offset + --i] * mul;
   mul *= 0x80;
 
-  if (val &#x3e;= mul)
+  if (val &gt;= mul)
     val -= Math.pow(2, 8 * byteLength);
 
   return val;
@@ -9392,19 +9385,19 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readIntLE = function (offset, byteLength, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, byteLength, this.length);
 
   var val = this[offset];
   var mul = 1;
   var i = 0;
-  while (++i &#x3c; byteLength &#x26;&#x26; (mul *= 0x100))
+  while (++i &lt; byteLength &amp;&amp; (mul *= 0x100))
     val += this[offset + i] * mul;
   mul *= 0x80;
 
-  if (val &#x3e;= mul)
+  if (val &gt;= mul)
     val -= Math.pow(2, 8 * byteLength);
 
   return val;
@@ -9422,10 +9415,10 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUInt16BE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 2, this.length);
-  return (this[offset] &#x3c;&#x3c; 8) | this[offset + 1];
+  return (this[offset] &lt;&lt; 8) | this[offset + 1];
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9440,10 +9433,10 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUInt16LE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 2, this.length);
-  return this[offset] | (this[offset + 1] &#x3c;&#x3c; 8);
+  return this[offset] | (this[offset + 1] &lt;&lt; 8);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -9458,13 +9451,13 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUInt32BE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
 
   return (this[offset] * 0x1000000) +
-      ((this[offset + 1] &#x3c;&#x3c; 16) |
-      (this[offset + 2] &#x3c;&#x3c; 8) |
+      ((this[offset + 1] &lt;&lt; 16) |
+      (this[offset + 2] &lt;&lt; 8) |
       this[offset + 3]);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9480,13 +9473,13 @@ return figures
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUInt32LE = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 4, this.length);
 
   return ((this[offset]) |
-      (this[offset + 1] &#x3c;&#x3c; 8) |
-      (this[offset + 2] &#x3c;&#x3c; 16)) +
+      (this[offset + 1] &lt;&lt; 8) |
+      (this[offset + 2] &lt;&lt; 16)) +
       (this[offset + 3] * 0x1000000);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -9501,7 +9494,7 @@ if (properties.P) {
   buffer.position += 4
 }
 
-// console.log(&#x22;numberOfPoints&#x22;, numberOfPoints)
+// console.log("numberOfPoints", numberOfPoints)
 
 value.points = parsePoints(buffer, numberOfPoints)
 ...</pre></li>
@@ -9517,7 +9510,7 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUInt8 = function (offset, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, 1, this.length);
   return this[offset];
@@ -9528,7 +9521,7 @@ value.points = parsePoints(buffer, numberOfPoints)
     pointOffset: 0
   })
 } else {
-  for (let i = 1; i &#x3c;= count; i++) {
+  for (let i = 1; i &lt;= count; i++) {
     figures.push({
       attribute: buffer.<span class="apidocCodeKeywordSpan">readUInt8</span>(buffer.position),
       pointOffset: buffer.readInt32LE(buffer.position + 1)
@@ -9550,14 +9543,14 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUIntBE = function (offset, byteLength, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, byteLength, this.length);
 
   var val = this[offset + --byteLength];
   var mul = 1;
-  while (byteLength &#x3e; 0 &#x26;&#x26; (mul *= 0x100))
+  while (byteLength &gt; 0 &amp;&amp; (mul *= 0x100))
     val += this[offset + --byteLength] * mul;
 
   return val;
@@ -9575,15 +9568,15 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">readUIntLE = function (offset, byteLength, noAssert) {
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert)
     checkOffset(offset, byteLength, this.length);
 
   var val = this[offset];
   var mul = 1;
   var i = 0;
-  while (++i &#x3c; byteLength &#x26;&#x26; (mul *= 0x100))
+  while (++i &lt; byteLength &amp;&amp; (mul *= 0x100))
     val += this[offset + i] * mul;
 
   return val;
@@ -9604,7 +9597,7 @@ value.points = parsePoints(buffer, numberOfPoints)
   const srcLength = this.length;
   start = adjustOffset(start, srcLength);
   end = end !== undefined ? adjustOffset(end, srcLength) : srcLength;
-  const newLength = end &#x3e; start ? end - start : 0;
+  const newLength = end &gt; start ? end - start : 0;
   return new FastBuffer(this.buffer, this.byteOffset + start, newLength);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9620,14 +9613,14 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function swap16() {
-  // For Buffer.length &#x3c; 128, it&#x27;s generally faster to
+  // For Buffer.length &lt; 128, it's generally faster to
   // do the swap in javascript. For larger buffers,
   // dropping down to the native code is faster.
   const len = this.length;
   if (len % 2 !== 0)
-    throw new RangeError(&#x27;Buffer size must be a multiple of 16-bits&#x27;);
-  if (len &#x3c; 128) {
-    for (var i = 0; i &#x3c; len; i += 2)
+    throw new RangeError('Buffer size must be a multiple of 16-bits');
+  if (len &lt; 128) {
+    for (var i = 0; i &lt; len; i += 2)
       swap(this, i, i + 1);
     return this;
   }
@@ -9646,14 +9639,14 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function swap32() {
-  // For Buffer.length &#x3c; 192, it&#x27;s generally faster to
+  // For Buffer.length &lt; 192, it's generally faster to
   // do the swap in javascript. For larger buffers,
   // dropping down to the native code is faster.
   const len = this.length;
   if (len % 4 !== 0)
-    throw new RangeError(&#x27;Buffer size must be a multiple of 32-bits&#x27;);
-  if (len &#x3c; 192) {
-    for (var i = 0; i &#x3c; len; i += 4) {
+    throw new RangeError('Buffer size must be a multiple of 32-bits');
+  if (len &lt; 192) {
+    for (var i = 0; i &lt; len; i += 4) {
       swap(this, i, i + 3);
       swap(this, i + 1, i + 2);
     }
@@ -9674,14 +9667,14 @@ value.points = parsePoints(buffer, numberOfPoints)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function swap64() {
-  // For Buffer.length &#x3c; 192, it&#x27;s generally faster to
+  // For Buffer.length &lt; 192, it's generally faster to
   // do the swap in javascript. For larger buffers,
   // dropping down to the native code is faster.
   const len = this.length;
   if (len % 8 !== 0)
-    throw new RangeError(&#x27;Buffer size must be a multiple of 64-bits&#x27;);
-  if (len &#x3c; 192) {
-    for (var i = 0; i &#x3c; len; i += 8) {
+    throw new RangeError('Buffer size must be a multiple of 64-bits');
+  if (len &lt; 192) {
+    for (var i = 0; i &lt; len; i += 8) {
       swap(this, i, i + 7);
       swap(this, i + 1, i + 6);
       swap(this, i + 2, i + 5);
@@ -9706,11 +9699,11 @@ value.points = parsePoints(buffer, numberOfPoints)
     <li>description and source-code<pre class="apidocCodePre">toJSON = function () {
   if (this.length) {
     const data = [];
-    for (var i = 0; i &#x3c; this.length; ++i)
+    for (var i = 0; i &lt; this.length; ++i)
       data[i] = this[i];
-    return { type: &#x27;Buffer&#x27;, data };
+    return { type: 'Buffer', data };
   } else {
-    return { type: &#x27;Buffer&#x27;, data: [] };
+    return { type: 'Buffer', data: [] };
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -9733,22 +9726,22 @@ value.points = parsePoints(buffer, numberOfPoints)
     result = slowToString.apply(this, arguments);
   }
   if (result === undefined)
-    throw new Error(&#x27;&#x22;toString()&#x22; failed&#x27;);
+    throw new Error('"toString()" failed');
   return result;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-if (driver === &#x27;msnodesqlv8&#x27;) {
-  parsed.driver = &#x27;SQL Server Native Client 11.0&#x27;
+if (driver === 'msnodesqlv8') {
+  parsed.driver = 'SQL Server Native Client 11.0'
 
   if (parsed.__original__) {
-    parsed.__original__.driver = {name: &#x27;Driver&#x27;, escape: [&#x27;{&#x27;, &#x27;}&#x27;]}
+    parsed.__original__.driver = {name: 'Driver', escape: ['{', '}']}
   }
 
   return {connectionString: parsed.<span class="apidocCodeKeywordSpan">toString</span>()}
 }
 
-let user = parsed.uid || parsed.uid || parsed[&#x27;user id&#x27;]
-let server = parsed.server || parsed.address || parsed.addr || parsed[&#x27;data source&#x27;] || parsed[&#x27;network address&#
+let user = parsed.uid || parsed.uid || parsed['user id']
+let server = parsed.server || parsed.address || parsed.addr || parsed['data source'] || parsed['network address&amp;#
 x27;]
 
 const config = {
@@ -9820,76 +9813,76 @@ const config = {
     <li>description and source-code<pre class="apidocCodePre">write = function (string, offset, length, encoding) {
   // Buffer#write(string);
   if (offset === undefined) {
-    encoding = &#x27;utf8&#x27;;
+    encoding = 'utf8';
     length = this.length;
     offset = 0;
 
   // Buffer#write(string, encoding)
-  } else if (length === undefined &#x26;&#x26; typeof offset === &#x27;string&#x27;) {
+  } else if (length === undefined &amp;&amp; typeof offset === 'string') {
     encoding = offset;
     length = this.length;
     offset = 0;
 
   // Buffer#write(string, offset[, length][, encoding])
   } else if (isFinite(offset)) {
-    offset = offset &#x3e;&#x3e;&#x3e; 0;
+    offset = offset &gt;&gt;&gt; 0;
     if (isFinite(length)) {
-      length = length &#x3e;&#x3e;&#x3e; 0;
+      length = length &gt;&gt;&gt; 0;
       if (encoding === undefined)
-        encoding = &#x27;utf8&#x27;;
+        encoding = 'utf8';
     } else {
       encoding = length;
       length = undefined;
     }
   } else {
     // if someone is still calling the obsolete form of write(), tell them.
-    // we don&#x27;t want eg buf.write(&#x22;foo&#x22;, &#x22;utf8&#x22;, 10) to silently turn into
-    // buf.write(&#x22;foo&#x22;, &#x22;utf8&#x22;), so we can&#x27;t ignore extra args
-    throw new Error(&#x27;Buffer.write(string, encoding, offset[, length]) &#x27; +
-                    &#x27;is no longer supported&#x27;);
+    // we don't want eg buf.write("foo", "utf8", 10) to silently turn into
+    // buf.write("foo", "utf8"), so we can't ignore extra args
+    throw new Error('Buffer.write(string, encoding, offset[, length]) ' +
+                    'is no longer supported');
   }
 
   var remaining = this.length - offset;
-  if (length === undefined || length &#x3e; remaining)
+  if (length === undefined || length &gt; remaining)
     length = remaining;
 
-  if (string.length &#x3e; 0 &#x26;&#x26; (length &#x3c; 0 || offset &#x3c; 0))
-    throw new RangeError(&#x27;Attempt to write outside buffer bounds&#x27;);
+  if (string.length &gt; 0 &amp;&amp; (length &lt; 0 || offset &lt; 0))
+    throw new RangeError('Attempt to write outside buffer bounds');
 
   if (!encoding)
-    encoding = &#x27;utf8&#x27;;
+    encoding = 'utf8';
 
   var loweredCase = false;
   for (;;) {
     switch (encoding) {
-      case &#x27;hex&#x27;:
+      case 'hex':
         return this.hexWrite(string, offset, length);
 
-      case &#x27;utf8&#x27;:
-      case &#x27;utf-8&#x27;:
+      case 'utf8':
+      case 'utf-8':
         return this.utf8Write(string, offset, length);
 
-      case &#x27;ascii&#x27;:
+      case 'ascii':
         return this.asciiWrite(string, offset, length);
 
-      case &#x27;latin1&#x27;:
-      case &#x27;binary&#x27;:
+      case 'latin1':
+      case 'binary':
         return this.latin1Write(string, offset, length);
 
-      case &#x27;base64&#x27;:
+      case 'base64':
         // Warning: maxLength not taken into account in base64Write
         return this.base64Write(string, offset, length);
 
-      case &#x27;ucs2&#x27;:
-      case &#x27;ucs-2&#x27;:
-      case &#x27;utf16le&#x27;:
-      case &#x27;utf-16le&#x27;:
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
         return this.ucs2Write(string, offset, length);
 
       default:
         if (loweredCase)
-          throw new TypeError(&#x27;Unknown encoding: &#x27; + encoding);
-        encoding = (&#x27;&#x27; + encoding).toLowerCase();
+          throw new TypeError('Unknown encoding: ' + encoding);
+        encoding = ('' + encoding).toLowerCase();
         loweredCase = true;
     }
   }
@@ -9908,7 +9901,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function writeDoubleBE(val, offset, noAssert) {
   val = +val;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     binding.writeDoubleBE(this, val, offset);
   else
@@ -9929,7 +9922,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function writeDoubleLE(val, offset, noAssert) {
   val = +val;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     binding.writeDoubleLE(this, val, offset);
   else
@@ -9950,7 +9943,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function writeFloatBE(val, offset, noAssert) {
   val = +val;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     binding.writeFloatBE(this, val, offset);
   else
@@ -9971,7 +9964,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function writeFloatLE(val, offset, noAssert) {
   val = +val;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     binding.writeFloatLE(this, val, offset);
   else
@@ -9992,10 +9985,10 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeInt16BE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 2, 0x7fff, -0x8000);
-  this[offset] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset] = (value &gt;&gt;&gt; 8);
   this[offset + 1] = value;
   return offset + 2;
 }</pre></li>
@@ -10013,11 +10006,11 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeInt16LE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 2, 0x7fff, -0x8000);
   this[offset] = value;
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset + 1] = (value &gt;&gt;&gt; 8);
   return offset + 2;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10034,12 +10027,12 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeInt32BE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000);
-  this[offset] = (value &#x3e;&#x3e;&#x3e; 24);
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 16);
-  this[offset + 2] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset] = (value &gt;&gt;&gt; 24);
+  this[offset + 1] = (value &gt;&gt;&gt; 16);
+  this[offset + 2] = (value &gt;&gt;&gt; 8);
   this[offset + 3] = value;
   return offset + 4;
 }</pre></li>
@@ -10057,13 +10050,13 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeInt32LE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000);
   this[offset] = value;
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 8);
-  this[offset + 2] = (value &#x3e;&#x3e;&#x3e; 16);
-  this[offset + 3] = (value &#x3e;&#x3e;&#x3e; 24);
+  this[offset + 1] = (value &gt;&gt;&gt; 8);
+  this[offset + 2] = (value &gt;&gt;&gt; 16);
+  this[offset + 3] = (value &gt;&gt;&gt; 24);
   return offset + 4;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10080,7 +10073,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeInt8 = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 1, 0x7f, -0x80);
   this[offset] = value;
@@ -10100,7 +10093,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeIntBE = function (value, offset, byteLength, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert) {
     checkInt(this,
              value,
@@ -10114,10 +10107,10 @@ const config = {
   var mul = 1;
   var sub = 0;
   this[offset + i] = value;
-  while (--i &#x3e;= 0 &#x26;&#x26; (mul *= 0x100)) {
-    if (value &#x3c; 0 &#x26;&#x26; sub === 0 &#x26;&#x26; this[offset + i + 1] !== 0)
+  while (--i &gt;= 0 &amp;&amp; (mul *= 0x100)) {
+    if (value &lt; 0 &amp;&amp; sub === 0 &amp;&amp; this[offset + i + 1] !== 0)
       sub = 1;
-    this[offset + i] = ((value / mul) &#x3e;&#x3e; 0) - sub;
+    this[offset + i] = ((value / mul) &gt;&gt; 0) - sub;
   }
 
   return offset + byteLength;
@@ -10136,7 +10129,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeIntLE = function (value, offset, byteLength, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert) {
     checkInt(this,
              value,
@@ -10150,10 +10143,10 @@ const config = {
   var mul = 1;
   var sub = 0;
   this[offset] = value;
-  while (++i &#x3c; byteLength &#x26;&#x26; (mul *= 0x100)) {
-    if (value &#x3c; 0 &#x26;&#x26; sub === 0 &#x26;&#x26; this[offset + i - 1] !== 0)
+  while (++i &lt; byteLength &amp;&amp; (mul *= 0x100)) {
+    if (value &lt; 0 &amp;&amp; sub === 0 &amp;&amp; this[offset + i - 1] !== 0)
       sub = 1;
-    this[offset + i] = ((value / mul) &#x3e;&#x3e; 0) - sub;
+    this[offset + i] = ((value / mul) &gt;&gt; 0) - sub;
   }
 
   return offset + byteLength;
@@ -10172,10 +10165,10 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUInt16BE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 2, 0xffff, 0);
-  this[offset] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset] = (value &gt;&gt;&gt; 8);
   this[offset + 1] = value;
   return offset + 2;
 }</pre></li>
@@ -10193,11 +10186,11 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUInt16LE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 2, 0xffff, 0);
   this[offset] = value;
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset + 1] = (value &gt;&gt;&gt; 8);
   return offset + 2;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -10214,12 +10207,12 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUInt32BE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 4, 0xffffffff, 0);
-  this[offset] = (value &#x3e;&#x3e;&#x3e; 24);
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 16);
-  this[offset + 2] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset] = (value &gt;&gt;&gt; 24);
+  this[offset + 1] = (value &gt;&gt;&gt; 16);
+  this[offset + 2] = (value &gt;&gt;&gt; 8);
   this[offset + 3] = value;
   return offset + 4;
 }</pre></li>
@@ -10237,12 +10230,12 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUInt32LE = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 4, 0xffffffff, 0);
-  this[offset + 3] = (value &#x3e;&#x3e;&#x3e; 24);
-  this[offset + 2] = (value &#x3e;&#x3e;&#x3e; 16);
-  this[offset + 1] = (value &#x3e;&#x3e;&#x3e; 8);
+  this[offset + 3] = (value &gt;&gt;&gt; 24);
+  this[offset + 2] = (value &gt;&gt;&gt; 16);
+  this[offset + 1] = (value &gt;&gt;&gt; 8);
   this[offset] = value;
   return offset + 4;
 }</pre></li>
@@ -10260,7 +10253,7 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUInt8 = function (value, offset, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
   if (!noAssert)
     checkInt(this, value, offset, 1, 0xff, 0);
   this[offset] = value;
@@ -10280,8 +10273,8 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUIntBE = function (value, offset, byteLength, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert) {
     const maxBytes = Math.pow(2, 8 * byteLength) - 1;
     checkInt(this, value, offset, byteLength, maxBytes, 0);
@@ -10290,8 +10283,8 @@ const config = {
   var i = byteLength - 1;
   var mul = 1;
   this[offset + i] = value;
-  while (--i &#x3e;= 0 &#x26;&#x26; (mul *= 0x100))
-    this[offset + i] = (value / mul) &#x3e;&#x3e;&#x3e; 0;
+  while (--i &gt;= 0 &amp;&amp; (mul *= 0x100))
+    this[offset + i] = (value / mul) &gt;&gt;&gt; 0;
 
   return offset + byteLength;
 }</pre></li>
@@ -10309,8 +10302,8 @@ const config = {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">writeUIntLE = function (value, offset, byteLength, noAssert) {
   value = +value;
-  offset = offset &#x3e;&#x3e;&#x3e; 0;
-  byteLength = byteLength &#x3e;&#x3e;&#x3e; 0;
+  offset = offset &gt;&gt;&gt; 0;
+  byteLength = byteLength &gt;&gt;&gt; 0;
   if (!noAssert) {
     const maxBytes = Math.pow(2, 8 * byteLength) - 1;
     checkInt(this, value, offset, byteLength, maxBytes, 0);
@@ -10319,8 +10312,8 @@ const config = {
   var mul = 1;
   var i = 0;
   this[offset] = value;
-  while (++i &#x3c; byteLength &#x26;&#x26; (mul *= 0x100))
-    this[offset + i] = (value / mul) &#x3e;&#x3e;&#x3e; 0;
+  while (++i &lt; byteLength &amp;&amp; (mul *= 0x100))
+    this[offset + i] = (value / mul) &gt;&gt;&gt; 0;
 
   return offset + byteLength;
 }</pre></li>
@@ -10347,17 +10340,17 @@ const config = {
     this.name = parsed.name
     this.schema = parsed.schema
     this.database = parsed.database
-    this.path = (this.database ? `[${this.database}].` : &#x27;&#x27;) + (this.schema ? `[${this.schema}].` : &#x27;&#x27;) + `[${this.name}]`
-    this.temporary = this.name.charAt(0) === &#x27;#&#x27;
+    this.path = (this.database ? `[${this.database}].` : '') + (this.schema ? `[${this.schema}].` : '') + `[${this.name}]`
+    this.temporary = this.name.charAt(0) === '#'
   }
 
   this.columns = []
   this.rows = []
 
-  Object.defineProperty(this.columns, &#x27;add&#x27;, {
+  Object.defineProperty(this.columns, 'add', {
     value (name, column, options) {
       if (column == null) {
-        throw new Error(&#x27;Column data type is not defined.&#x27;)
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
         column = column()
@@ -10373,7 +10366,7 @@ const config = {
   }
   )
 
-  Object.defineProperty(this.rows, &#x27;add&#x27;, {
+  Object.defineProperty(this.rows, 'add', {
     value () {
       return this.push(Array.prototype.slice.call(arguments))
     }
@@ -10407,3 +10400,4 @@ const config = {
     ]
 </div>
 </div>
+</body></html>
