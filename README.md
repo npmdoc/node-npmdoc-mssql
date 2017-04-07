@@ -1,11 +1,13 @@
-# api documentation for  [mssql (v3.3.0)](https://github.com/patriksimek/node-mssql#readme)  [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mssql.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mssql)
+# api documentation for  [mssql (v4.0.1)](https://github.com/patriksimek/node-mssql#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-mssql.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-mssql) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-mssql.svg)](https://travis-ci.org/npmdoc/node-npmdoc-mssql)
 #### Microsoft SQL Server client for Node.js.
 
 [![NPM](https://nodei.co/npm/mssql.png?downloads=true)](https://www.npmjs.com/package/mssql)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-mssql/build/screen-capture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-mssql_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-mssql/build..beta..travis-ci.org/apidoc.html)
+[![apidoc](https://npmdoc.github.io/node-npmdoc-mssql/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-mssql_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-mssql/build/apidoc.html)
 
-![package-listing](https://npmdoc.github.io/node-npmdoc-mssql/build/screen-capture.npmPackageListing.svg)
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-mssql/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-mssql/build/screenCapture.npmPackageDependencyTree.svg)
 
 
 
@@ -25,24 +27,24 @@
         "url": "https://github.com/patriksimek/node-mssql/issues"
     },
     "dependencies": {
-        "generic-pool": "^2.2.0",
-        "promise": "^7.0.1",
-        "tedious": "~1.14.0"
+        "debug": "^2.6.3",
+        "generic-pool": "^3.1.7",
+        "tedious": "^2.0.0"
     },
     "description": "Microsoft SQL Server client for Node.js.",
     "devDependencies": {
-        "coffee-script": "^1.9.3",
-        "mocha": "^2.1.0"
+        "mocha": "^2.1.0",
+        "standard": "^9.0.2"
     },
     "directories": {},
     "dist": {
-        "shasum": "b6e6337ff123e87bf8aee1e6c8344b53ca5da856",
-        "tarball": "https://registry.npmjs.org/mssql/-/mssql-3.3.0.tgz"
+        "shasum": "5ac0028245f99a6bc8bd8dcd117c34244eba9f5b",
+        "tarball": "https://registry.npmjs.org/mssql/-/mssql-4.0.1.tgz"
     },
     "engines": {
-        "node": ">=0.10"
+        "node": ">=4"
     },
-    "gitHead": "817a555a37204edb63067967ae8f5b4b7e7491e3",
+    "gitHead": "e36e30aba611866b2095f8f7f1405911f9d273ca",
     "homepage": "https://github.com/patriksimek/node-mssql#readme",
     "keywords": [
         "database",
@@ -76,16 +78,12 @@
         "url": "git+https://github.com/patriksimek/node-mssql.git"
     },
     "scripts": {
-        "compile": "coffee --compile --output ./lib ./src",
-        "prepublish": "coffee --compile --output ./lib ./src",
-        "test": "mocha test/unit",
-        "test-cli": "mocha test/integration -g cli",
-        "test-msnodesql": "mocha test/integration -g msnodesql",
-        "test-msnodesqlv8": "mocha test/integration -g msnodesqlv8",
-        "test-tds": "mocha test/integration -g tds",
-        "test-tedious": "mocha test/integration -g tedious"
+        "test": "standard && node_modules/.bin/mocha test/common/unit.js",
+        "test-cli": "mocha test/common/cli.js",
+        "test-msnodesqlv8": "mocha test/msnodesqlv8",
+        "test-tedious": "mocha test/tedious"
     },
-    "version": "3.3.0"
+    "version": "4.0.1"
 }
 ```
 
@@ -94,7 +92,6 @@
 # <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
 
 #### [module mssql](#apidoc.module.mssql)
-1.  boolean <span class="apidocSignatureSpan">mssql.</span>fix
 1.  [function <span class="apidocSignatureSpan">mssql.</span>BIGINT ()](#apidoc.element.mssql.BIGINT)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>BINARY (length)](#apidoc.element.mssql.BINARY)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>BIT ()](#apidoc.element.mssql.BIT)
@@ -103,8 +100,8 @@
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Bit ()](#apidoc.element.mssql.Bit)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>CHAR (length)](#apidoc.element.mssql.CHAR)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Char (length)](#apidoc.element.mssql.Char)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Connection (config1, callback)](#apidoc.element.mssql.Connection)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>ConnectionError (message, code)](#apidoc.element.mssql.ConnectionError)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>ConnectionPool ()](#apidoc.element.mssql.ConnectionPool)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>DATE ()](#apidoc.element.mssql.DATE)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>DATETIME ()](#apidoc.element.mssql.DATETIME)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>DATETIME2 (scale)](#apidoc.element.mssql.DATETIME2)
@@ -135,12 +132,12 @@
 1.  [function <span class="apidocSignatureSpan">mssql.</span>NVARCHAR (length)](#apidoc.element.mssql.NVARCHAR)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>NVarChar (length)](#apidoc.element.mssql.NVarChar)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Numeric (precision, scale)](#apidoc.element.mssql.Numeric)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (connection)](#apidoc.element.mssql.PreparedStatement)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (parent)](#apidoc.element.mssql.PreparedStatement)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.PreparedStatementError)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Promise ()](#apidoc.element.mssql.Promise)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>REAL ()](#apidoc.element.mssql.REAL)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Real ()](#apidoc.element.mssql.Real)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Request (connection)](#apidoc.element.mssql.Request)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>Request (batch, callback)](#apidoc.element.mssql.Request)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>RequestError (message, code)](#apidoc.element.mssql.RequestError)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>SMALLDATETIME ()](#apidoc.element.mssql.SMALLDATETIME)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>SMALLINT ()](#apidoc.element.mssql.SMALLINT)
@@ -156,7 +153,7 @@
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Text ()](#apidoc.element.mssql.Text)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Time (scale)](#apidoc.element.mssql.Time)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>TinyInt ()](#apidoc.element.mssql.TinyInt)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Transaction (connection)](#apidoc.element.mssql.Transaction)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>Transaction (parent)](#apidoc.element.mssql.Transaction)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>TransactionError (message, code)](#apidoc.element.mssql.TransactionError)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>UDT ()](#apidoc.element.mssql.UDT)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>UNIQUEIDENTIFIER ()](#apidoc.element.mssql.UNIQUEIDENTIFIER)
@@ -172,23 +169,15 @@
 1.  [function <span class="apidocSignatureSpan">mssql.</span>batch ()](#apidoc.element.mssql.batch)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>close (callback)](#apidoc.element.mssql.close)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>connect (config, callback)](#apidoc.element.mssql.connect)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>init ()](#apidoc.element.mssql.init)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>off (event, handler)](#apidoc.element.mssql.off)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>on (event, handler)](#apidoc.element.mssql.on)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>query ()](#apidoc.element.mssql.query)
+1.  [function <span class="apidocSignatureSpan">mssql.</span>removeListener (event, handler)](#apidoc.element.mssql.removeListener)
 1.  number <span class="apidocSignatureSpan">mssql.</span>MAX
-1.  object <span class="apidocSignatureSpan">mssql.</span>Connection.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>ConnectionError.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>DRIVERS
 1.  object <span class="apidocSignatureSpan">mssql.</span>ISOLATION_LEVEL
-1.  object <span class="apidocSignatureSpan">mssql.</span>PreparedStatement.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>PreparedStatementError.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>Request.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>RequestError.prototype
 1.  object <span class="apidocSignatureSpan">mssql.</span>TYPES
 1.  object <span class="apidocSignatureSpan">mssql.</span>Table.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>Transaction.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>TransactionError.prototype
-1.  object <span class="apidocSignatureSpan">mssql.</span>connection
+1.  object <span class="apidocSignatureSpan">mssql.</span>base
 1.  object <span class="apidocSignatureSpan">mssql.</span>connectionstring
 1.  object <span class="apidocSignatureSpan">mssql.</span>datatypes
 1.  object <span class="apidocSignatureSpan">mssql.</span>map
@@ -200,7 +189,6 @@
 1.  object <span class="apidocSignatureSpan">mssql.</span>map.4
 1.  object <span class="apidocSignatureSpan">mssql.</span>map.4.js.prototype
 1.  object <span class="apidocSignatureSpan">mssql.</span>map.5
-1.  object <span class="apidocSignatureSpan">mssql.</span>pool
 
 #### [module mssql.BigInt](#apidoc.module.mssql.BigInt)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>BigInt ()](#apidoc.element.mssql.BigInt.BigInt)
@@ -221,40 +209,6 @@
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Char (length)](#apidoc.element.mssql.Char.Char)
 1.  [function <span class="apidocSignatureSpan">mssql.Char.</span>inspect ()](#apidoc.element.mssql.Char.inspect)
 1.  string <span class="apidocSignatureSpan">mssql.Char.</span>declaration
-
-#### [module mssql.Connection](#apidoc.module.mssql.Connection)
-1.  boolean <span class="apidocSignatureSpan">mssql.Connection.</span>usingDomains
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Connection (config1, callback)](#apidoc.element.mssql.Connection.Connection)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.</span>EventEmitter ()](#apidoc.element.mssql.Connection.EventEmitter)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.</span>init ()](#apidoc.element.mssql.Connection.init)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Connection.listenerCount)
-1.  number <span class="apidocSignatureSpan">mssql.Connection.</span>defaultMaxListeners
-1.  object <span class="apidocSignatureSpan">mssql.Connection.</span>__super__
-
-#### [module mssql.Connection.prototype](#apidoc.module.mssql.Connection.prototype)
-1.  boolean <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>connected
-1.  boolean <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>connecting
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_close (callback)](#apidoc.element.mssql.Connection.prototype._close)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_connect (callback)](#apidoc.element.mssql.Connection.prototype._connect)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_debug (msg)](#apidoc.element.mssql.Connection.prototype._debug)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>batch ()](#apidoc.element.mssql.Connection.prototype.batch)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>close (callback)](#apidoc.element.mssql.Connection.prototype.close)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>connect (callback)](#apidoc.element.mssql.Connection.prototype.connect)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>constructor (config1, callback)](#apidoc.element.mssql.Connection.prototype.constructor)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>initializeDriver (driver)](#apidoc.element.mssql.Connection.prototype.initializeDriver)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>query ()](#apidoc.element.mssql.Connection.prototype.query)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>request ()](#apidoc.element.mssql.Connection.prototype.request)
-1.  [function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>transaction ()](#apidoc.element.mssql.Connection.prototype.transaction)
-1.  object <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>driver
-
-#### [module mssql.ConnectionError](#apidoc.module.mssql.ConnectionError)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>ConnectionError (message, code)](#apidoc.element.mssql.ConnectionError.ConnectionError)
-1.  [function <span class="apidocSignatureSpan">mssql.ConnectionError.</span>captureStackTrace ()](#apidoc.element.mssql.ConnectionError.captureStackTrace)
-1.  number <span class="apidocSignatureSpan">mssql.ConnectionError.</span>stackTraceLimit
-1.  object <span class="apidocSignatureSpan">mssql.ConnectionError.</span>__super__
-
-#### [module mssql.ConnectionError.prototype](#apidoc.module.mssql.ConnectionError.prototype)
-1.  [function <span class="apidocSignatureSpan">mssql.ConnectionError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.ConnectionError.prototype.constructor)
 
 #### [module mssql.Date](#apidoc.module.mssql.Date)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Date ()](#apidoc.element.mssql.Date.Date)
@@ -331,100 +285,10 @@
 1.  [function <span class="apidocSignatureSpan">mssql.Numeric.</span>inspect ()](#apidoc.element.mssql.Numeric.inspect)
 1.  string <span class="apidocSignatureSpan">mssql.Numeric.</span>declaration
 
-#### [module mssql.PreparedStatement](#apidoc.module.mssql.PreparedStatement)
-1.  boolean <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>usingDomains
-1.  [function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (connection)](#apidoc.element.mssql.PreparedStatement.PreparedStatement)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>EventEmitter ()](#apidoc.element.mssql.PreparedStatement.EventEmitter)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>init ()](#apidoc.element.mssql.PreparedStatement.init)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>listenerCount (emitter, type)](#apidoc.element.mssql.PreparedStatement.listenerCount)
-1.  number <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>defaultMaxListeners
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>__super__
-
-#### [module mssql.PreparedStatement.prototype](#apidoc.module.mssql.PreparedStatement.prototype)
-1.  boolean <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_working
-1.  boolean <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>multiple
-1.  boolean <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>prepared
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_execute (values, callback)](#apidoc.element.mssql.PreparedStatement.prototype._execute)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_prepare (statement, callback)](#apidoc.element.mssql.PreparedStatement.prototype._prepare)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_unprepare (callback)](#apidoc.element.mssql.PreparedStatement.prototype._unprepare)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>constructor (connection)](#apidoc.element.mssql.PreparedStatement.prototype.constructor)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>execute (values, callback)](#apidoc.element.mssql.PreparedStatement.prototype.execute)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>input (name, type)](#apidoc.element.mssql.PreparedStatement.prototype.input)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>next ()](#apidoc.element.mssql.PreparedStatement.prototype.next)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>output (name, type)](#apidoc.element.mssql.PreparedStatement.prototype.output)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>prepare (statement, callback)](#apidoc.element.mssql.PreparedStatement.prototype.prepare)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>queue (callback)](#apidoc.element.mssql.PreparedStatement.prototype.queue)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>unprepare (callback)](#apidoc.element.mssql.PreparedStatement.prototype.unprepare)
-1.  number <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_handle
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_pooledConnection
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_queue
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>connection
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>lastRequest
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>parameters
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>statement
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>stream
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>transaction
-
-#### [module mssql.PreparedStatementError](#apidoc.module.mssql.PreparedStatementError)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.PreparedStatementError.PreparedStatementError)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatementError.</span>captureStackTrace ()](#apidoc.element.mssql.PreparedStatementError.captureStackTrace)
-1.  number <span class="apidocSignatureSpan">mssql.PreparedStatementError.</span>stackTraceLimit
-1.  object <span class="apidocSignatureSpan">mssql.PreparedStatementError.</span>__super__
-
-#### [module mssql.PreparedStatementError.prototype](#apidoc.module.mssql.PreparedStatementError.prototype)
-1.  [function <span class="apidocSignatureSpan">mssql.PreparedStatementError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.PreparedStatementError.prototype.constructor)
-
 #### [module mssql.Real](#apidoc.module.mssql.Real)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>Real ()](#apidoc.element.mssql.Real.Real)
 1.  [function <span class="apidocSignatureSpan">mssql.Real.</span>inspect ()](#apidoc.element.mssql.Real.inspect)
 1.  string <span class="apidocSignatureSpan">mssql.Real.</span>declaration
-
-#### [module mssql.Request](#apidoc.module.mssql.Request)
-1.  boolean <span class="apidocSignatureSpan">mssql.Request.</span>usingDomains
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Request (connection)](#apidoc.element.mssql.Request.Request)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.</span>EventEmitter ()](#apidoc.element.mssql.Request.EventEmitter)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.</span>init ()](#apidoc.element.mssql.Request.init)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Request.listenerCount)
-1.  number <span class="apidocSignatureSpan">mssql.Request.</span>defaultMaxListeners
-1.  object <span class="apidocSignatureSpan">mssql.Request.</span>__super__
-
-#### [module mssql.Request.prototype](#apidoc.module.mssql.Request.prototype)
-1.  boolean <span class="apidocSignatureSpan">mssql.Request.prototype.</span>canceled
-1.  boolean <span class="apidocSignatureSpan">mssql.Request.prototype.</span>multiple
-1.  boolean <span class="apidocSignatureSpan">mssql.Request.prototype.</span>verbose
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_acquire (callback)](#apidoc.element.mssql.Request.prototype._acquire)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_batch (batch, callback)](#apidoc.element.mssql.Request.prototype._batch)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_bulk (table, callback)](#apidoc.element.mssql.Request.prototype._bulk)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_dedicated (connection)](#apidoc.element.mssql.Request.prototype._dedicated)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_execute (procedure, callback)](#apidoc.element.mssql.Request.prototype._execute)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_log (out)](#apidoc.element.mssql.Request.prototype._log)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_query (command, callback)](#apidoc.element.mssql.Request.prototype._query)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_release (connection)](#apidoc.element.mssql.Request.prototype._release)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_template (method, strings, values)](#apidoc.element.mssql.Request.prototype._template)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>batch (batch, callback)](#apidoc.element.mssql.Request.prototype.batch)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>bulk (table, callback)](#apidoc.element.mssql.Request.prototype.bulk)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>cancel ()](#apidoc.element.mssql.Request.prototype.cancel)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>constructor (connection)](#apidoc.element.mssql.Request.prototype.constructor)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>execute (command, callback)](#apidoc.element.mssql.Request.prototype.execute)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>input (name, type, value)](#apidoc.element.mssql.Request.prototype.input)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>output (name, type, value)](#apidoc.element.mssql.Request.prototype.output)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>pipe (stream)](#apidoc.element.mssql.Request.prototype.pipe)
-1.  [function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>query (command, callback)](#apidoc.element.mssql.Request.prototype.query)
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>connection
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>parameters
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>pstatement
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>rowsAffected
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>stream
-1.  object <span class="apidocSignatureSpan">mssql.Request.prototype.</span>transaction
-
-#### [module mssql.RequestError](#apidoc.module.mssql.RequestError)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>RequestError (message, code)](#apidoc.element.mssql.RequestError.RequestError)
-1.  [function <span class="apidocSignatureSpan">mssql.RequestError.</span>captureStackTrace ()](#apidoc.element.mssql.RequestError.captureStackTrace)
-1.  number <span class="apidocSignatureSpan">mssql.RequestError.</span>stackTraceLimit
-1.  object <span class="apidocSignatureSpan">mssql.RequestError.</span>__super__
-
-#### [module mssql.RequestError.prototype](#apidoc.module.mssql.RequestError.prototype)
-1.  [function <span class="apidocSignatureSpan">mssql.RequestError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.RequestError.prototype.constructor)
 
 #### [module mssql.SmallDateTime](#apidoc.module.mssql.SmallDateTime)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>SmallDateTime ()](#apidoc.element.mssql.SmallDateTime.SmallDateTime)
@@ -505,44 +369,6 @@
 1.  [function <span class="apidocSignatureSpan">mssql.TinyInt.</span>inspect ()](#apidoc.element.mssql.TinyInt.inspect)
 1.  string <span class="apidocSignatureSpan">mssql.TinyInt.</span>declaration
 
-#### [module mssql.Transaction](#apidoc.module.mssql.Transaction)
-1.  boolean <span class="apidocSignatureSpan">mssql.Transaction.</span>usingDomains
-1.  [function <span class="apidocSignatureSpan">mssql.</span>Transaction (connection)](#apidoc.element.mssql.Transaction.Transaction)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.</span>EventEmitter ()](#apidoc.element.mssql.Transaction.EventEmitter)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.</span>init ()](#apidoc.element.mssql.Transaction.init)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Transaction.listenerCount)
-1.  number <span class="apidocSignatureSpan">mssql.Transaction.</span>defaultMaxListeners
-1.  object <span class="apidocSignatureSpan">mssql.Transaction.</span>__super__
-
-#### [module mssql.Transaction.prototype](#apidoc.module.mssql.Transaction.prototype)
-1.  boolean <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_aborted
-1.  boolean <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_working
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_abort ()](#apidoc.element.mssql.Transaction.prototype._abort)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_begin (isolationLevel, callback)](#apidoc.element.mssql.Transaction.prototype._begin)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_commit (callback)](#apidoc.element.mssql.Transaction.prototype._commit)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_rollback (callback)](#apidoc.element.mssql.Transaction.prototype._rollback)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>begin (isolationLevel, callback)](#apidoc.element.mssql.Transaction.prototype.begin)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>commit (callback)](#apidoc.element.mssql.Transaction.prototype.commit)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>constructor (connection)](#apidoc.element.mssql.Transaction.prototype.constructor)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>next ()](#apidoc.element.mssql.Transaction.prototype.next)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>queue (callback)](#apidoc.element.mssql.Transaction.prototype.queue)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>request ()](#apidoc.element.mssql.Transaction.prototype.request)
-1.  [function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>rollback (callback)](#apidoc.element.mssql.Transaction.prototype.rollback)
-1.  number <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>isolationLevel
-1.  object <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_pooledConnection
-1.  object <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_queue
-1.  object <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>connection
-1.  string <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>name
-
-#### [module mssql.TransactionError](#apidoc.module.mssql.TransactionError)
-1.  [function <span class="apidocSignatureSpan">mssql.</span>TransactionError (message, code)](#apidoc.element.mssql.TransactionError.TransactionError)
-1.  [function <span class="apidocSignatureSpan">mssql.TransactionError.</span>captureStackTrace ()](#apidoc.element.mssql.TransactionError.captureStackTrace)
-1.  number <span class="apidocSignatureSpan">mssql.TransactionError.</span>stackTraceLimit
-1.  object <span class="apidocSignatureSpan">mssql.TransactionError.</span>__super__
-
-#### [module mssql.TransactionError.prototype](#apidoc.module.mssql.TransactionError.prototype)
-1.  [function <span class="apidocSignatureSpan">mssql.TransactionError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.TransactionError.prototype.constructor)
-
 #### [module mssql.UDT](#apidoc.module.mssql.UDT)
 1.  [function <span class="apidocSignatureSpan">mssql.</span>UDT ()](#apidoc.element.mssql.UDT.UDT)
 1.  [function <span class="apidocSignatureSpan">mssql.UDT.</span>inspect ()](#apidoc.element.mssql.UDT.inspect)
@@ -573,9 +399,21 @@
 1.  [function <span class="apidocSignatureSpan">mssql.Xml.</span>inspect ()](#apidoc.element.mssql.Xml.inspect)
 1.  string <span class="apidocSignatureSpan">mssql.Xml.</span>declaration
 
+#### [module mssql.base](#apidoc.module.mssql.base)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>ConnectionError (message, code)](#apidoc.element.mssql.base.ConnectionError)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>ConnectionPool (config, callback)](#apidoc.element.mssql.base.ConnectionPool)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>PreparedStatement (parent)](#apidoc.element.mssql.base.PreparedStatement)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.base.PreparedStatementError)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>Request (parent)](#apidoc.element.mssql.base.Request)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>RequestError (message, code)](#apidoc.element.mssql.base.RequestError)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>Transaction (parent)](#apidoc.element.mssql.base.Transaction)
+1.  [function <span class="apidocSignatureSpan">mssql.base.</span>TransactionError (message, code)](#apidoc.element.mssql.base.TransactionError)
+1.  object <span class="apidocSignatureSpan">mssql.base.</span>driver
+1.  object <span class="apidocSignatureSpan">mssql.base.</span>exports
+
 #### [module mssql.connectionstring](#apidoc.module.mssql.connectionstring)
 1.  [function <span class="apidocSignatureSpan">mssql.connectionstring.</span>parse (string)](#apidoc.element.mssql.connectionstring.parse)
-1.  [function <span class="apidocSignatureSpan">mssql.connectionstring.</span>resolve (string)](#apidoc.element.mssql.connectionstring.resolve)
+1.  [function <span class="apidocSignatureSpan">mssql.connectionstring.</span>resolve (string, driver)](#apidoc.element.mssql.connectionstring.resolve)
 
 #### [module mssql.datatypes](#apidoc.module.mssql.datatypes)
 1.  [function <span class="apidocSignatureSpan">mssql.datatypes.</span>cast (value, type, options)](#apidoc.element.mssql.datatypes.cast)
@@ -625,7 +463,7 @@
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>base64Write ()](#apidoc.element.mssql.map.4.js.prototype.base64Write)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>compare (target, start, end, thisStart, thisEnd)](#apidoc.element.mssql.map.4.js.prototype.compare)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>copy ()](#apidoc.element.mssql.map.4.js.prototype.copy)
-1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>equals (other)](#apidoc.element.mssql.map.4.js.prototype.equals)
+1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>equals (b)](#apidoc.element.mssql.map.4.js.prototype.equals)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>fill (val, start, end, encoding)](#apidoc.element.mssql.map.4.js.prototype.fill)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>hexSlice ()](#apidoc.element.mssql.map.4.js.prototype.hexSlice)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>hexWrite ()](#apidoc.element.mssql.map.4.js.prototype.hexWrite)
@@ -657,7 +495,6 @@
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>swap16 ()](#apidoc.element.mssql.map.4.js.prototype.swap16)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>swap32 ()](#apidoc.element.mssql.map.4.js.prototype.swap32)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>swap64 ()](#apidoc.element.mssql.map.4.js.prototype.swap64)
-1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>toByteArray ()](#apidoc.element.mssql.map.4.js.prototype.toByteArray)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>toJSON ()](#apidoc.element.mssql.map.4.js.prototype.toJSON)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>toString ()](#apidoc.element.mssql.map.4.js.prototype.toString)
 1.  [function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>ucs2Slice ()](#apidoc.element.mssql.map.4.js.prototype.ucs2Slice)
@@ -695,10 +532,8 @@
 #### <a name="apidoc.element.mssql.BIGINT"></a>[function <span class="apidocSignatureSpan">mssql.</span>BIGINT ()](#apidoc.element.mssql.BIGINT)
 - description and source-code
 ```javascript
-BIGINT = function () {
-  return {
-    type: TYPES.BigInt
-  };
+BigInt() {
+  return {type: TYPES.BigInt}
 }
 ```
 - example usage
@@ -709,11 +544,8 @@ n/a
 #### <a name="apidoc.element.mssql.BINARY"></a>[function <span class="apidocSignatureSpan">mssql.</span>BINARY (length)](#apidoc.element.mssql.BINARY)
 - description and source-code
 ```javascript
-BINARY = function (length) {
-  return {
-    type: TYPES.Binary,
-    length: length
-  };
+Binary(length) {
+  return {type: TYPES.Binary, length}
 }
 ```
 - example usage
@@ -724,10 +556,8 @@ n/a
 #### <a name="apidoc.element.mssql.BIT"></a>[function <span class="apidocSignatureSpan">mssql.</span>BIT ()](#apidoc.element.mssql.BIT)
 - description and source-code
 ```javascript
-BIT = function () {
-  return {
-    type: TYPES.Bit
-  };
+Bit() {
+  return {type: TYPES.Bit}
 }
 ```
 - example usage
@@ -738,10 +568,8 @@ n/a
 #### <a name="apidoc.element.mssql.BigInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>BigInt ()](#apidoc.element.mssql.BigInt)
 - description and source-code
 ```javascript
-BigInt = function () {
-  return {
-    type: TYPES.BigInt
-  };
+BigInt() {
+  return {type: TYPES.BigInt}
 }
 ```
 - example usage
@@ -752,11 +580,8 @@ n/a
 #### <a name="apidoc.element.mssql.Binary"></a>[function <span class="apidocSignatureSpan">mssql.</span>Binary (length)](#apidoc.element.mssql.Binary)
 - description and source-code
 ```javascript
-Binary = function (length) {
-  return {
-    type: TYPES.Binary,
-    length: length
-  };
+Binary(length) {
+  return {type: TYPES.Binary, length}
 }
 ```
 - example usage
@@ -767,10 +592,8 @@ n/a
 #### <a name="apidoc.element.mssql.Bit"></a>[function <span class="apidocSignatureSpan">mssql.</span>Bit ()](#apidoc.element.mssql.Bit)
 - description and source-code
 ```javascript
-Bit = function () {
-  return {
-    type: TYPES.Bit
-  };
+Bit() {
+  return {type: TYPES.Bit}
 }
 ```
 - example usage
@@ -781,11 +604,8 @@ n/a
 #### <a name="apidoc.element.mssql.CHAR"></a>[function <span class="apidocSignatureSpan">mssql.</span>CHAR (length)](#apidoc.element.mssql.CHAR)
 - description and source-code
 ```javascript
-CHAR = function (length) {
-  return {
-    type: TYPES.Char,
-    length: length
-  };
+Char(length) {
+  return {type: TYPES.Char, length}
 }
 ```
 - example usage
@@ -796,120 +616,39 @@ n/a
 #### <a name="apidoc.element.mssql.Char"></a>[function <span class="apidocSignatureSpan">mssql.</span>Char (length)](#apidoc.element.mssql.Char)
 - description and source-code
 ```javascript
-Char = function (length) {
-  return {
-    type: TYPES.Char,
-    length: length
-  };
+Char(length) {
+  return {type: TYPES.Char, length}
 }
 ```
 - example usage
 ```shell
 n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection"></a>[function <span class="apidocSignatureSpan">mssql.</span>Connection (config1, callback)](#apidoc.element.mssql.Connection)
-- description and source-code
-```javascript
-function Connection(config1, callback) {
-  var base, base1, base2, base3, base4, err, error, ex, ref1;
-  this.config = config1;
-  if ('string' === typeof this.config) {
-    try {
-      this.config = ConnectionString.resolve(this.config);
-    } catch (error) {
-      ex = error;
-      if (callback) {
-        return callback(ex);
-      } else {
-        throw ex;
-      }
-    }
-  }
-  if ((base = this.config).driver == null) {
-    base.driver = 'tedious';
-  }
-  if ((base1 = this.config).port == null) {
-    base1.port = 1433;
-  }
-  if ((base2 = this.config).options == null) {
-    base2.options = {};
-  }
-  if ((base3 = this.config).stream == null) {
-    base3.stream = false;
-  }
-  if ((base4 = this.config).parseJSON == null) {
-    base4.parseJSON = false;
-  }
-  if (/^(.*)\\(.*)$/.exec(this.config.server)) {
-    this.config.server = RegExp.$1;
-    this.config.options.instanceName = RegExp.$2;
-  }
-  if (ref1 = this.config.driver, indexOf.call(DRIVERS, ref1) >= 0) {
-    this.driver = this.initializeDriver(require("./" + this.config.driver));
-    if (module.exports.fix) {
-      this.driver.fix();
-    }
-  } else {
-    err = new ConnectionError("Unknown driver " + this.config.driver + "!", 'EDRIVER');
-    if (callback) {
-      return callback(err);
-    } else {
-      throw err;
-    }
-  }
-  if (callback) {
-    this.connect(callback);
-  }
-}
-```
-- example usage
-```shell
-...
-database: '...',
-
-options: {
-    encrypt: true // Use this if you're on Windows Azure
-}
-}
-
-var connection1 = new sql.Connection(config, function(err) {
-// ... error checks
-
-// Query
-
-var request = new sql.Request(connection1); // or: var request = connection1.request();
-request.query('select 1 as number', function(err, recordset) {
-    // ... error checks
-...
 ```
 
 #### <a name="apidoc.element.mssql.ConnectionError"></a>[function <span class="apidocSignatureSpan">mssql.</span>ConnectionError (message, code)](#apidoc.element.mssql.ConnectionError)
 - description and source-code
 ```javascript
-function ConnectionError(message, code) {
-  var err;
-  if (!(this instanceof ConnectionError)) {
+class ConnectionError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new ConnectionError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
     if (message instanceof Error) {
-      err = new ConnectionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
-      err = new ConnectionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message)
+      this.code = code
     }
+
+    this.name = 'ConnectionError'
   }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  ConnectionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
 }
 ```
 - example usage
@@ -917,13 +656,115 @@ function ConnectionError(message, code) {
 n/a
 ```
 
+#### <a name="apidoc.element.mssql.ConnectionPool"></a>[function <span class="apidocSignatureSpan">mssql.</span>ConnectionPool ()](#apidoc.element.mssql.ConnectionPool)
+- description and source-code
+```javascript
+class ConnectionPool extends base.ConnectionPool {
+  _poolCreate () {
+    return new base.Promise((resolve, reject) => {
+      const cfg = {
+        userName: this.config.user,
+        password: this.config.password,
+        server: this.config.server,
+        options: Object.assign({}, this.config.options),
+        domain: this.config.domain
+      }
+
+      cfg.options.database = this.config.database
+      cfg.options.port = this.config.port
+      cfg.options.connectTimeout = this.config.connectionTimeout || this.config.timeout || 15000
+      cfg.options.requestTimeout = this.config.requestTimeout != null ? this.config.requestTimeout : 15000
+      cfg.options.tdsVersion = cfg.options.tdsVersion || '7_4'
+      cfg.options.rowCollectionOnDone = false
+      cfg.options.rowCollectionOnRequestCompletion = false
+      cfg.options.useColumnNames = false
+      cfg.options.appName = cfg.options.appName || 'node-mssql'
+
+      // tedious always connect via tcp when port is specified
+      if (cfg.options.instanceName) delete cfg.options.port
+
+      if (isNaN(cfg.options.requestTimeout)) cfg.options.requestTimeout = 15000
+      if (cfg.options.requestTimeout === Infinity) cfg.options.requestTimeout = 0
+      if (cfg.options.requestTimeout < 0) cfg.options.requestTimeout = 0
+
+      if (this.config.debug) {
+        cfg.options.debug = {
+          packet: true,
+          token: true,
+          data: true,
+          payload: true
+        }
+      }
+
+      const tedious = new tds.Connection(cfg)
+
+      tedious.once('connect', err => {
+        if (err) {
+          err = new base.ConnectionError(err)
+          return reject(err)
+        }
+
+        resolve(tedious)
+      })
+
+      tedious.on('error', err => {
+        if (err.code === 'ESOCKET') {
+          tedious.hasError = true
+          return
+        }
+
+        this.emit('error', err)
+      })
+
+      if (this.config.debug) {
+        tedious.on('debug', msg => this._debug(msg))
+      }
+    })
+  }
+
+  _poolValidate (tedious) {
+    return new base.Promise((resolve, reject) => {
+      resolve(!tedious.closed && !tedious.hasError)
+    })
+  }
+
+  _poolDestroy (tedious) {
+    return new base.Promise((resolve, reject) => {
+      tedious.once('end', () => {
+        resolve()
+      })
+
+      tedious.close()
+    })
+  }
+}
+```
+- example usage
+```shell
+...
+'''
+
+## Connection Pools
+
+'''javascript
+const sql = require('mssql')
+
+const pool1 = new sql.ConnectionPool(config, err => {
+// ... error checks
+
+// Query
+
+pool1.request() // or: new sql.Request(pool1)
+.query('select 1 as number', (err, result) => {
+    // ... error checks
+...
+```
+
 #### <a name="apidoc.element.mssql.DATE"></a>[function <span class="apidocSignatureSpan">mssql.</span>DATE ()](#apidoc.element.mssql.DATE)
 - description and source-code
 ```javascript
-DATE = function () {
-  return {
-    type: TYPES.Date
-  };
+Date() {
+  return {type: TYPES.Date}
 }
 ```
 - example usage
@@ -934,10 +775,8 @@ n/a
 #### <a name="apidoc.element.mssql.DATETIME"></a>[function <span class="apidocSignatureSpan">mssql.</span>DATETIME ()](#apidoc.element.mssql.DATETIME)
 - description and source-code
 ```javascript
-DATETIME = function () {
-  return {
-    type: TYPES.DateTime
-  };
+DateTime() {
+  return {type: TYPES.DateTime}
 }
 ```
 - example usage
@@ -948,11 +787,8 @@ n/a
 #### <a name="apidoc.element.mssql.DATETIME2"></a>[function <span class="apidocSignatureSpan">mssql.</span>DATETIME2 (scale)](#apidoc.element.mssql.DATETIME2)
 - description and source-code
 ```javascript
-DATETIME2 = function (scale) {
-  return {
-    type: TYPES.DateTime2,
-    scale: scale
-  };
+DateTime2(scale) {
+  return {type: TYPES.DateTime2, scale}
 }
 ```
 - example usage
@@ -963,11 +799,8 @@ n/a
 #### <a name="apidoc.element.mssql.DATETIMEOFFSET"></a>[function <span class="apidocSignatureSpan">mssql.</span>DATETIMEOFFSET (scale)](#apidoc.element.mssql.DATETIMEOFFSET)
 - description and source-code
 ```javascript
-DATETIMEOFFSET = function (scale) {
-  return {
-    type: TYPES.DateTimeOffset,
-    scale: scale
-  };
+DateTimeOffset(scale) {
+  return {type: TYPES.DateTimeOffset, scale}
 }
 ```
 - example usage
@@ -978,12 +811,8 @@ n/a
 #### <a name="apidoc.element.mssql.DECIMAL"></a>[function <span class="apidocSignatureSpan">mssql.</span>DECIMAL (precision, scale)](#apidoc.element.mssql.DECIMAL)
 - description and source-code
 ```javascript
-DECIMAL = function (precision, scale) {
-  return {
-    type: TYPES.Decimal,
-    precision: precision,
-    scale: scale
-  };
+Decimal(precision, scale) {
+  return {type: TYPES.Decimal, precision, scale}
 }
 ```
 - example usage
@@ -994,10 +823,8 @@ n/a
 #### <a name="apidoc.element.mssql.Date"></a>[function <span class="apidocSignatureSpan">mssql.</span>Date ()](#apidoc.element.mssql.Date)
 - description and source-code
 ```javascript
-Date = function () {
-  return {
-    type: TYPES.Date
-  };
+Date() {
+  return {type: TYPES.Date}
 }
 ```
 - example usage
@@ -1008,10 +835,8 @@ n/a
 #### <a name="apidoc.element.mssql.DateTime"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTime ()](#apidoc.element.mssql.DateTime)
 - description and source-code
 ```javascript
-DateTime = function () {
-  return {
-    type: TYPES.DateTime
-  };
+DateTime() {
+  return {type: TYPES.DateTime}
 }
 ```
 - example usage
@@ -1022,24 +847,21 @@ n/a
 #### <a name="apidoc.element.mssql.DateTime2"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTime2 (scale)](#apidoc.element.mssql.DateTime2)
 - description and source-code
 ```javascript
-DateTime2 = function (scale) {
-  return {
-    type: TYPES.DateTime2,
-    scale: scale
-  };
+DateTime2(scale) {
+  return {type: TYPES.DateTime2, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -1053,11 +875,8 @@ sql.BigInt
 #### <a name="apidoc.element.mssql.DateTimeOffset"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTimeOffset (scale)](#apidoc.element.mssql.DateTimeOffset)
 - description and source-code
 ```javascript
-DateTimeOffset = function (scale) {
-  return {
-    type: TYPES.DateTimeOffset,
-    scale: scale
-  };
+DateTimeOffset(scale) {
+  return {type: TYPES.DateTimeOffset, scale}
 }
 ```
 - example usage
@@ -1068,29 +887,25 @@ n/a
 #### <a name="apidoc.element.mssql.Decimal"></a>[function <span class="apidocSignatureSpan">mssql.</span>Decimal (precision, scale)](#apidoc.element.mssql.Decimal)
 - description and source-code
 ```javascript
-Decimal = function (precision, scale) {
-  return {
-    type: TYPES.Decimal,
-    precision: precision,
-    scale: scale
-  };
+Decimal(precision, scale) {
+  return {type: TYPES.Decimal, precision, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.input("name", sql.VarChar, "abc");               // varchar(3)
-request.input("name", sql.VarChar(50), "abc");           // varchar(50)
-request.input("name", sql.VarChar(sql.MAX), "abc");      // varchar(MAX)
-request.output("name", sql.VarChar);                     // varchar(8000)
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -1100,10 +915,8 @@ List of supported data types:
 #### <a name="apidoc.element.mssql.FLOAT"></a>[function <span class="apidocSignatureSpan">mssql.</span>FLOAT ()](#apidoc.element.mssql.FLOAT)
 - description and source-code
 ```javascript
-FLOAT = function () {
-  return {
-    type: TYPES.Float
-  };
+Float() {
+  return {type: TYPES.Float}
 }
 ```
 - example usage
@@ -1114,10 +927,8 @@ n/a
 #### <a name="apidoc.element.mssql.Float"></a>[function <span class="apidocSignatureSpan">mssql.</span>Float ()](#apidoc.element.mssql.Float)
 - description and source-code
 ```javascript
-Float = function () {
-  return {
-    type: TYPES.Float
-  };
+Float() {
+  return {type: TYPES.Float}
 }
 ```
 - example usage
@@ -1128,10 +939,8 @@ n/a
 #### <a name="apidoc.element.mssql.GEOGRAPHY"></a>[function <span class="apidocSignatureSpan">mssql.</span>GEOGRAPHY ()](#apidoc.element.mssql.GEOGRAPHY)
 - description and source-code
 ```javascript
-GEOGRAPHY = function () {
-  return {
-    type: TYPES.Geography
-  };
+Geography() {
+  return {type: TYPES.Geography}
 }
 ```
 - example usage
@@ -1142,10 +951,8 @@ n/a
 #### <a name="apidoc.element.mssql.GEOMETRY"></a>[function <span class="apidocSignatureSpan">mssql.</span>GEOMETRY ()](#apidoc.element.mssql.GEOMETRY)
 - description and source-code
 ```javascript
-GEOMETRY = function () {
-  return {
-    type: TYPES.Geometry
-  };
+Geometry() {
+  return {type: TYPES.Geometry}
 }
 ```
 - example usage
@@ -1156,10 +963,8 @@ n/a
 #### <a name="apidoc.element.mssql.Geography"></a>[function <span class="apidocSignatureSpan">mssql.</span>Geography ()](#apidoc.element.mssql.Geography)
 - description and source-code
 ```javascript
-Geography = function () {
-  return {
-    type: TYPES.Geography
-  };
+Geography() {
+  return {type: TYPES.Geography}
 }
 ```
 - example usage
@@ -1170,10 +975,8 @@ n/a
 #### <a name="apidoc.element.mssql.Geometry"></a>[function <span class="apidocSignatureSpan">mssql.</span>Geometry ()](#apidoc.element.mssql.Geometry)
 - description and source-code
 ```javascript
-Geometry = function () {
-  return {
-    type: TYPES.Geometry
-  };
+Geometry() {
+  return {type: TYPES.Geometry}
 }
 ```
 - example usage
@@ -1184,10 +987,8 @@ n/a
 #### <a name="apidoc.element.mssql.IMAGE"></a>[function <span class="apidocSignatureSpan">mssql.</span>IMAGE ()](#apidoc.element.mssql.IMAGE)
 - description and source-code
 ```javascript
-IMAGE = function () {
-  return {
-    type: TYPES.Image
-  };
+Image() {
+  return {type: TYPES.Image}
 }
 ```
 - example usage
@@ -1198,10 +999,8 @@ n/a
 #### <a name="apidoc.element.mssql.INT"></a>[function <span class="apidocSignatureSpan">mssql.</span>INT ()](#apidoc.element.mssql.INT)
 - description and source-code
 ```javascript
-INT = function () {
-  return {
-    type: TYPES.Int
-  };
+Int() {
+  return {type: TYPES.Int}
 }
 ```
 - example usage
@@ -1212,10 +1011,8 @@ n/a
 #### <a name="apidoc.element.mssql.Image"></a>[function <span class="apidocSignatureSpan">mssql.</span>Image ()](#apidoc.element.mssql.Image)
 - description and source-code
 ```javascript
-Image = function () {
-  return {
-    type: TYPES.Image
-  };
+Image() {
+  return {type: TYPES.Image}
 }
 ```
 - example usage
@@ -1226,10 +1023,8 @@ n/a
 #### <a name="apidoc.element.mssql.Int"></a>[function <span class="apidocSignatureSpan">mssql.</span>Int ()](#apidoc.element.mssql.Int)
 - description and source-code
 ```javascript
-Int = function () {
-  return {
-    type: TYPES.Int
-  };
+Int() {
+  return {type: TYPES.Int}
 }
 ```
 - example usage
@@ -1240,10 +1035,8 @@ n/a
 #### <a name="apidoc.element.mssql.MONEY"></a>[function <span class="apidocSignatureSpan">mssql.</span>MONEY ()](#apidoc.element.mssql.MONEY)
 - description and source-code
 ```javascript
-MONEY = function () {
-  return {
-    type: TYPES.Money
-  };
+Money() {
+  return {type: TYPES.Money}
 }
 ```
 - example usage
@@ -1254,10 +1047,8 @@ n/a
 #### <a name="apidoc.element.mssql.Money"></a>[function <span class="apidocSignatureSpan">mssql.</span>Money ()](#apidoc.element.mssql.Money)
 - description and source-code
 ```javascript
-Money = function () {
-  return {
-    type: TYPES.Money
-  };
+Money() {
+  return {type: TYPES.Money}
 }
 ```
 - example usage
@@ -1268,11 +1059,8 @@ n/a
 #### <a name="apidoc.element.mssql.NCHAR"></a>[function <span class="apidocSignatureSpan">mssql.</span>NCHAR (length)](#apidoc.element.mssql.NCHAR)
 - description and source-code
 ```javascript
-NCHAR = function (length) {
-  return {
-    type: TYPES.NChar,
-    length: length
-  };
+NChar(length) {
+  return {type: TYPES.NChar, length}
 }
 ```
 - example usage
@@ -1283,11 +1071,8 @@ n/a
 #### <a name="apidoc.element.mssql.NChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>NChar (length)](#apidoc.element.mssql.NChar)
 - description and source-code
 ```javascript
-NChar = function (length) {
-  return {
-    type: TYPES.NChar,
-    length: length
-  };
+NChar(length) {
+  return {type: TYPES.NChar, length}
 }
 ```
 - example usage
@@ -1298,10 +1083,8 @@ n/a
 #### <a name="apidoc.element.mssql.NTEXT"></a>[function <span class="apidocSignatureSpan">mssql.</span>NTEXT ()](#apidoc.element.mssql.NTEXT)
 - description and source-code
 ```javascript
-NTEXT = function () {
-  return {
-    type: TYPES.NText
-  };
+NText() {
+  return {type: TYPES.NText}
 }
 ```
 - example usage
@@ -1312,10 +1095,8 @@ n/a
 #### <a name="apidoc.element.mssql.NText"></a>[function <span class="apidocSignatureSpan">mssql.</span>NText ()](#apidoc.element.mssql.NText)
 - description and source-code
 ```javascript
-NText = function () {
-  return {
-    type: TYPES.NText
-  };
+NText() {
+  return {type: TYPES.NText}
 }
 ```
 - example usage
@@ -1326,12 +1107,8 @@ n/a
 #### <a name="apidoc.element.mssql.NUMERIC"></a>[function <span class="apidocSignatureSpan">mssql.</span>NUMERIC (precision, scale)](#apidoc.element.mssql.NUMERIC)
 - description and source-code
 ```javascript
-NUMERIC = function (precision, scale) {
-  return {
-    type: TYPES.Numeric,
-    precision: precision,
-    scale: scale
-  };
+Numeric(precision, scale) {
+  return {type: TYPES.Numeric, precision, scale}
 }
 ```
 - example usage
@@ -1342,11 +1119,8 @@ n/a
 #### <a name="apidoc.element.mssql.NVARCHAR"></a>[function <span class="apidocSignatureSpan">mssql.</span>NVARCHAR (length)](#apidoc.element.mssql.NVARCHAR)
 - description and source-code
 ```javascript
-NVARCHAR = function (length) {
-  return {
-    type: TYPES.NVarChar,
-    length: length
-  };
+NVarChar(length) {
+  return {type: TYPES.NVarChar, length}
 }
 ```
 - example usage
@@ -1357,11 +1131,8 @@ n/a
 #### <a name="apidoc.element.mssql.NVarChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>NVarChar (length)](#apidoc.element.mssql.NVarChar)
 - description and source-code
 ```javascript
-NVarChar = function (length) {
-  return {
-    type: TYPES.NVarChar,
-    length: length
-  };
+NVarChar(length) {
+  return {type: TYPES.NVarChar, length}
 }
 ```
 - example usage
@@ -1372,12 +1143,8 @@ n/a
 #### <a name="apidoc.element.mssql.Numeric"></a>[function <span class="apidocSignatureSpan">mssql.</span>Numeric (precision, scale)](#apidoc.element.mssql.Numeric)
 - description and source-code
 ```javascript
-Numeric = function (precision, scale) {
-  return {
-    type: TYPES.Numeric,
-    precision: precision,
-    scale: scale
-  };
+Numeric(precision, scale) {
+  return {type: TYPES.Numeric, precision, scale}
 }
 ```
 - example usage
@@ -1385,21 +1152,176 @@ Numeric = function (precision, scale) {
 n/a
 ```
 
-#### <a name="apidoc.element.mssql.PreparedStatement"></a>[function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (connection)](#apidoc.element.mssql.PreparedStatement)
+#### <a name="apidoc.element.mssql.PreparedStatement"></a>[function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (parent)](#apidoc.element.mssql.PreparedStatement)
 - description and source-code
 ```javascript
-function PreparedStatement(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
+class PreparedStatement extends EventEmitter {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new Prepared Statement.
+   *
+   * @param {ConnectionPool|Transaction} [holder]
+   */
+</span>
+  constructor (parent) {
+    super()
+
+    this.parent = parent || globalConnection
+    this._handle = 0
+    this.prepared = false
+    this.parameters = {}
   }
-  this._queue = [];
-  this.parameters = {};
-}
+
+  get connected () {
+    return this.parent.connected
+  }
+
+  /**
+   * Acquire connection from connection pool.
+   *
+   * @param {Request} request Request.
+   * @param {ConnectionPool~acquireCallback} [callback] A callback which is called after connection has established, or an error
+ has occurred. If omited, method returns Promise.
+   * @return {PreparedStatement|Promise}
+   */
+
+  acquire (request, callback) {
+    debug('ps: acquire')
+
+    if (!this._acquiredConnection) {
+      setImmediate(callback, new PreparedStatementError('Statement is not prepared. Call prepare() first.', 'ENOTPREPARED'))
+      return this
+    }
+
+    if (this._activeRequest) {
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
+      return this
+    }
+
+    debug('ps: acquire ok')
+
+    this._activeRequest = request
+    setImmediate(callback, null, this._acquiredConnection)
+    return this
+  }
+
+  /**
+   * Release connection back to the pool.
+   *
+   * @param {Connection} connection Previously acquired connection.
+   * @return {PreparedStatement}
+   */
+
+  release (connection) {
+    debug('ps: release')
+
+    if (connection === this._acquiredConnection) {
+      this._activeRequest = null
+      debug('ps: release ok')
+    }
+
+    return this
+  }
+
+  /**
+   * Add an input parameter to the prepared statement.
+   *
+   * @param {String} name Name of the input parameter without @ char.
+   * @param {*} type SQL data type of input parameter.
+   * @return {PreparedStatement}
+   */
+
+  input (name, type) {
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new PreparedStatementError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if (arguments.length < 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
+    }
+
+    if (type instanceof Function) {
+      type = type()
+    }
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 1,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision,
+      tvpType: type.tvpType
+    }
+
+    return this
+  }
+
+  /**
+   * Add an output parameter to the prepared statement.
+   *
+   * @param {String} name Name of the output parameter without @ char.
+   * @param {*} type SQL data type of output parameter.
+   * @return {PreparedStatement}
+   */
+
+  output (name, type) {
+    if (/(--| |\/\*|\*\/|')/.test(name)) {
+      throw new PreparedStatementError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if (arguments.length < 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
+    }
+
+    if (type instanceof Function) type = type()
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 2,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision
+    }
+
+    return this
+  }
+
+  /**
+   * Prepare a statement.
+   *
+   * @param {String} statement SQL statement to prepare.
+   * @param {basicCallback} [callback] A callback which is called after preparation has completed, or an error has occurred. If
+omited, method returns Promise.
+   * @return {PreparedStatement|Promise}
+   */
+
+  prepare (statement, callback) {
+    if (typeof callback === 'function') {
+      this._prepare(statement, callback)
+      return this
+    }
+
+    return new PromiseLibrary((resolve, reject) => {
+      this._prepare(statement, err => {
+        if (err) return reject(err)
+        resolve(this)
+      })
+    })
+  }
+
+  /**
+   * @private
+   * @param {String} statement
+   * @param {basicCallback} callback
+   */
+
+  _prepare (statement, callback) {
+    debug('ps: prepare')
+
+    if (typeof statement === 'function') {
+      callback = statement ...
 ```
 - example usage
 ```shell
@@ -1410,11 +1332,11 @@ function PreparedStatement(connection) {
 
 **IMPORTANT:** always use 'PreparedStatement' class to create prepared statements - it ensures that all your executions of prepared
  statement are executed on one connection. Once you call 'prepare', a single connection is acquired from the connection pool and
- all subsequent executions are executed exclusively on this connection. Prepared Statement also contains a queue to make sure your
- executions are executed in series. After you call 'unprepare', the connection is then released back to the connection pool.
+ all subsequent executions are executed exclusively on this connection. After you call 'unprepare', the connection is then released
+ back to the connection pool.
 
 '''javascript
-var ps = new sql.PreparedStatement(/* [connection] */);
+const ps = new sql.PreparedStatement(/* [pool] */)
 '''
 
 If you omit the connection argument, the global connection is used instead.
@@ -1428,25 +1350,27 @@ __Example__
 #### <a name="apidoc.element.mssql.PreparedStatementError"></a>[function <span class="apidocSignatureSpan">mssql.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.PreparedStatementError)
 - description and source-code
 ```javascript
-function PreparedStatementError(message, code) {
-  var err;
-  if (!(this instanceof PreparedStatementError)) {
+class PreparedStatementError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new PreparedStatementError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
     if (message instanceof Error) {
-      err = new PreparedStatementError(message.message, message.code);
-      err.originalError = message;
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
-      err = new PreparedStatementError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message)
+      this.code = code
     }
+
+    this.name = 'PreparedStatementError'
   }
-  this.name = this.constructor.name;
-  this.message = message;
-  this.code = code;
-  PreparedStatementError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
 }
 ```
 - example usage
@@ -1467,10 +1391,8 @@ n/a
 #### <a name="apidoc.element.mssql.REAL"></a>[function <span class="apidocSignatureSpan">mssql.</span>REAL ()](#apidoc.element.mssql.REAL)
 - description and source-code
 ```javascript
-REAL = function () {
-  return {
-    type: TYPES.Real
-  };
+Real() {
+  return {type: TYPES.Real}
 }
 ```
 - example usage
@@ -1481,10 +1403,8 @@ n/a
 #### <a name="apidoc.element.mssql.Real"></a>[function <span class="apidocSignatureSpan">mssql.</span>Real ()](#apidoc.element.mssql.Real)
 - description and source-code
 ```javascript
-Real = function () {
-  return {
-    type: TYPES.Real
-  };
+Real() {
+  return {type: TYPES.Real}
 }
 ```
 - example usage
@@ -1492,39 +1412,166 @@ Real = function () {
 n/a
 ```
 
-#### <a name="apidoc.element.mssql.Request"></a>[function <span class="apidocSignatureSpan">mssql.</span>Request (connection)](#apidoc.element.mssql.Request)
+#### <a name="apidoc.element.mssql.Request"></a>[function <span class="apidocSignatureSpan">mssql.</span>Request (batch, callback)](#apidoc.element.mssql.Request)
 - description and source-code
 ```javascript
-function Request(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof PreparedStatement) {
-    this.pstatement = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
+class Request extends base.Request {
+<span class="apidocCodeCommentSpan">  /*
+  Execute specified sql batch.
+  */
+</span>
+  _batch (batch, callback) {
+    this._isBatch = true
+    this._query(batch, callback)
   }
-  this.parameters = {};
-}
+
+  /*
+  Bulk load.
+  */
+
+  _bulk (table, callback) {
+    super._bulk(table, err => {
+      if (err) return callback(err)
+
+      table._makeBulk()
+
+      if (!table.name) {
+        return callback(new base.RequestError('Table name must be specified for bulk insert.', 'ENAME'))
+      }
+
+      if (table.name.charAt(0) === '@') {
+        return callback(new base.RequestError("You can't use table variables for bulk insert.", 'ENAME'))
+      }
+
+      const errors = []
+      const errorHandlers = {}
+      let hasReturned = false
+
+      const handleError = (doReturn, connection, info) => {
+        let err = new Error(info.message)
+        err.info = info
+        err = new base.RequestError(err, 'EREQUEST')
+
+        if (this.stream) {
+          this.emit('error', err)
+        } else {
+          if (doReturn && !hasReturned) {
+            if (connection) {
+              for (let event in errorHandlers) {
+                connection.removeListener(event, errorHandlers[event])
+              }
+
+              this.parent.release(connection)
+            }
+
+            hasReturned = true
+            callback(err)
+          }
+        }
+
+        // we must collect errors even in stream mode
+        errors.push(err)
+      }
+
+      const handleInfo = msg => {
+        this.emit('info', {
+          message: msg.message,
+          number: msg.number,
+          state: msg.state,
+          class: msg.class,
+          lineNumber: msg.lineNumber,
+          serverName: msg.serverName,
+          procName: msg.procName
+        })
+      }
+
+      this.parent.acquire(this, (err, connection) => {
+        if (err) return callback(err)
+
+        if (this.canceled) {
+          debug('req: canceled')
+          this.parent.release(connection)
+          return callback(new base.RequestError('Canceled.', 'ECANCEL'))
+        }
+
+        this._cancel = () => {
+          debug('req: cancel')
+          connection.cancel()
+        }
+
+        // attach handler to handle multiple error messages
+        connection.on('infoMessage', errorHandlers.infoMessage = handleInfo)
+        connection.on('errorMessage', errorHandlers.errorMessage = handleError.bind(null, false, connection))
+        connection.on('error', errorHandlers.error = handleError.bind(null, true, connection))
+
+        const done = (err, rowCount) => {
+          // to make sure we handle no-sql errors as well
+          if (err && (!errors.length || (errors.length && err.message !== errors[errors.length - 1].message))) {
+            err = new base.RequestError(err, 'EREQUEST')
+            if (this.stream) this.emit('error', err)
+            errors.push(err)
+          }
+
+          this._cancel = null
+
+          let error
+          if (errors.length && !this.stream) {
+            error = errors.pop()
+            error.precedingErrors = errors
+          }
+
+          if (!hasReturned) {
+            for (let event in errorHandlers) {
+              connection.removeListener(event, errorHandlers[event])
+            }
+
+            this.parent.release(connection)
+            hasReturned = true
+
+            if (this.stream) {
+              callback(null, rowCount)
+            } else {
+              callback(error, rowCount)
+            }
+          }
+        }
+
+        const bulk = connection.newBulkLoad(table.path, done)
+
+        for (let col of table.columns) {
+          bulk.addColumn(col.name, getTediousType(col.type), {nullable: col.nullable, length: col.length, scale: col.scale, precision
+: col.precision})
+        }
+
+        for (let row of table.rows) {
+          bulk.addRow(row)
+        }
+
+        if (table.create) {
+          const objectid = table.temporary ? 'tempdb..[${table.name}]' : table.path
+          const req = new tds.Request('if object_id('${objectid.replace(/'/g, '\'\'')}') is null ${table.declare()}', err => {
+            if (err) return done(err)
+
+            connection.execBulkLoad(bulk)
+          })
+
+          connection.execSqlBa ...
 ```
 - example usage
 ```shell
 ...
+const sql = require('mssql')
 
-'''javascript
-var sql = require('mssql');
+sql.connect(config, err => {
+// ... error checks
 
-sql.connect("mssql://username:password@localhost/database").then(function() {
 // Query
 
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
+new sql.Request().query('select 1 as number', (err, result) => {
+    // ... error checks
+
+    console.dir(result)
+})
 
 // Stored Procedure
 ...
@@ -1533,36 +1580,42 @@ sql.connect("mssql://username:password@localhost/database").then(function() {
 #### <a name="apidoc.element.mssql.RequestError"></a>[function <span class="apidocSignatureSpan">mssql.</span>RequestError (message, code)](#apidoc.element.mssql.RequestError)
 - description and source-code
 ```javascript
-function RequestError(message, code) {
-  var err, ref1, ref10, ref11, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9;
-  if (!(this instanceof RequestError)) {
+class RequestError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new RequestError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
     if (message instanceof Error) {
-      err = new RequestError(message.message, (ref1 = message.code) != null ? ref1 : code);
-      err.number = (ref2 = (ref3 = message.info) != null ? ref3.number : void 0) != null ? ref2 : message.code;
-      err.lineNumber = (ref4 = message.info) != null ? ref4.lineNumber : void 0;
-      err.state = (ref5 = (ref6 = message.info) != null ? ref6.state : void 0) != null ? ref5 : message.sqlstate;
-      err["class"] = (ref7 = (ref8 = message.info) != null ? ref8["class"] : void 0) != null ? ref7 : (ref9 = message.info) != null
- ? ref9.severity : void 0;
-      err.serverName = (ref10 = message.info) != null ? ref10.serverName : void 0;
-      err.procName = (ref11 = message.info) != null ? ref11.procName : void 0;
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message.message)
+      this.code = message.code || code
+
+      if (message.info) {
+        this.number = message.info.number || message.code // err.code is returned by msnodesql driver
+        this.lineNumber = message.info.lineNumber
+        this.state = message.info.state || message.sqlstate // err.sqlstate is returned by msnodesql driver
+        this.class = message.info.class
+        this.serverName = message.info.serverName
+        this.procName = message.info.procName
+      } else {
+        this.number = message.code // err.code is returned by msnodesql driver
+        this.state = message.sqlstate // err.sqlstate is returned by msnodesql driver
+      }
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
-      err = new RequestError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message)
+      this.code = code
+    }
+
+    this.name = 'RequestError'
+    if ((/^\[Microsoft\]\[SQL Server Native Client 11\.0\](?:\[SQL Server\])?([\s\S]*)$/).exec(this.message)) {
+      this.message = RegExp.$1
     }
   }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  RequestError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
 }
 ```
 - example usage
@@ -1573,10 +1626,8 @@ n/a
 #### <a name="apidoc.element.mssql.SMALLDATETIME"></a>[function <span class="apidocSignatureSpan">mssql.</span>SMALLDATETIME ()](#apidoc.element.mssql.SMALLDATETIME)
 - description and source-code
 ```javascript
-SMALLDATETIME = function () {
-  return {
-    type: TYPES.SmallDateTime
-  };
+SmallDateTime() {
+  return {type: TYPES.SmallDateTime}
 }
 ```
 - example usage
@@ -1587,10 +1638,8 @@ n/a
 #### <a name="apidoc.element.mssql.SMALLINT"></a>[function <span class="apidocSignatureSpan">mssql.</span>SMALLINT ()](#apidoc.element.mssql.SMALLINT)
 - description and source-code
 ```javascript
-SMALLINT = function () {
-  return {
-    type: TYPES.SmallInt
-  };
+SmallInt() {
+  return {type: TYPES.SmallInt}
 }
 ```
 - example usage
@@ -1601,10 +1650,8 @@ n/a
 #### <a name="apidoc.element.mssql.SMALLMONEY"></a>[function <span class="apidocSignatureSpan">mssql.</span>SMALLMONEY ()](#apidoc.element.mssql.SMALLMONEY)
 - description and source-code
 ```javascript
-SMALLMONEY = function () {
-  return {
-    type: TYPES.SmallMoney
-  };
+SmallMoney() {
+  return {type: TYPES.SmallMoney}
 }
 ```
 - example usage
@@ -1615,10 +1662,8 @@ n/a
 #### <a name="apidoc.element.mssql.SmallDateTime"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallDateTime ()](#apidoc.element.mssql.SmallDateTime)
 - description and source-code
 ```javascript
-SmallDateTime = function () {
-  return {
-    type: TYPES.SmallDateTime
-  };
+SmallDateTime() {
+  return {type: TYPES.SmallDateTime}
 }
 ```
 - example usage
@@ -1629,10 +1674,8 @@ n/a
 #### <a name="apidoc.element.mssql.SmallInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallInt ()](#apidoc.element.mssql.SmallInt)
 - description and source-code
 ```javascript
-SmallInt = function () {
-  return {
-    type: TYPES.SmallInt
-  };
+SmallInt() {
+  return {type: TYPES.SmallInt}
 }
 ```
 - example usage
@@ -1643,10 +1686,8 @@ n/a
 #### <a name="apidoc.element.mssql.SmallMoney"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallMoney ()](#apidoc.element.mssql.SmallMoney)
 - description and source-code
 ```javascript
-SmallMoney = function () {
-  return {
-    type: TYPES.SmallMoney
-  };
+SmallMoney() {
+  return {type: TYPES.SmallMoney}
 }
 ```
 - example usage
@@ -1657,10 +1698,8 @@ n/a
 #### <a name="apidoc.element.mssql.TEXT"></a>[function <span class="apidocSignatureSpan">mssql.</span>TEXT ()](#apidoc.element.mssql.TEXT)
 - description and source-code
 ```javascript
-TEXT = function () {
-  return {
-    type: TYPES.Text
-  };
+Text() {
+  return {type: TYPES.Text}
 }
 ```
 - example usage
@@ -1671,11 +1710,8 @@ n/a
 #### <a name="apidoc.element.mssql.TIME"></a>[function <span class="apidocSignatureSpan">mssql.</span>TIME (scale)](#apidoc.element.mssql.TIME)
 - description and source-code
 ```javascript
-TIME = function (scale) {
-  return {
-    type: TYPES.Time,
-    scale: scale
-  };
+Time(scale) {
+  return {type: TYPES.Time, scale}
 }
 ```
 - example usage
@@ -1686,10 +1722,8 @@ n/a
 #### <a name="apidoc.element.mssql.TINYINT"></a>[function <span class="apidocSignatureSpan">mssql.</span>TINYINT ()](#apidoc.element.mssql.TINYINT)
 - description and source-code
 ```javascript
-TINYINT = function () {
-  return {
-    type: TYPES.TinyInt
-  };
+TinyInt() {
+  return {type: TYPES.TinyInt}
 }
 ```
 - example usage
@@ -1700,11 +1734,8 @@ n/a
 #### <a name="apidoc.element.mssql.TVP"></a>[function <span class="apidocSignatureSpan">mssql.</span>TVP (tvpType)](#apidoc.element.mssql.TVP)
 - description and source-code
 ```javascript
-TVP = function (tvpType) {
-  return {
-    type: TYPES.TVP,
-    tvpType: tvpType
-  };
+TVP(tvpType) {
+  return {type: TYPES.TVP, tvpType}
 }
 ```
 - example usage
@@ -1716,39 +1747,43 @@ n/a
 - description and source-code
 ```javascript
 function Table(name) {
-  var ref1;
   if (name) {
-    ref1 = Table.parseName(name), this.name = ref1.name, this.schema = ref1.schema, this.database = ref1.database;
-    this.path = "" + (this.database ? "[" + this.database + "]." : "") + (this.schema ? "[" + this.schema + "]." : "") + "[" + this
-.name + "]";
-    this.temporary = this.name.charAt(0) === '#';
+    const parsed = Table.parseName(name)
+    this.name = parsed.name
+    this.schema = parsed.schema
+    this.database = parsed.database
+    this.path = (this.database ? '[${this.database}].' : '') + (this.schema ? '[${this.schema}].' : '') + '[${this.name}]'
+    this.temporary = this.name.charAt(0) === '#'
   }
-  this.columns = [];
-  this.rows = [];
-  Object.defineProperty(this.columns, "add", {
-    value: function(name, column, options) {
-      if (options == null) {
-        options = {};
-      }
+
+  this.columns = []
+  this.rows = []
+
+  Object.defineProperty(this.columns, 'add', {
+    value (name, column, options) {
       if (column == null) {
-        throw new Error("Column data type is not defined.");
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
-        column = column();
+        column = column()
       }
-      column.name = name;
-      column.nullable = options.nullable;
-      column.primary = options.primary;
-      return this.push(column);
+
+      options = options || {}
+      column.name = name
+      column.nullable = options.nullable
+      column.primary = options.primary
+
+      return this.push(column)
     }
-  });
-  Object.defineProperty(this.rows, "add", {
-    value: function() {
-      var values;
-      values = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      return this.push(values);
+  }
+  )
+
+  Object.defineProperty(this.rows, 'add', {
+    value () {
+      return this.push(Array.prototype.slice.call(arguments))
     }
-  });
+  }
+  )
 }
 ```
 - example usage
@@ -1762,24 +1797,22 @@ If omitted, returns [Promise](#promises).
 __Example__
 
 '''javascript
-var table = new sql.Table('table_name'); // or temporary table, e.g. #temptable
-table.create = true;
-table.columns.add('a', sql.Int, {nullable: true, primary: true});
-table.columns.add('b', sql.VarChar(50), {nullable: false});
-table.rows.add(777, 'test');
+const table = new sql.Table('table_name') // or temporary table, e.g. #temptable
+table.create = true
+table.columns.add('a', sql.Int, {nullable: true, primary: true})
+table.columns.add('b', sql.VarChar(50), {nullable: false})
+table.rows.add(777, 'test')
 
-var request = new sql.Request();
-request.bulk(table, function(err, rowCount) {
+const request = new sql.Request()
+request.bulk(table, (err, result) => {
 ...
 ```
 
 #### <a name="apidoc.element.mssql.Text"></a>[function <span class="apidocSignatureSpan">mssql.</span>Text ()](#apidoc.element.mssql.Text)
 - description and source-code
 ```javascript
-Text = function () {
-  return {
-    type: TYPES.Text
-  };
+Text() {
+  return {type: TYPES.Text}
 }
 ```
 - example usage
@@ -1790,11 +1823,8 @@ n/a
 #### <a name="apidoc.element.mssql.Time"></a>[function <span class="apidocSignatureSpan">mssql.</span>Time (scale)](#apidoc.element.mssql.Time)
 - description and source-code
 ```javascript
-Time = function (scale) {
-  return {
-    type: TYPES.Time,
-    scale: scale
-  };
+Time(scale) {
+  return {type: TYPES.Time, scale}
 }
 ```
 - example usage
@@ -1805,10 +1835,8 @@ n/a
 #### <a name="apidoc.element.mssql.TinyInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>TinyInt ()](#apidoc.element.mssql.TinyInt)
 - description and source-code
 ```javascript
-TinyInt = function () {
-  return {
-    type: TYPES.TinyInt
-  };
+TinyInt() {
+  return {type: TYPES.TinyInt}
 }
 ```
 - example usage
@@ -1816,13 +1844,93 @@ TinyInt = function () {
 n/a
 ```
 
-#### <a name="apidoc.element.mssql.Transaction"></a>[function <span class="apidocSignatureSpan">mssql.</span>Transaction (connection)](#apidoc.element.mssql.Transaction)
+#### <a name="apidoc.element.mssql.Transaction"></a>[function <span class="apidocSignatureSpan">mssql.</span>Transaction (parent)](#apidoc.element.mssql.Transaction)
 - description and source-code
 ```javascript
-function Transaction(connection) {
-  this._abort = bind(this._abort, this);
-  this.connection = connection != null ? connection : global_connection;
-  this._queue = [];
+class Transaction extends base.Transaction {
+  constructor (parent) {
+    super(parent)
+
+    this._abort = () => {
+      if (!this._rollbackRequested) {
+        // transaction interrupted because of XACT_ABORT
+
+        const pc = this._acquiredConnection
+
+        // defer releasing so connection can switch from SentClientRequest to LoggedIn state
+        setImmediate(this.parent.release.bind(this.parent), pc)
+
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
+        this._acquiredConnection = null
+        this._aborted = true
+
+        this.emit('rollback', true)
+      }
+    }
+  }
+
+  _begin (isolationLevel, callback) {
+    super._begin(isolationLevel, err => {
+      if (err) return callback(err)
+
+      debug('tran: begin')
+
+      this.parent.acquire(this, (err, connection) => {
+        if (err) return callback(err)
+
+        this._acquiredConnection = connection
+        this._acquiredConnection.on('rollbackTransaction', this._abort)
+
+        connection.beginTransaction(err => {
+          if (err) err = new base.TransactionError(err)
+
+          debug('tran: begin ok')
+
+          callback(err)
+        }, this.name, this.isolationLevel)
+      })
+    })
+  }
+
+  _commit (callback) {
+    super._commit(err => {
+      if (err) return callback(err)
+
+      debug('tran: commit')
+
+      this._acquiredConnection.commitTransaction(err => {
+        if (err) err = new base.TransactionError(err)
+
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
+        this.parent.release(this._acquiredConnection)
+        this._acquiredConnection = null
+
+        if (!err) debug('tran: commit ok')
+
+        callback(err)
+      })
+    })
+  }
+
+  _rollback (callback) {
+    super._rollback(err => {
+      if (err) return callback(err)
+
+      debug('tran: rollback')
+
+      this._acquiredConnection.rollbackTransaction(err => {
+        if (err) err = new base.TransactionError(err)
+
+        this._acquiredConnection.removeListener('rollbackTransaction', this._abort)
+        this.parent.release(this._acquiredConnection)
+        this._acquiredConnection = null
+
+        if (!err) debug('tran: rollback ok')
+
+        callback(err)
+      })
+    })
+  }
 }
 ```
 - example usage
@@ -1834,11 +1942,11 @@ function Transaction(connection) {
 
 **IMPORTANT:** always use 'Transaction' class to create transactions - it ensures that all your requests are executed on one connection
 . Once you call 'begin', a single connection is acquired from the connection pool and all subsequent requests (initialized with
-the 'Transaction' object) are executed exclusively on this connection. Transaction also contains a queue to make sure your requests
- are executed in series. After you call 'commit' or 'rollback', connection is then released back to the connection pool.
+the 'Transaction' object) are executed exclusively on this connection. After you call 'commit' or 'rollback', connection is then
+ released back to the connection pool.
 
 '''javascript
-var transaction = new sql.Transaction(/* [connection] */);
+const transaction = new sql.Transaction(/* [pool] */)
 '''
 
 If you omit connection argument, global connection is used instead.
@@ -1852,29 +1960,27 @@ __Example__
 #### <a name="apidoc.element.mssql.TransactionError"></a>[function <span class="apidocSignatureSpan">mssql.</span>TransactionError (message, code)](#apidoc.element.mssql.TransactionError)
 - description and source-code
 ```javascript
-function TransactionError(message, code) {
-  var err;
-  if (!(this instanceof TransactionError)) {
+class TransactionError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new TransactionError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
     if (message instanceof Error) {
-      err = new TransactionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
     } else {
-      err = new TransactionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
+      super(message)
+      this.code = code
     }
+
+    this.name = 'TransactionError'
   }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  TransactionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
 }
 ```
 - example usage
@@ -1885,10 +1991,8 @@ n/a
 #### <a name="apidoc.element.mssql.UDT"></a>[function <span class="apidocSignatureSpan">mssql.</span>UDT ()](#apidoc.element.mssql.UDT)
 - description and source-code
 ```javascript
-UDT = function () {
-  return {
-    type: TYPES.UDT
-  };
+UDT() {
+  return {type: TYPES.UDT}
 }
 ```
 - example usage
@@ -1899,10 +2003,8 @@ n/a
 #### <a name="apidoc.element.mssql.UNIQUEIDENTIFIER"></a>[function <span class="apidocSignatureSpan">mssql.</span>UNIQUEIDENTIFIER ()](#apidoc.element.mssql.UNIQUEIDENTIFIER)
 - description and source-code
 ```javascript
-UNIQUEIDENTIFIER = function () {
-  return {
-    type: TYPES.UniqueIdentifier
-  };
+UniqueIdentifier() {
+  return {type: TYPES.UniqueIdentifier}
 }
 ```
 - example usage
@@ -1913,10 +2015,8 @@ n/a
 #### <a name="apidoc.element.mssql.UniqueIdentifier"></a>[function <span class="apidocSignatureSpan">mssql.</span>UniqueIdentifier ()](#apidoc.element.mssql.UniqueIdentifier)
 - description and source-code
 ```javascript
-UniqueIdentifier = function () {
-  return {
-    type: TYPES.UniqueIdentifier
-  };
+UniqueIdentifier() {
+  return {type: TYPES.UniqueIdentifier}
 }
 ```
 - example usage
@@ -1927,11 +2027,8 @@ n/a
 #### <a name="apidoc.element.mssql.VARBINARY"></a>[function <span class="apidocSignatureSpan">mssql.</span>VARBINARY (length)](#apidoc.element.mssql.VARBINARY)
 - description and source-code
 ```javascript
-VARBINARY = function (length) {
-  return {
-    type: TYPES.VarBinary,
-    length: length
-  };
+VarBinary(length) {
+  return {type: TYPES.VarBinary, length}
 }
 ```
 - example usage
@@ -1942,11 +2039,8 @@ n/a
 #### <a name="apidoc.element.mssql.VARCHAR"></a>[function <span class="apidocSignatureSpan">mssql.</span>VARCHAR (length)](#apidoc.element.mssql.VARCHAR)
 - description and source-code
 ```javascript
-VARCHAR = function (length) {
-  return {
-    type: TYPES.VarChar,
-    length: length
-  };
+VarChar(length) {
+  return {type: TYPES.VarChar, length}
 }
 ```
 - example usage
@@ -1957,10 +2051,8 @@ n/a
 #### <a name="apidoc.element.mssql.VARIANT"></a>[function <span class="apidocSignatureSpan">mssql.</span>VARIANT ()](#apidoc.element.mssql.VARIANT)
 - description and source-code
 ```javascript
-VARIANT = function () {
-  return {
-    type: TYPES.Variant
-  };
+Variant() {
+  return {type: TYPES.Variant}
 }
 ```
 - example usage
@@ -1971,11 +2063,8 @@ n/a
 #### <a name="apidoc.element.mssql.VarBinary"></a>[function <span class="apidocSignatureSpan">mssql.</span>VarBinary (length)](#apidoc.element.mssql.VarBinary)
 - description and source-code
 ```javascript
-VarBinary = function (length) {
-  return {
-    type: TYPES.VarBinary,
-    length: length
-  };
+VarBinary(length) {
+  return {type: TYPES.VarBinary, length}
 }
 ```
 - example usage
@@ -1986,41 +2075,36 @@ n/a
 #### <a name="apidoc.element.mssql.VarChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>VarChar (length)](#apidoc.element.mssql.VarChar)
 - description and source-code
 ```javascript
-VarChar = function (length) {
-  return {
-    type: TYPES.VarChar,
-    length: length
-  };
+VarChar(length) {
+  return {type: TYPES.VarChar, length}
 }
 ```
 - example usage
 ```shell
 ...
-		// ... query error checks
-	});
 
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
+        console.dir(result1)
+
+        // Stored procedure
+
+        let result2 = await pool.request()
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.VarChar(50))
+            .execute('procedure_name')
+
+        console.dir(result2)
+    } catch (err) {
+        // ... error checks
+    }
+})()
 ...
 ```
 
 #### <a name="apidoc.element.mssql.Variant"></a>[function <span class="apidocSignatureSpan">mssql.</span>Variant ()](#apidoc.element.mssql.Variant)
 - description and source-code
 ```javascript
-Variant = function () {
-  return {
-    type: TYPES.Variant
-  };
+Variant() {
+  return {type: TYPES.Variant}
 }
 ```
 - example usage
@@ -2031,10 +2115,8 @@ n/a
 #### <a name="apidoc.element.mssql.XML"></a>[function <span class="apidocSignatureSpan">mssql.</span>XML ()](#apidoc.element.mssql.XML)
 - description and source-code
 ```javascript
-XML = function () {
-  return {
-    type: TYPES.Xml
-  };
+Xml() {
+  return {type: TYPES.Xml}
 }
 ```
 - example usage
@@ -2045,10 +2127,8 @@ n/a
 #### <a name="apidoc.element.mssql.Xml"></a>[function <span class="apidocSignatureSpan">mssql.</span>Xml ()](#apidoc.element.mssql.Xml)
 - description and source-code
 ```javascript
-Xml = function () {
-  return {
-    type: TYPES.Xml
-  };
+Xml() {
+  return {type: TYPES.Xml}
 }
 ```
 - example usage
@@ -2059,10 +2139,11 @@ n/a
 #### <a name="apidoc.element.mssql.batch"></a>[function <span class="apidocSignatureSpan">mssql.</span>batch ()](#apidoc.element.mssql.batch)
 - description and source-code
 ```javascript
-batch = function () {
-  var strings, values;
-  strings = arguments[0], values = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-  return new Request()._template('batch', strings, values);
+function batch() {
+  const values = Array.prototype.slice.call(arguments)
+  const strings = values.shift()
+
+  return new driver.Request()._template('batch', strings, values)
 }
 ```
 - example usage
@@ -2075,10 +2156,10 @@ batch = function () {
 __Example__
 
 '''javascript
-var request = new sql.Request();
-request.batch('create procedure #temporary as select * from table', function(err, recordset) {
+const request = new sql.Request()
+request.batch('create procedure #temporary as select * from table', (err, result) => {
     // ... error checks
-});
+})
 '''
 
 __Errors__
@@ -2090,8 +2171,37 @@ __Errors__
 #### <a name="apidoc.element.mssql.close"></a>[function <span class="apidocSignatureSpan">mssql.</span>close (callback)](#apidoc.element.mssql.close)
 - description and source-code
 ```javascript
-close = function (callback) {
-  return global_connection != null ? global_connection.close(callback) : void 0;
+function close(callback) {
+  if (globalConnection) {
+    // remove event handlers from the global connection
+    for (let event in globalConnectionHandlers) {
+      for (let i = 0, l = globalConnectionHandlers[event].length; i < l; i++) {
+        globalConnection.removeListener(event, globalConnectionHandlers[event][i])
+      }
+    }
+
+    // attach error handler to prevent process crash in case of error
+    globalConnection.on('error', err => {
+      if (globalConnectionHandlers['error']) {
+        for (let i = 0, l = globalConnectionHandlers['error'].length; i < l; i++) {
+          globalConnectionHandlers['error'][i].call(globalConnection, err)
+        }
+      }
+    })
+
+    const gc = globalConnection
+    globalConnection = null
+    return gc.close(callback)
+  }
+
+  if (typeof callback === 'function') {
+    setImmediate(callback)
+    return null
+  }
+
+  return new PromiseLibrary((resolve, reject) => {
+    resolve(globalConnection)
+  })
 }
 ```
 - example usage
@@ -2104,13 +2214,13 @@ Close all active connections in the pool.
 __Example__
 
 '''javascript
-connection.close();
+pool.close()
 '''
 
 ## Request
 
 '''javascript
-var request = new sql.Request(/* [connection] */);
+const request = new sql.Request(/* [pool or transaction] */)
 '''
 ...
 ```
@@ -2118,44 +2228,52 @@ var request = new sql.Request(/* [connection] */);
 #### <a name="apidoc.element.mssql.connect"></a>[function <span class="apidocSignatureSpan">mssql.</span>connect (config, callback)](#apidoc.element.mssql.connect)
 - description and source-code
 ```javascript
-connect = function (config, callback) {
-  global_connection = new Connection(config);
-  return global_connection.connect(callback);
+function connect(config, callback) {
+  if (globalConnection) throw new Error('Global connection already exists. Call sql.close() first.')
+  globalConnection = new driver.ConnectionPool(config)
+
+  for (let event in globalConnectionHandlers) {
+    for (let i = 0, l = globalConnectionHandlers[event].length; i < l; i++) {
+      globalConnection.on(event, globalConnectionHandlers[event][i])
+    }
+  }
+
+  return globalConnection.connect(callback)
 }
 ```
 - example usage
 ```shell
 ...
-    npm install mssql
-
 ## Quick Example
 
 '''javascript
-var sql = require('mssql');
+const sql = require('mssql')
 
-sql.connect("mssql://username:password@localhost/database").then(function() {
-    // Query
-
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
+async () => {
+    try {
+        const pool = await sql.connect('mssql://username:password@localhost/database')
+        const result = await sql.query'select * from mytable where id = ${value}'
+        console.dir(result)
+    } catch (err) {
+        // ... error checks
+    }
+}
+'''
 ...
 ```
 
-#### <a name="apidoc.element.mssql.init"></a>[function <span class="apidocSignatureSpan">mssql.</span>init ()](#apidoc.element.mssql.init)
+#### <a name="apidoc.element.mssql.off"></a>[function <span class="apidocSignatureSpan">mssql.</span>off (event, handler)](#apidoc.element.mssql.off)
 - description and source-code
 ```javascript
-init = function () {
-  return module.exports.connect({
-    user: module.exports.connection.userName,
-    password: module.exports.connection.password,
-    server: module.exports.connection.server,
-    options: module.exports.connection.options,
-    driver: 'tedious',
-    pool: module.exports.pool
-  });
+function removeListener(event, handler) {
+  if (!globalConnectionHandlers[event]) return globalConnection
+  const index = globalConnectionHandlers[event].indexOf(handler)
+  if (index === -1) return globalConnection
+  globalConnectionHandlers[event].splice(index, 1)
+  if (globalConnectionHandlers[event].length === 0) globalConnectionHandlers[event] = undefined
+
+  if (globalConnection) globalConnection.removeListener(event, handler)
+  return globalConnection
 }
 ```
 - example usage
@@ -2166,58 +2284,98 @@ n/a
 #### <a name="apidoc.element.mssql.on"></a>[function <span class="apidocSignatureSpan">mssql.</span>on (event, handler)](#apidoc.element.mssql.on)
 - description and source-code
 ```javascript
-on = function (event, handler) {
-  return global_connection != null ? global_connection.on(event, handler) : void 0;
+function on(event, handler) {
+  if (!globalConnectionHandlers[event]) globalConnectionHandlers[event] = []
+  globalConnectionHandlers[event].push(handler)
+
+  if (globalConnection) globalConnection.on(event, handler)
+  return globalConnection
 }
 ```
 - example usage
 ```shell
 ...
-    .execute('procedure_name', function(err, recordsets, returnValue) {
+
+        console.dir(result2)
+    } catch (err) {
         // ... error checks
+    }
+})()
 
-        console.dir(recordsets);
-    });
-});
-
-sql.on('error', function(err) {
-	// ... error handler
-});
+sql.on('error', err => {
+    // ... error handler
+})
 '''
 
-### Streaming
+### Promises
 
-If you plan to work with large amount of rows, you should always use streaming. Once you enable this, you must listen for events
- to receive data.
+'''javascript
 ...
 ```
 
 #### <a name="apidoc.element.mssql.query"></a>[function <span class="apidocSignatureSpan">mssql.</span>query ()](#apidoc.element.mssql.query)
 - description and source-code
 ```javascript
-query = function () {
-  var strings, values;
-  strings = arguments[0], values = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-  return new Request()._template('query', strings, values);
+function query() {
+  const values = Array.prototype.slice.call(arguments)
+  const strings = values.shift()
+
+  return new driver.Request()._template('query', strings, values)
 }
 ```
 - example usage
 ```shell
 ...
+const sql = require('mssql')
 
-'''javascript
-var sql = require('mssql');
+(async function () {
+try {
+    let pool = await sql.connect(config)
+    let result1 = await pool.request()
+        .input('input_parameter', sql.Int, value)
+        .query('select * from mytable where id = @input_parameter')
 
-sql.connect("mssql://username:password@localhost/database").then(function() {
-// Query
+    console.dir(result1)
 
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
+    // Stored procedure
 
-// Stored Procedure
+    let result2 = await pool.request()
+        .input('input_parameter', sql.Int, value)
+...
+```
+
+#### <a name="apidoc.element.mssql.removeListener"></a>[function <span class="apidocSignatureSpan">mssql.</span>removeListener (event, handler)](#apidoc.element.mssql.removeListener)
+- description and source-code
+```javascript
+function removeListener(event, handler) {
+  if (!globalConnectionHandlers[event]) return globalConnection
+  const index = globalConnectionHandlers[event].indexOf(handler)
+  if (index === -1) return globalConnection
+  globalConnectionHandlers[event].splice(index, 1)
+  if (globalConnectionHandlers[event].length === 0) globalConnectionHandlers[event] = undefined
+
+  if (globalConnection) globalConnection.removeListener(event, handler)
+  return globalConnection
+}
+```
+- example usage
+```shell
+...
+ */
+
+module.exports.exports.close = function close (callback) {
+  if (globalConnection) {
+// remove event handlers from the global connection
+for (let event in globalConnectionHandlers) {
+  for (let i = 0, l = globalConnectionHandlers[event].length; i < l; i++) {
+    globalConnection.removeListener(event, globalConnectionHandlers[event][i])
+  }
+}
+
+// attach error handler to prevent process crash in case of error
+globalConnection.on('error', err => {
+  if (globalConnectionHandlers['error']) {
+    for (let i = 0, l = globalConnectionHandlers['error'].length; i < l; i++) {
 ...
 ```
 
@@ -2228,10 +2386,8 @@ sql.connect("mssql://username:password@localhost/database").then(function() {
 #### <a name="apidoc.element.mssql.BigInt.BigInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>BigInt ()](#apidoc.element.mssql.BigInt.BigInt)
 - description and source-code
 ```javascript
-BigInt = function () {
-  return {
-    type: TYPES.BigInt
-  };
+BigInt() {
+  return {type: TYPES.BigInt}
 }
 ```
 - example usage
@@ -2242,29 +2398,11 @@ n/a
 #### <a name="apidoc.element.mssql.BigInt.inspect"></a>[function <span class="apidocSignatureSpan">mssql.BigInt.</span>inspect ()](#apidoc.element.mssql.BigInt.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -2274,11 +2412,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Binary.Binary"></a>[function <span class="apidocSignatureSpan">mssql.</span>Binary (length)](#apidoc.element.mssql.Binary.Binary)
 - description and source-code
 ```javascript
-Binary = function (length) {
-  return {
-    type: TYPES.Binary,
-    length: length
-  };
+Binary(length) {
+  return {type: TYPES.Binary, length}
 }
 ```
 - example usage
@@ -2289,29 +2424,11 @@ n/a
 #### <a name="apidoc.element.mssql.Binary.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Binary.</span>inspect ()](#apidoc.element.mssql.Binary.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -2321,10 +2438,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Bit.Bit"></a>[function <span class="apidocSignatureSpan">mssql.</span>Bit ()](#apidoc.element.mssql.Bit.Bit)
 - description and source-code
 ```javascript
-Bit = function () {
-  return {
-    type: TYPES.Bit
-  };
+Bit() {
+  return {type: TYPES.Bit}
 }
 ```
 - example usage
@@ -2335,29 +2450,11 @@ n/a
 #### <a name="apidoc.element.mssql.Bit.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Bit.</span>inspect ()](#apidoc.element.mssql.Bit.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -2367,11 +2464,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Char.Char"></a>[function <span class="apidocSignatureSpan">mssql.</span>Char (length)](#apidoc.element.mssql.Char.Char)
 - description and source-code
 ```javascript
-Char = function (length) {
-  return {
-    type: TYPES.Char,
-    length: length
-  };
+Char(length) {
+  return {type: TYPES.Char, length}
 }
 ```
 - example usage
@@ -2382,644 +2476,7 @@ n/a
 #### <a name="apidoc.element.mssql.Char.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Char.</span>inspect ()](#apidoc.element.mssql.Char.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
-```
-- example usage
-```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.Connection"></a>[module mssql.Connection](#apidoc.module.mssql.Connection)
-
-#### <a name="apidoc.element.mssql.Connection.Connection"></a>[function <span class="apidocSignatureSpan">mssql.</span>Connection (config1, callback)](#apidoc.element.mssql.Connection.Connection)
-- description and source-code
-```javascript
-function Connection(config1, callback) {
-  var base, base1, base2, base3, base4, err, error, ex, ref1;
-  this.config = config1;
-  if ('string' === typeof this.config) {
-    try {
-      this.config = ConnectionString.resolve(this.config);
-    } catch (error) {
-      ex = error;
-      if (callback) {
-        return callback(ex);
-      } else {
-        throw ex;
-      }
-    }
-  }
-  if ((base = this.config).driver == null) {
-    base.driver = 'tedious';
-  }
-  if ((base1 = this.config).port == null) {
-    base1.port = 1433;
-  }
-  if ((base2 = this.config).options == null) {
-    base2.options = {};
-  }
-  if ((base3 = this.config).stream == null) {
-    base3.stream = false;
-  }
-  if ((base4 = this.config).parseJSON == null) {
-    base4.parseJSON = false;
-  }
-  if (/^(.*)\\(.*)$/.exec(this.config.server)) {
-    this.config.server = RegExp.$1;
-    this.config.options.instanceName = RegExp.$2;
-  }
-  if (ref1 = this.config.driver, indexOf.call(DRIVERS, ref1) >= 0) {
-    this.driver = this.initializeDriver(require("./" + this.config.driver));
-    if (module.exports.fix) {
-      this.driver.fix();
-    }
-  } else {
-    err = new ConnectionError("Unknown driver " + this.config.driver + "!", 'EDRIVER');
-    if (callback) {
-      return callback(err);
-    } else {
-      throw err;
-    }
-  }
-  if (callback) {
-    this.connect(callback);
-  }
-}
-```
-- example usage
-```shell
-...
-database: '...',
-
-options: {
-    encrypt: true // Use this if you're on Windows Azure
-}
-}
-
-var connection1 = new sql.Connection(config, function(err) {
-// ... error checks
-
-// Query
-
-var request = new sql.Request(connection1); // or: var request = connection1.request();
-request.query('select 1 as number', function(err, recordset) {
-    // ... error checks
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.EventEmitter"></a>[function <span class="apidocSignatureSpan">mssql.Connection.</span>EventEmitter ()](#apidoc.element.mssql.Connection.EventEmitter)
-- description and source-code
-```javascript
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.init"></a>[function <span class="apidocSignatureSpan">mssql.Connection.</span>init ()](#apidoc.element.mssql.Connection.init)
-- description and source-code
-```javascript
-init = function () {
-  this.domain = null;
-  if (EventEmitter.usingDomains) {
-    // if there is an active domain, then attach to it.
-    domain = domain || require('domain');
-    if (domain.active && !(this instanceof domain.Domain)) {
-      this.domain = domain.active;
-    }
-  }
-
-  if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
-    this._events = new EventHandlers();
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.listenerCount"></a>[function <span class="apidocSignatureSpan">mssql.Connection.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Connection.listenerCount)
-- description and source-code
-```javascript
-listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.Connection.prototype"></a>[module mssql.Connection.prototype](#apidoc.module.mssql.Connection.prototype)
-
-#### <a name="apidoc.element.mssql.Connection.prototype._close"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_close (callback)](#apidoc.element.mssql.Connection.prototype._close)
-- description and source-code
-```javascript
-_close = function (callback) {
-  if (this._debugStream) {
-    this._debugStream.removeAllListeners();
-    this._debugStream.end();
-    this._debugStream = null;
-  }
-  if (this.connecting) {
-    this.connecting = false;
-    this.driver.Connection.prototype.close.call(this, (function(_this) {
-      return function(err) {
-        return callback(err);
-      };
-    })(this));
-    this.driver = null;
-  } else if (this.connected) {
-    this.connected = false;
-    this.driver.Connection.prototype.close.call(this, (function(_this) {
-      return function(err) {
-        if (!err) {
-          _this.connected = false;
-          _this.emit('close');
-        }
-        return callback(err);
-      };
-    })(this));
-    this.driver = null;
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype._connect"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_connect (callback)](#apidoc.element.mssql.Connection.prototype._connect)
-- description and source-code
-```javascript
-_connect = function (callback) {
-  var go;
-  if (!this.driver) {
-    return callback(new ConnectionError("Connection was closed. Create a new instance."));
-  }
-  if (this.connected) {
-    return callback(new ConnectionError("Database is already connected! Call close before connecting to different database.", 'EALREADYCONNECTED
-'));
-  }
-  if (this.connecting) {
-    return callback(new ConnectionError("Already connecting to database! Call close before connecting to different database.", '
-EALREADYCONNECTING'));
-  }
-  go = (function(_this) {
-    return function() {
-      _this.connecting = true;
-      return _this.driver.Connection.prototype.connect.call(_this, _this.config, function(err) {
-        if (!_this.connecting) {
-          return;
-        }
-        _this.connecting = false;
-        if (err) {
-          if (_this._debugStream) {
-            _this._debugStream.removeAllListeners();
-            _this._debugStream.end();
-            _this._debugStream = null;
-          }
-        } else {
-          _this.connected = true;
-          _this.emit('connect');
-        }
-        return callback(err);
-      });
-    };
-  })(this);
-  if (this.config.debug) {
-    this._debugStream = fs.createWriteStream("./mssql_debug_" + (Date.now()) + ".log");
-    this._debugStream.once('open', go);
-    this._debugStream.on('error', function(err) {
-      if (this.connecting || this.connected) {
-        return console.error(err.stack);
-      } else {
-        this._debugStream.removeListener('open', go);
-        return callback(new ConnectionError("Failed to open debug stream. " + err.message, 'EDEBUG'));
-      }
-    });
-  } else {
-    go();
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype._debug"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>_debug (msg)](#apidoc.element.mssql.Connection.prototype._debug)
-- description and source-code
-```javascript
-_debug = function (msg) {
-  var ref1;
-  return (ref1 = this._debugStream) != null ? ref1.write((String(msg).replace(/\x1B\[[0-9;]*m/g, '')) + "\n") : void 0;
-}
-```
-- example usage
-```shell
-...
-        c.hasError = true;
-        return;
-      }
-      return _this.emit('error', err);
-    });
-    if (config.debug) {
-      return c.on('debug', function(msg) {
-        return _this._debug(msg);
-      });
-    }
-  };
-})(this),
-validate: function(c) {
-  return (c != null) && !c.closed && !c.hasError;
-},
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.batch"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>batch ()](#apidoc.element.mssql.Connection.prototype.batch)
-- description and source-code
-```javascript
-batch = function () {
-  var strings, values;
-  strings = arguments[0], values = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-  return new Request(this)._template('batch', strings, values);
-}
-```
-- example usage
-```shell
-...
-- **batch** - T-SQL command to be executed.
-- **callback(err, recordset)** - A callback which is called after execution has completed, or an error has occurred. Optional. If
- omitted, returns [Promise](#promises).
-
-__Example__
-
-'''javascript
-var request = new sql.Request();
-request.batch('create procedure #temporary as select * from table', function(err, recordset) {
-    // ... error checks
-});
-'''
-
-__Errors__
-- ETIMEOUT ('RequestError') - Request timeout.
-- EREQUEST ('RequestError') - *Message from SQL Server*
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.close"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>close (callback)](#apidoc.element.mssql.Connection.prototype.close)
-- description and source-code
-```javascript
-close = function (callback) {
-  if (callback != null) {
-    return this._close(callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._close(function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve();
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-### close()
-
-Close all active connections in the pool.
-
-__Example__
-
-'''javascript
-connection.close();
-'''
-
-## Request
-
-'''javascript
-var request = new sql.Request(/* [connection] */);
-'''
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.connect"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>connect (callback)](#apidoc.element.mssql.Connection.prototype.connect)
-- description and source-code
-```javascript
-connect = function (callback) {
-  if (callback != null) {
-    return this._connect(callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._connect(function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(_this);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-    npm install mssql
-
-## Quick Example
-
-'''javascript
-var sql = require('mssql');
-
-sql.connect("mssql://username:password@localhost/database").then(function() {
-    // Query
-
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>constructor (config1, callback)](#apidoc.element.mssql.Connection.prototype.constructor)
-- description and source-code
-```javascript
-function Connection(config1, callback) {
-  var base, base1, base2, base3, base4, err, error, ex, ref1;
-  this.config = config1;
-  if ('string' === typeof this.config) {
-    try {
-      this.config = ConnectionString.resolve(this.config);
-    } catch (error) {
-      ex = error;
-      if (callback) {
-        return callback(ex);
-      } else {
-        throw ex;
-      }
-    }
-  }
-  if ((base = this.config).driver == null) {
-    base.driver = 'tedious';
-  }
-  if ((base1 = this.config).port == null) {
-    base1.port = 1433;
-  }
-  if ((base2 = this.config).options == null) {
-    base2.options = {};
-  }
-  if ((base3 = this.config).stream == null) {
-    base3.stream = false;
-  }
-  if ((base4 = this.config).parseJSON == null) {
-    base4.parseJSON = false;
-  }
-  if (/^(.*)\\(.*)$/.exec(this.config.server)) {
-    this.config.server = RegExp.$1;
-    this.config.options.instanceName = RegExp.$2;
-  }
-  if (ref1 = this.config.driver, indexOf.call(DRIVERS, ref1) >= 0) {
-    this.driver = this.initializeDriver(require("./" + this.config.driver));
-    if (module.exports.fix) {
-      this.driver.fix();
-    }
-  } else {
-    err = new ConnectionError("Unknown driver " + this.config.driver + "!", 'EDRIVER');
-    if (callback) {
-      return callback(err);
-    } else {
-      throw err;
-    }
-  }
-  if (callback) {
-    this.connect(callback);
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.initializeDriver"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>initializeDriver (driver)](#apidoc.element.mssql.Connection.prototype.initializeDriver)
-- description and source-code
-```javascript
-initializeDriver = function (driver) {
-  return driver(Connection, Transaction, Request, ConnectionError, TransactionError, RequestError);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.query"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>query ()](#apidoc.element.mssql.Connection.prototype.query)
-- description and source-code
-```javascript
-query = function () {
-  var strings, values;
-  strings = arguments[0], values = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-  return new Request(this)._template('query', strings, values);
-}
-```
-- example usage
-```shell
-...
-
-'''javascript
-var sql = require('mssql');
-
-sql.connect("mssql://username:password@localhost/database").then(function() {
-// Query
-
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
-
-// Stored Procedure
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.request"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>request ()](#apidoc.element.mssql.Connection.prototype.request)
-- description and source-code
-```javascript
-request = function () {
-  return new Request(this);
-}
-```
-- example usage
-```shell
-...
-}
-
-var connection1 = new sql.Connection(config, function(err) {
-    // ... error checks
-
-    // Query
-
-    var request = new sql.Request(connection1); // or: var request = connection1.request();
-    request.query('select 1 as number', function(err, recordset) {
-        // ... error checks
-
-        console.dir(recordset);
-    });
-
-});
-...
-```
-
-#### <a name="apidoc.element.mssql.Connection.prototype.transaction"></a>[function <span class="apidocSignatureSpan">mssql.Connection.prototype.</span>transaction ()](#apidoc.element.mssql.Connection.prototype.transaction)
-- description and source-code
-```javascript
-transaction = function () {
-  return new Transaction(this);
-}
-```
-- example usage
-```shell
-...
-
-            console.log("Transaction committed.");
-        });
-    });
-});
-'''
-
-Transaction can also be created by 'var transaction = connection.transaction();'. Requests can also be created by 'var request =
-transaction.request();'.
-
-__Aborted transactions__
-
-This example shows how you should correctly handle transaction errors when 'abortTransactionOnError' ('XACT_ABORT') is enabled.
-Added in 2.0.
-
-'''javascript
-var transaction = new sql.Transaction(/* [connection] */);
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.ConnectionError"></a>[module mssql.ConnectionError](#apidoc.module.mssql.ConnectionError)
-
-#### <a name="apidoc.element.mssql.ConnectionError.ConnectionError"></a>[function <span class="apidocSignatureSpan">mssql.</span>ConnectionError (message, code)](#apidoc.element.mssql.ConnectionError.ConnectionError)
-- description and source-code
-```javascript
-function ConnectionError(message, code) {
-  var err;
-  if (!(this instanceof ConnectionError)) {
-    if (message instanceof Error) {
-      err = new ConnectionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new ConnectionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  ConnectionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.ConnectionError.captureStackTrace"></a>[function <span class="apidocSignatureSpan">mssql.ConnectionError.</span>captureStackTrace ()](#apidoc.element.mssql.ConnectionError.captureStackTrace)
-- description and source-code
-```javascript
-function captureStackTrace() { [native code] }
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.ConnectionError.prototype"></a>[module mssql.ConnectionError.prototype](#apidoc.module.mssql.ConnectionError.prototype)
-
-#### <a name="apidoc.element.mssql.ConnectionError.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.ConnectionError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.ConnectionError.prototype.constructor)
-- description and source-code
-```javascript
-function ConnectionError(message, code) {
-  var err;
-  if (!(this instanceof ConnectionError)) {
-    if (message instanceof Error) {
-      err = new ConnectionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new ConnectionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  ConnectionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
@@ -3033,10 +2490,8 @@ n/a
 #### <a name="apidoc.element.mssql.Date.Date"></a>[function <span class="apidocSignatureSpan">mssql.</span>Date ()](#apidoc.element.mssql.Date.Date)
 - description and source-code
 ```javascript
-Date = function () {
-  return {
-    type: TYPES.Date
-  };
+Date() {
+  return {type: TYPES.Date}
 }
 ```
 - example usage
@@ -3047,29 +2502,11 @@ n/a
 #### <a name="apidoc.element.mssql.Date.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Date.</span>inspect ()](#apidoc.element.mssql.Date.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3079,10 +2516,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.DateTime.DateTime"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTime ()](#apidoc.element.mssql.DateTime.DateTime)
 - description and source-code
 ```javascript
-DateTime = function () {
-  return {
-    type: TYPES.DateTime
-  };
+DateTime() {
+  return {type: TYPES.DateTime}
 }
 ```
 - example usage
@@ -3093,29 +2528,11 @@ n/a
 #### <a name="apidoc.element.mssql.DateTime.inspect"></a>[function <span class="apidocSignatureSpan">mssql.DateTime.</span>inspect ()](#apidoc.element.mssql.DateTime.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3125,24 +2542,21 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.DateTime2.DateTime2"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTime2 (scale)](#apidoc.element.mssql.DateTime2.DateTime2)
 - description and source-code
 ```javascript
-DateTime2 = function (scale) {
-  return {
-    type: TYPES.DateTime2,
-    scale: scale
-  };
+DateTime2(scale) {
+  return {type: TYPES.DateTime2, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -3156,29 +2570,11 @@ sql.BigInt
 #### <a name="apidoc.element.mssql.DateTime2.inspect"></a>[function <span class="apidocSignatureSpan">mssql.DateTime2.</span>inspect ()](#apidoc.element.mssql.DateTime2.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3188,11 +2584,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.DateTimeOffset.DateTimeOffset"></a>[function <span class="apidocSignatureSpan">mssql.</span>DateTimeOffset (scale)](#apidoc.element.mssql.DateTimeOffset.DateTimeOffset)
 - description and source-code
 ```javascript
-DateTimeOffset = function (scale) {
-  return {
-    type: TYPES.DateTimeOffset,
-    scale: scale
-  };
+DateTimeOffset(scale) {
+  return {type: TYPES.DateTimeOffset, scale}
 }
 ```
 - example usage
@@ -3203,29 +2596,11 @@ n/a
 #### <a name="apidoc.element.mssql.DateTimeOffset.inspect"></a>[function <span class="apidocSignatureSpan">mssql.DateTimeOffset.</span>inspect ()](#apidoc.element.mssql.DateTimeOffset.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3235,29 +2610,25 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Decimal.Decimal"></a>[function <span class="apidocSignatureSpan">mssql.</span>Decimal (precision, scale)](#apidoc.element.mssql.Decimal.Decimal)
 - description and source-code
 ```javascript
-Decimal = function (precision, scale) {
-  return {
-    type: TYPES.Decimal,
-    precision: precision,
-    scale: scale
-  };
+Decimal(precision, scale) {
+  return {type: TYPES.Decimal, precision, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.input("name", sql.VarChar, "abc");               // varchar(3)
-request.input("name", sql.VarChar(50), "abc");           // varchar(50)
-request.input("name", sql.VarChar(sql.MAX), "abc");      // varchar(MAX)
-request.output("name", sql.VarChar);                     // varchar(8000)
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -3267,29 +2638,11 @@ List of supported data types:
 #### <a name="apidoc.element.mssql.Decimal.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Decimal.</span>inspect ()](#apidoc.element.mssql.Decimal.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3299,10 +2652,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Float.Float"></a>[function <span class="apidocSignatureSpan">mssql.</span>Float ()](#apidoc.element.mssql.Float.Float)
 - description and source-code
 ```javascript
-Float = function () {
-  return {
-    type: TYPES.Float
-  };
+Float() {
+  return {type: TYPES.Float}
 }
 ```
 - example usage
@@ -3313,29 +2664,11 @@ n/a
 #### <a name="apidoc.element.mssql.Float.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Float.</span>inspect ()](#apidoc.element.mssql.Float.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3345,10 +2678,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Geography.Geography"></a>[function <span class="apidocSignatureSpan">mssql.</span>Geography ()](#apidoc.element.mssql.Geography.Geography)
 - description and source-code
 ```javascript
-Geography = function () {
-  return {
-    type: TYPES.Geography
-  };
+Geography() {
+  return {type: TYPES.Geography}
 }
 ```
 - example usage
@@ -3359,29 +2690,11 @@ n/a
 #### <a name="apidoc.element.mssql.Geography.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Geography.</span>inspect ()](#apidoc.element.mssql.Geography.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3391,10 +2704,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Geometry.Geometry"></a>[function <span class="apidocSignatureSpan">mssql.</span>Geometry ()](#apidoc.element.mssql.Geometry.Geometry)
 - description and source-code
 ```javascript
-Geometry = function () {
-  return {
-    type: TYPES.Geometry
-  };
+Geometry() {
+  return {type: TYPES.Geometry}
 }
 ```
 - example usage
@@ -3405,29 +2716,11 @@ n/a
 #### <a name="apidoc.element.mssql.Geometry.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Geometry.</span>inspect ()](#apidoc.element.mssql.Geometry.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3437,10 +2730,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Image.Image"></a>[function <span class="apidocSignatureSpan">mssql.</span>Image ()](#apidoc.element.mssql.Image.Image)
 - description and source-code
 ```javascript
-Image = function () {
-  return {
-    type: TYPES.Image
-  };
+Image() {
+  return {type: TYPES.Image}
 }
 ```
 - example usage
@@ -3451,29 +2742,11 @@ n/a
 #### <a name="apidoc.element.mssql.Image.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Image.</span>inspect ()](#apidoc.element.mssql.Image.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3483,10 +2756,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Int.Int"></a>[function <span class="apidocSignatureSpan">mssql.</span>Int ()](#apidoc.element.mssql.Int.Int)
 - description and source-code
 ```javascript
-Int = function () {
-  return {
-    type: TYPES.Int
-  };
+Int() {
+  return {type: TYPES.Int}
 }
 ```
 - example usage
@@ -3497,29 +2768,11 @@ n/a
 #### <a name="apidoc.element.mssql.Int.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Int.</span>inspect ()](#apidoc.element.mssql.Int.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3529,10 +2782,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Money.Money"></a>[function <span class="apidocSignatureSpan">mssql.</span>Money ()](#apidoc.element.mssql.Money.Money)
 - description and source-code
 ```javascript
-Money = function () {
-  return {
-    type: TYPES.Money
-  };
+Money() {
+  return {type: TYPES.Money}
 }
 ```
 - example usage
@@ -3543,29 +2794,11 @@ n/a
 #### <a name="apidoc.element.mssql.Money.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Money.</span>inspect ()](#apidoc.element.mssql.Money.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3575,11 +2808,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.NChar.NChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>NChar (length)](#apidoc.element.mssql.NChar.NChar)
 - description and source-code
 ```javascript
-NChar = function (length) {
-  return {
-    type: TYPES.NChar,
-    length: length
-  };
+NChar(length) {
+  return {type: TYPES.NChar, length}
 }
 ```
 - example usage
@@ -3590,29 +2820,11 @@ n/a
 #### <a name="apidoc.element.mssql.NChar.inspect"></a>[function <span class="apidocSignatureSpan">mssql.NChar.</span>inspect ()](#apidoc.element.mssql.NChar.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3622,10 +2834,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.NText.NText"></a>[function <span class="apidocSignatureSpan">mssql.</span>NText ()](#apidoc.element.mssql.NText.NText)
 - description and source-code
 ```javascript
-NText = function () {
-  return {
-    type: TYPES.NText
-  };
+NText() {
+  return {type: TYPES.NText}
 }
 ```
 - example usage
@@ -3636,29 +2846,11 @@ n/a
 #### <a name="apidoc.element.mssql.NText.inspect"></a>[function <span class="apidocSignatureSpan">mssql.NText.</span>inspect ()](#apidoc.element.mssql.NText.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3668,11 +2860,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.NVarChar.NVarChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>NVarChar (length)](#apidoc.element.mssql.NVarChar.NVarChar)
 - description and source-code
 ```javascript
-NVarChar = function (length) {
-  return {
-    type: TYPES.NVarChar,
-    length: length
-  };
+NVarChar(length) {
+  return {type: TYPES.NVarChar, length}
 }
 ```
 - example usage
@@ -3683,29 +2872,11 @@ n/a
 #### <a name="apidoc.element.mssql.NVarChar.inspect"></a>[function <span class="apidocSignatureSpan">mssql.NVarChar.</span>inspect ()](#apidoc.element.mssql.NVarChar.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -3715,12 +2886,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Numeric.Numeric"></a>[function <span class="apidocSignatureSpan">mssql.</span>Numeric (precision, scale)](#apidoc.element.mssql.Numeric.Numeric)
 - description and source-code
 ```javascript
-Numeric = function (precision, scale) {
-  return {
-    type: TYPES.Numeric,
-    precision: precision,
-    scale: scale
-  };
+Numeric(precision, scale) {
+  return {type: TYPES.Numeric, precision, scale}
 }
 ```
 - example usage
@@ -3731,619 +2898,7 @@ n/a
 #### <a name="apidoc.element.mssql.Numeric.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Numeric.</span>inspect ()](#apidoc.element.mssql.Numeric.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
-```
-- example usage
-```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.PreparedStatement"></a>[module mssql.PreparedStatement](#apidoc.module.mssql.PreparedStatement)
-
-#### <a name="apidoc.element.mssql.PreparedStatement.PreparedStatement"></a>[function <span class="apidocSignatureSpan">mssql.</span>PreparedStatement (connection)](#apidoc.element.mssql.PreparedStatement.PreparedStatement)
-- description and source-code
-```javascript
-function PreparedStatement(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
-  }
-  this._queue = [];
-  this.parameters = {};
-}
-```
-- example usage
-```shell
-...
-- EREQINPROG ('TransactionError') - Can't rollback transaction. There is a request in progress.
-
-## Prepared Statement
-
-**IMPORTANT:** always use 'PreparedStatement' class to create prepared statements - it ensures that all your executions of prepared
- statement are executed on one connection. Once you call 'prepare', a single connection is acquired from the connection pool and
- all subsequent executions are executed exclusively on this connection. Prepared Statement also contains a queue to make sure your
- executions are executed in series. After you call 'unprepare', the connection is then released back to the connection pool.
-
-'''javascript
-var ps = new sql.PreparedStatement(/* [connection] */);
-'''
-
-If you omit the connection argument, the global connection is used instead.
-
-__Example__
-
-'''javascript
-...
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.EventEmitter"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>EventEmitter ()](#apidoc.element.mssql.PreparedStatement.EventEmitter)
-- description and source-code
-```javascript
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.init"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>init ()](#apidoc.element.mssql.PreparedStatement.init)
-- description and source-code
-```javascript
-init = function () {
-  this.domain = null;
-  if (EventEmitter.usingDomains) {
-    // if there is an active domain, then attach to it.
-    domain = domain || require('domain');
-    if (domain.active && !(this instanceof domain.Domain)) {
-      this.domain = domain.active;
-    }
-  }
-
-  if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
-    this._events = new EventHandlers();
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.listenerCount"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.</span>listenerCount (emitter, type)](#apidoc.element.mssql.PreparedStatement.listenerCount)
-- description and source-code
-```javascript
-listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.PreparedStatement.prototype"></a>[module mssql.PreparedStatement.prototype](#apidoc.module.mssql.PreparedStatement.prototype)
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype._execute"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_execute (values, callback)](#apidoc.element.mssql.PreparedStatement.prototype._execute)
-- description and source-code
-```javascript
-_execute = function (values, callback) {
-  var name, param, ref1, req;
-  req = this.lastRequest = new Request(this);
-  if (this.stream != null) {
-    req.stream = this.stream;
-  }
-  req.input('handle', TYPES.Int, this._handle);
-  ref1 = this.parameters;
-  for (name in ref1) {
-    param = ref1[name];
-    req.parameters[name] = {
-      name: name,
-      type: param.type,
-      io: param.io,
-      value: values[name],
-      length: param.length,
-      scale: param.scale,
-      precision: param.precision
-    };
-  }
-  req.execute('sp_execute', (function(_this) {
-    return function(err, recordsets, returnValue) {
-      if (err) {
-        return callback(err);
-      }
-      return callback(null, (_this.multiple ? recordsets : recordsets[0]), req.rowsAffected);
-    };
-  })(this));
-  return req;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype._prepare"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_prepare (statement, callback)](#apidoc.element.mssql.PreparedStatement.prototype._prepare)
-- description and source-code
-```javascript
-_prepare = function (statement, callback) {
-  var done;
-  if (this._pooledConnection) {
-    callback(new PreparedStatementError("Statement is already prepared.", 'EALREADYPREPARED'));
-    return this;
-  }
-  if (typeof statement === 'function') {
-    callback = statement;
-    statement = void 0;
-  }
-  if (statement != null) {
-    this.statement = statement;
-  }
-  done = (function(_this) {
-    return function(err, connection) {
-      var name, param, req;
-      if (err) {
-        return callback(err);
-      }
-      _this._pooledConnection = connection;
-      req = new Request(_this);
-      req.stream = false;
-      req.output('handle', TYPES.Int);
-      req.input('params', TYPES.NVarChar, ((function() {
-        var ref1, results;
-        ref1 = this.parameters;
-        results = [];
-        for (name in ref1) {
-          param = ref1[name];
-          results.push("@" + name + " " + (declare(param.type, param)) + (param.io === 2 ? " output" : ""));
-        }
-        return results;
-      }).call(_this)).join(','));
-      req.input('stmt', TYPES.NVarChar, _this.statement);
-      return req.execute('sp_prepare', function(err) {
-        if (err) {
-          if (_this.transaction) {
-            _this.transaction.next();
-          } else {
-            _this.connection.pool.release(_this._pooledConnection);
-            _this._pooledConnection = null;
-          }
-          return callback(err);
-        }
-        _this._handle = req.parameters.handle.value;
-        return callback(null);
-      });
-    };
-  })(this);
-  if (this.transaction) {
-    if (!this.transaction._pooledConnection) {
-      callback(new TransactionError("Transaction has not begun. Call begin() first.", 'ENOTBEGUN'));
-      return this;
-    }
-    this.transaction.queue(done);
-  } else {
-    this.connection.pool.acquire(done);
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype._unprepare"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>_unprepare (callback)](#apidoc.element.mssql.PreparedStatement.prototype._unprepare)
-- description and source-code
-```javascript
-_unprepare = function (callback) {
-  var done, req;
-  if (!this._pooledConnection) {
-    callback(new PreparedStatementError("Statement is not prepared. Call prepare() first.", 'ENOTPREPARED'));
-    return this;
-  }
-  done = (function(_this) {
-    return function(err) {
-      if (err) {
-        return callback(err);
-      }
-      if (_this.transaction) {
-        _this.transaction.next();
-      } else {
-        _this.connection.pool.release(_this._pooledConnection);
-        _this._pooledConnection = null;
-      }
-      _this._handle = 0;
-      return callback(null);
-    };
-  })(this);
-  req = new Request(this);
-  req.stream = false;
-  req.input('handle', TYPES.Int, this._handle);
-  req.execute('sp_unprepare', done);
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>constructor (connection)](#apidoc.element.mssql.PreparedStatement.prototype.constructor)
-- description and source-code
-```javascript
-function PreparedStatement(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
-  }
-  this._queue = [];
-  this.parameters = {};
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.execute"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>execute (values, callback)](#apidoc.element.mssql.PreparedStatement.prototype.execute)
-- description and source-code
-```javascript
-execute = function (values, callback) {
-  if (callback != null) {
-    return this._execute(values, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._execute(values, function(err, recordset) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(recordset);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
-...
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.input"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>input (name, type)](#apidoc.element.mssql.PreparedStatement.prototype.input)
-- description and source-code
-```javascript
-input = function (name, type) {
-  if (/(--| |\/\*|\*\/|')/.test(name)) {
-    throw new PreparedStatementError("SQL injection warning for param '" + name + "'", 'EINJECT');
-  }
-  if (arguments.length < 2) {
-    throw new PreparedStatementError("Invalid number of arguments. 2 arguments expected.", 'EARGS');
-  }
-  if (type instanceof Function) {
-    type = type();
-  }
-  this.parameters[name] = {
-    name: name,
-    type: type.type,
-    io: 1,
-    length: type.length,
-    scale: type.scale,
-    precision: type.precision,
-    tvpType: type.tvpType
-  };
-  return this;
-}
-```
-- example usage
-```shell
-...
-	}).catch(function(err) {
-		// ... query error checks
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-...
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.next"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>next ()](#apidoc.element.mssql.PreparedStatement.prototype.next)
-- description and source-code
-```javascript
-next = function () {
-  if (this._queue.length) {
-    process.nextTick((function(_this) {
-      return function() {
-        return _this._queue.shift()(null, _this._pooledConnection);
-      };
-    })(this));
-  } else {
-    this._working = false;
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.output"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>output (name, type)](#apidoc.element.mssql.PreparedStatement.prototype.output)
-- description and source-code
-```javascript
-output = function (name, type) {
-  if (/(--| |\/\*|\*\/|')/.test(name)) {
-    throw new PreparedStatementError("SQL injection warning for param '" + name + "'", 'EINJECT');
-  }
-  if (arguments.length < 2) {
-    throw new PreparedStatementError("Invalid number of arguments. 2 arguments expected.", 'EARGS');
-  }
-  if (type instanceof Function) {
-    type = type();
-  }
-  this.parameters[name] = {
-    name: name,
-    type: type.type,
-    io: 2,
-    length: type.length,
-    scale: type.scale,
-    precision: type.precision
-  };
-  return this;
-}
-```
-- example usage
-```shell
-...
-		// ... query error checks
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
-...
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.prepare"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>prepare (statement, callback)](#apidoc.element.mssql.PreparedStatement.prototype.prepare)
-- description and source-code
-```javascript
-prepare = function (statement, callback) {
-  if (callback != null) {
-    return this._prepare(statement, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._prepare(statement, function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(_this);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-If you omit the connection argument, the global connection is used instead.
-
-__Example__
-
-'''javascript
-var ps = new sql.PreparedStatement(/* [connection] */);
-ps.input('param', sql.Int);
-ps.prepare('select @param as value', function(err) {
-    // ... error checks
-
-    ps.execute({param: 12345}, function(err, recordset) {
-// ... error checks
-
-ps.unprepare(function(err) {
-    // ... error checks
-...
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.queue"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>queue (callback)](#apidoc.element.mssql.PreparedStatement.prototype.queue)
-- description and source-code
-```javascript
-queue = function (callback) {
-  if (!this._pooledConnection) {
-    callback(new PreparedStatementError("Statement is not prepared. Call prepare() first.", 'ENOTPREPARED'));
-    return this;
-  }
-  if (this._working) {
-    this._queue.push(callback);
-  } else {
-    this._working = true;
-    callback(null, this._pooledConnection);
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatement.prototype.unprepare"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatement.prototype.</span>unprepare (callback)](#apidoc.element.mssql.PreparedStatement.prototype.unprepare)
-- description and source-code
-```javascript
-unprepare = function (callback) {
-  if (callback != null) {
-    return this._unprepare(callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._unprepare(function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve();
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-ps.input('param', sql.Int);
-ps.prepare('select @param as value', function(err) {
-    // ... error checks
-
-    ps.execute({param: 12345}, function(err, recordset) {
-        // ... error checks
-
-        ps.unprepare(function(err) {
-            // ... error checks
-
-        });
-    });
-});
-'''
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.PreparedStatementError"></a>[module mssql.PreparedStatementError](#apidoc.module.mssql.PreparedStatementError)
-
-#### <a name="apidoc.element.mssql.PreparedStatementError.PreparedStatementError"></a>[function <span class="apidocSignatureSpan">mssql.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.PreparedStatementError.PreparedStatementError)
-- description and source-code
-```javascript
-function PreparedStatementError(message, code) {
-  var err;
-  if (!(this instanceof PreparedStatementError)) {
-    if (message instanceof Error) {
-      err = new PreparedStatementError(message.message, message.code);
-      err.originalError = message;
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new PreparedStatementError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  this.code = code;
-  PreparedStatementError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.PreparedStatementError.captureStackTrace"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatementError.</span>captureStackTrace ()](#apidoc.element.mssql.PreparedStatementError.captureStackTrace)
-- description and source-code
-```javascript
-function captureStackTrace() { [native code] }
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.PreparedStatementError.prototype"></a>[module mssql.PreparedStatementError.prototype](#apidoc.module.mssql.PreparedStatementError.prototype)
-
-#### <a name="apidoc.element.mssql.PreparedStatementError.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.PreparedStatementError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.PreparedStatementError.prototype.constructor)
-- description and source-code
-```javascript
-function PreparedStatementError(message, code) {
-  var err;
-  if (!(this instanceof PreparedStatementError)) {
-    if (message instanceof Error) {
-      err = new PreparedStatementError(message.message, message.code);
-      err.originalError = message;
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new PreparedStatementError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  this.code = code;
-  PreparedStatementError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
@@ -4357,10 +2912,8 @@ n/a
 #### <a name="apidoc.element.mssql.Real.Real"></a>[function <span class="apidocSignatureSpan">mssql.</span>Real ()](#apidoc.element.mssql.Real.Real)
 - description and source-code
 ```javascript
-Real = function () {
-  return {
-    type: TYPES.Real
-  };
+Real() {
+  return {type: TYPES.Real}
 }
 ```
 - example usage
@@ -4371,960 +2924,7 @@ n/a
 #### <a name="apidoc.element.mssql.Real.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Real.</span>inspect ()](#apidoc.element.mssql.Real.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
-```
-- example usage
-```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.Request"></a>[module mssql.Request](#apidoc.module.mssql.Request)
-
-#### <a name="apidoc.element.mssql.Request.Request"></a>[function <span class="apidocSignatureSpan">mssql.</span>Request (connection)](#apidoc.element.mssql.Request.Request)
-- description and source-code
-```javascript
-function Request(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof PreparedStatement) {
-    this.pstatement = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
-  }
-  this.parameters = {};
-}
-```
-- example usage
-```shell
-...
-
-'''javascript
-var sql = require('mssql');
-
-sql.connect("mssql://username:password@localhost/database").then(function() {
-// Query
-
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
-
-// Stored Procedure
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.EventEmitter"></a>[function <span class="apidocSignatureSpan">mssql.Request.</span>EventEmitter ()](#apidoc.element.mssql.Request.EventEmitter)
-- description and source-code
-```javascript
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.init"></a>[function <span class="apidocSignatureSpan">mssql.Request.</span>init ()](#apidoc.element.mssql.Request.init)
-- description and source-code
-```javascript
-init = function () {
-  this.domain = null;
-  if (EventEmitter.usingDomains) {
-    // if there is an active domain, then attach to it.
-    domain = domain || require('domain');
-    if (domain.active && !(this instanceof domain.Domain)) {
-      this.domain = domain.active;
-    }
-  }
-
-  if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
-    this._events = new EventHandlers();
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.listenerCount"></a>[function <span class="apidocSignatureSpan">mssql.Request.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Request.listenerCount)
-- description and source-code
-```javascript
-listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.Request.prototype"></a>[module mssql.Request.prototype](#apidoc.module.mssql.Request.prototype)
-
-#### <a name="apidoc.element.mssql.Request.prototype._acquire"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_acquire (callback)](#apidoc.element.mssql.Request.prototype._acquire)
-- description and source-code
-```javascript
-_acquire = function (callback) {
-  if (this.transaction) {
-    return this.transaction.queue(callback);
-  } else if (this.pstatement) {
-    return this.pstatement.queue(callback);
-  } else {
-    if (!this.connection.pool) {
-      return callback(new ConnectionError("Connection not yet open.", 'ENOTOPEN'));
-    }
-    return this.connection.pool.acquire(callback);
-  }
-}
-```
-- example usage
-```shell
-...
-      "class": msg["class"],
-      lineNumber: msg.lineNumber,
-      serverName: msg.serverName,
-      procName: msg.procName
-    });
-  };
-})(this);
-return this._acquire((function(_this) {
-  return function(err, connection) {
-    var bulk, col, done, i, j, len, len1, objectid, ref1, ref2, req, row;
-    if (!err) {
-      if (_this.verbose) {
-        _this._log("-------- sql bulk load --------\n    table: " + table.name);
-      }
-      if (_this.canceled) {
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._batch"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_batch (batch, callback)](#apidoc.element.mssql.Request.prototype._batch)
-- description and source-code
-```javascript
-_batch = function (batch, callback) {
-  if (!this.connection) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new RequestError("No connection is specified for that request.", 'ENOCONN');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  if (!this.connection.connected) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new ConnectionError("Connection is closed.", 'ECONNCLOSED');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  this.canceled = false;
-  this.connection.driver.Request.prototype.batch.call(this, batch, (function(_this) {
-    return function(err, recordsets) {
-      if (_this.stream) {
-        if (err) {
-          _this.emit('error', err);
-        }
-        return _this.emit('done', _this.rowsAffected);
-      } else {
-        return callback(err, recordsets, _this.rowsAffected);
-      }
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._bulk"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_bulk (table, callback)](#apidoc.element.mssql.Request.prototype._bulk)
-- description and source-code
-```javascript
-_bulk = function (table, callback) {
-  if (!this.connection) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new RequestError("No connection is specified for that request.", 'ENOCONN');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  if (!this.connection.connected) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new ConnectionError("Connection is closed.", 'ECONNCLOSED');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  this.canceled = false;
-  this.connection.driver.Request.prototype.bulk.call(this, table, (function(_this) {
-    return function(err, rowCount) {
-      if (_this.stream) {
-        if (err) {
-          _this.emit('error', err);
-        }
-        return _this.emit('done');
-      } else {
-        return callback(err, rowCount);
-      }
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._dedicated"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_dedicated (connection)](#apidoc.element.mssql.Request.prototype._dedicated)
-- description and source-code
-```javascript
-_dedicated = function (connection) {
-  this._acquire = function(callback) {
-    return callback(null, connection);
-  };
-  this._release = function() {};
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._execute"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_execute (procedure, callback)](#apidoc.element.mssql.Request.prototype._execute)
-- description and source-code
-```javascript
-_execute = function (procedure, callback) {
-  if (!this.connection) {
-    return process.nextTick(function() {
-      var e;
-      e = new RequestError("No connection is specified for that request.", 'ENOCONN');
-      if (this.stream) {
-        this.emit('error', e);
-        return this.emit('done');
-      } else {
-        return callback(e);
-      }
-    });
-  }
-  if (!this.connection.connected) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new ConnectionError("Connection is closed.", 'ECONNCLOSED');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  this.canceled = false;
-  this.connection.driver.Request.prototype.execute.call(this, procedure, (function(_this) {
-    return function(err, recordsets, returnValue) {
-      if (_this.stream) {
-        if (err) {
-          _this.emit('error', err);
-        }
-        return _this.emit('done', returnValue, _this.rowsAffected);
-      } else {
-        return callback(err, recordsets, returnValue, _this.rowsAffected);
-      }
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._log"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_log (out)](#apidoc.element.mssql.Request.prototype._log)
-- description and source-code
-```javascript
-_log = function (out) {
-  if (typeof this.logger === "function") {
-    return this.logger(out);
-  } else {
-    return console.log(out);
-  }
-}
-```
-- example usage
-```shell
-...
-  };
-})(this);
-return this._acquire((function(_this) {
-  return function(err, connection) {
-    var bulk, col, done, i, j, len, len1, objectid, ref1, ref2, req, row;
-    if (!err) {
-      if (_this.verbose) {
-        _this._log("-------- sql bulk load --------\n    table: " + table.name);
-      }
-      if (_this.canceled) {
-        if (_this.verbose) {
-          _this._log("---------- canceling ----------");
-        }
-        _this._release(connection);
-        return typeof callback === "function" ? callback(new RequestError("Canceled.", 'ECANCEL')) : void 0;
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._query"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_query (command, callback)](#apidoc.element.mssql.Request.prototype._query)
-- description and source-code
-```javascript
-_query = function (command, callback) {
-  if (!this.connection) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new RequestError("No connection is specified for that request.", 'ENOCONN');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  if (!this.connection.connected) {
-    return process.nextTick((function(_this) {
-      return function() {
-        var e;
-        e = new ConnectionError("Connection is closed.", 'ECONNCLOSED');
-        if (_this.stream) {
-          _this.emit('error', e);
-          return _this.emit('done');
-        } else {
-          return callback(e);
-        }
-      };
-    })(this));
-  }
-  this.canceled = false;
-  this.connection.driver.Request.prototype.query.call(this, command, (function(_this) {
-    return function(err, recordsets) {
-      if (_this.stream) {
-        if (err) {
-          _this.emit('error', err);
-        }
-        return _this.emit('done', _this.rowsAffected);
-      } else {
-        return callback(err, recordsets, _this.rowsAffected);
-      }
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._release"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_release (connection)](#apidoc.element.mssql.Request.prototype._release)
-- description and source-code
-```javascript
-_release = function (connection) {
-  if (this.transaction) {
-    return this.transaction.next();
-  } else if (this.pstatement) {
-    return this.pstatement.next();
-  } else {
-    return this.connection.pool.release(connection);
-  }
-}
-```
-- example usage
-```shell
-...
-} else {
-  if (doReturn && !hasReturned) {
-    if (connection != null) {
-      for (event in errorHandlers) {
-        handler = errorHandlers[event];
-        connection.removeListener(event, handler);
-      }
-      _this._release(connection);
-    }
-    hasReturned = true;
-    if (typeof callback === "function") {
-      callback(e);
-    }
-  }
-}
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype._template"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>_template (method, strings, values)](#apidoc.element.mssql.Request.prototype._template)
-- description and source-code
-```javascript
-_template = function (method, strings, values) {
-  var command, i, index, len, value;
-  command = [strings[0]];
-  for (index = i = 0, len = values.length; i < len; index = ++i) {
-    value = values[index];
-    this.input("param" + (index + 1), value);
-    command.push("@param" + (index + 1), strings[index + 1]);
-  }
-  return this[method](command.join(''));
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.batch"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>batch (batch, callback)](#apidoc.element.mssql.Request.prototype.batch)
-- description and source-code
-```javascript
-batch = function (batch, callback) {
-  var ref1;
-  if (this.stream == null) {
-    this.stream = (ref1 = this.connection) != null ? ref1.config.stream : void 0;
-  }
-  this.rowsAffected = 0;
-  if (this.stream || (callback != null)) {
-    return this._batch(batch, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._batch(batch, function(err, recordset) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(recordset);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-- **batch** - T-SQL command to be executed.
-- **callback(err, recordset)** - A callback which is called after execution has completed, or an error has occurred. Optional. If
- omitted, returns [Promise](#promises).
-
-__Example__
-
-'''javascript
-var request = new sql.Request();
-request.batch('create procedure #temporary as select * from table', function(err, recordset) {
-    // ... error checks
-});
-'''
-
-__Errors__
-- ETIMEOUT ('RequestError') - Request timeout.
-- EREQUEST ('RequestError') - *Message from SQL Server*
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.bulk"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>bulk (table, callback)](#apidoc.element.mssql.Request.prototype.bulk)
-- description and source-code
-```javascript
-bulk = function (table, callback) {
-  var ref1;
-  if (this.stream == null) {
-    this.stream = (ref1 = this.connection) != null ? ref1.config.stream : void 0;
-  }
-  if (this.stream || (callback != null)) {
-    return this._bulk(table, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._bulk(table, function(err, rowCount) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(rowCount);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-var table = new sql.Table('table_name'); // or temporary table, e.g. #temptable
-table.create = true;
-table.columns.add('a', sql.Int, {nullable: true, primary: true});
-table.columns.add('b', sql.VarChar(50), {nullable: false});
-table.rows.add(777, 'test');
-
-var request = new sql.Request();
-request.bulk(table, function(err, rowCount) {
-    // ... error checks
-});
-'''
-
-**IMPORTANT**: Always indicate whether the column is nullable or not!
-
-**TIP**: If you set 'table.create' to 'true', module will check if the table exists before it start sending data. If it doesn't,
-it will automatically create it. You can specify primary key columns by setting 'primary: true' to column's options. Primary key
- constraint on multiple columns is supported.
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.cancel"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>cancel ()](#apidoc.element.mssql.Request.prototype.cancel)
-- description and source-code
-```javascript
-cancel = function () {
-  this.canceled = true;
-  this.connection.driver.Request.prototype.cancel.call(this);
-  return this;
-}
-```
-- example usage
-```shell
-...
-    console.log(err instanceof sql.RequestError);  // true
-    console.log(err.message);                      // Cancelled.
-    console.log(err.code);                         // ECANCEL
-
-    // ...
-});
-
-request.cancel();
-'''
-
-## Transaction
-
-**IMPORTANT:** always use 'Transaction' class to create transactions - it ensures that all your requests are executed on one connection
-. Once you call 'begin', a single connection is acquired from the connection pool and all subsequent requests (initialized with
-the 'Transaction' object) are executed exclusively on this connection. Transaction also contains a queue to make sure your requests
- are executed in series. After you call 'commit' or 'rollback', connection is then released back to the connection pool.
-
-'''javascript
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>constructor (connection)](#apidoc.element.mssql.Request.prototype.constructor)
-- description and source-code
-```javascript
-function Request(connection) {
-  if (connection instanceof Transaction) {
-    this.transaction = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof PreparedStatement) {
-    this.pstatement = connection;
-    this.connection = connection.connection;
-  } else if (connection instanceof Connection) {
-    this.connection = connection;
-  } else {
-    this.connection = global_connection;
-  }
-  this.parameters = {};
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.execute"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>execute (command, callback)](#apidoc.element.mssql.Request.prototype.execute)
-- description and source-code
-```javascript
-execute = function (command, callback) {
-  var ref1;
-  if (this.stream == null) {
-    this.stream = (ref1 = this.connection) != null ? ref1.config.stream : void 0;
-  }
-  this.rowsAffected = 0;
-  if (this.stream || (callback != null)) {
-    return this._execute(command, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._execute(command, function(err, recordset) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(recordset);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.input"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>input (name, type, value)](#apidoc.element.mssql.Request.prototype.input)
-- description and source-code
-```javascript
-input = function (name, type, value) {
-  if (/(--| |\/\*|\*\/|')/.test(name)) {
-    throw new RequestError("SQL injection warning for param '" + name + "'", 'EINJECT');
-  }
-  if (arguments.length === 1) {
-    throw new RequestError("Invalid number of arguments. At least 2 arguments expected.", 'EARGS');
-  } else if (arguments.length === 2) {
-    value = type;
-    type = getTypeByValue(value);
-  }
-  if ((value != null ? value.valueOf : void 0) && !(value instanceof Date)) {
-    value = value.valueOf();
-  }
-  if (value === void 0) {
-    value = null;
-  }
-  if (value !== value) {
-    value = null;
-  }
-  if (type instanceof Function) {
-    type = type();
-  }
-  this.parameters[name] = {
-    name: name,
-    type: type.type,
-    io: 1,
-    value: value,
-    length: type.length,
-    scale: type.scale,
-    precision: type.precision,
-    tvpType: type.tvpType
-  };
-  return this;
-}
-```
-- example usage
-```shell
-...
-	}).catch(function(err) {
-		// ... query error checks
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.output"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>output (name, type, value)](#apidoc.element.mssql.Request.prototype.output)
-- description and source-code
-```javascript
-output = function (name, type, value) {
-  if (!type) {
-    type = TYPES.NVarChar;
-  }
-  if (/(--| |\/\*|\*\/|')/.test(name)) {
-    throw new RequestError("SQL injection warning for param '" + name + "'", 'EINJECT');
-  }
-  if (type === TYPES.Text || type === TYPES.NText || type === TYPES.Image) {
-    throw new RequestError("Deprecated types (Text, NText, Image) are not supported as OUTPUT parameters.", 'EDEPRECATED');
-  }
-  if ((value != null ? value.valueOf : void 0) && !(value instanceof Date)) {
-    value = value.valueOf();
-  }
-  if (value === void 0) {
-    value = null;
-  }
-  if (value !== value) {
-    value = null;
-  }
-  if (type instanceof Function) {
-    type = type();
-  }
-  this.parameters[name] = {
-    name: name,
-    type: type.type,
-    io: 2,
-    value: value,
-    length: type.length,
-    scale: type.scale,
-    precision: type.precision
-  };
-  return this;
-}
-```
-- example usage
-```shell
-...
-		// ... query error checks
-	});
-
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.pipe"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>pipe (stream)](#apidoc.element.mssql.Request.prototype.pipe)
-- description and source-code
-```javascript
-pipe = function (stream) {
-  this.stream = true;
-  this.on('row', stream.write.bind(stream));
-  this.on('error', stream.emit.bind(stream, 'error'));
-  this.on('done', function() {
-    return setImmediate(function() {
-      return stream.end();
-    });
-  });
-  stream.emit('pipe', this);
-  return stream;
-}
-```
-- example usage
-```shell
-...
-
-- **stream** - Writable stream in object mode.
-
-__Example__
-
-'''javascript
-var request = new sql.Request();
-request.pipe(stream);
-request.query('select * from mytable');
-stream.on('error', function(err) {
-    // ...
-});
-stream.on('finish', function() {
-    // ...
-});
-...
-```
-
-#### <a name="apidoc.element.mssql.Request.prototype.query"></a>[function <span class="apidocSignatureSpan">mssql.Request.prototype.</span>query (command, callback)](#apidoc.element.mssql.Request.prototype.query)
-- description and source-code
-```javascript
-query = function (command, callback) {
-  var ref1;
-  if (this.stream == null) {
-    this.stream = (ref1 = this.connection) != null ? ref1.config.stream : void 0;
-  }
-  this.rowsAffected = 0;
-  if (this.stream || (callback != null)) {
-    return this._query(command, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._query(command, function(err, recordsets) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(recordsets);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-
-'''javascript
-var sql = require('mssql');
-
-sql.connect("mssql://username:password@localhost/database").then(function() {
-// Query
-
-	new sql.Request().query('select * from mytable').then(function(recordset) {
-		console.dir(recordset);
-	}).catch(function(err) {
-		// ... query error checks
-	});
-
-// Stored Procedure
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.RequestError"></a>[module mssql.RequestError](#apidoc.module.mssql.RequestError)
-
-#### <a name="apidoc.element.mssql.RequestError.RequestError"></a>[function <span class="apidocSignatureSpan">mssql.</span>RequestError (message, code)](#apidoc.element.mssql.RequestError.RequestError)
-- description and source-code
-```javascript
-function RequestError(message, code) {
-  var err, ref1, ref10, ref11, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9;
-  if (!(this instanceof RequestError)) {
-    if (message instanceof Error) {
-      err = new RequestError(message.message, (ref1 = message.code) != null ? ref1 : code);
-      err.number = (ref2 = (ref3 = message.info) != null ? ref3.number : void 0) != null ? ref2 : message.code;
-      err.lineNumber = (ref4 = message.info) != null ? ref4.lineNumber : void 0;
-      err.state = (ref5 = (ref6 = message.info) != null ? ref6.state : void 0) != null ? ref5 : message.sqlstate;
-      err["class"] = (ref7 = (ref8 = message.info) != null ? ref8["class"] : void 0) != null ? ref7 : (ref9 = message.info) != null
- ? ref9.severity : void 0;
-      err.serverName = (ref10 = message.info) != null ? ref10.serverName : void 0;
-      err.procName = (ref11 = message.info) != null ? ref11.procName : void 0;
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new RequestError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  RequestError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.RequestError.captureStackTrace"></a>[function <span class="apidocSignatureSpan">mssql.RequestError.</span>captureStackTrace ()](#apidoc.element.mssql.RequestError.captureStackTrace)
-- description and source-code
-```javascript
-function captureStackTrace() { [native code] }
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.RequestError.prototype"></a>[module mssql.RequestError.prototype](#apidoc.module.mssql.RequestError.prototype)
-
-#### <a name="apidoc.element.mssql.RequestError.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.RequestError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.RequestError.prototype.constructor)
-- description and source-code
-```javascript
-function RequestError(message, code) {
-  var err, ref1, ref10, ref11, ref2, ref3, ref4, ref5, ref6, ref7, ref8, ref9;
-  if (!(this instanceof RequestError)) {
-    if (message instanceof Error) {
-      err = new RequestError(message.message, (ref1 = message.code) != null ? ref1 : code);
-      err.number = (ref2 = (ref3 = message.info) != null ? ref3.number : void 0) != null ? ref2 : message.code;
-      err.lineNumber = (ref4 = message.info) != null ? ref4.lineNumber : void 0;
-      err.state = (ref5 = (ref6 = message.info) != null ? ref6.state : void 0) != null ? ref5 : message.sqlstate;
-      err["class"] = (ref7 = (ref8 = message.info) != null ? ref8["class"] : void 0) != null ? ref7 : (ref9 = message.info) != null
- ? ref9.severity : void 0;
-      err.serverName = (ref10 = message.info) != null ? ref10.serverName : void 0;
-      err.procName = (ref11 = message.info) != null ? ref11.procName : void 0;
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new RequestError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  RequestError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
@@ -5338,10 +2938,8 @@ n/a
 #### <a name="apidoc.element.mssql.SmallDateTime.SmallDateTime"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallDateTime ()](#apidoc.element.mssql.SmallDateTime.SmallDateTime)
 - description and source-code
 ```javascript
-SmallDateTime = function () {
-  return {
-    type: TYPES.SmallDateTime
-  };
+SmallDateTime() {
+  return {type: TYPES.SmallDateTime}
 }
 ```
 - example usage
@@ -5352,29 +2950,11 @@ n/a
 #### <a name="apidoc.element.mssql.SmallDateTime.inspect"></a>[function <span class="apidocSignatureSpan">mssql.SmallDateTime.</span>inspect ()](#apidoc.element.mssql.SmallDateTime.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -5384,10 +2964,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.SmallInt.SmallInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallInt ()](#apidoc.element.mssql.SmallInt.SmallInt)
 - description and source-code
 ```javascript
-SmallInt = function () {
-  return {
-    type: TYPES.SmallInt
-  };
+SmallInt() {
+  return {type: TYPES.SmallInt}
 }
 ```
 - example usage
@@ -5398,29 +2976,11 @@ n/a
 #### <a name="apidoc.element.mssql.SmallInt.inspect"></a>[function <span class="apidocSignatureSpan">mssql.SmallInt.</span>inspect ()](#apidoc.element.mssql.SmallInt.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -5430,10 +2990,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.SmallMoney.SmallMoney"></a>[function <span class="apidocSignatureSpan">mssql.</span>SmallMoney ()](#apidoc.element.mssql.SmallMoney.SmallMoney)
 - description and source-code
 ```javascript
-SmallMoney = function () {
-  return {
-    type: TYPES.SmallMoney
-  };
+SmallMoney() {
+  return {type: TYPES.SmallMoney}
 }
 ```
 - example usage
@@ -5444,29 +3002,11 @@ n/a
 #### <a name="apidoc.element.mssql.SmallMoney.inspect"></a>[function <span class="apidocSignatureSpan">mssql.SmallMoney.</span>inspect ()](#apidoc.element.mssql.SmallMoney.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -5476,11 +3016,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.TVP.TVP"></a>[function <span class="apidocSignatureSpan">mssql.</span>TVP (tvpType)](#apidoc.element.mssql.TVP.TVP)
 - description and source-code
 ```javascript
-TVP = function (tvpType) {
-  return {
-    type: TYPES.TVP,
-    tvpType: tvpType
-  };
+TVP(tvpType) {
+  return {type: TYPES.TVP, tvpType}
 }
 ```
 - example usage
@@ -5491,29 +3028,11 @@ n/a
 #### <a name="apidoc.element.mssql.TVP.inspect"></a>[function <span class="apidocSignatureSpan">mssql.TVP.</span>inspect ()](#apidoc.element.mssql.TVP.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -5523,10 +3042,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.TYPES.BigInt"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>BigInt ()](#apidoc.element.mssql.TYPES.BigInt)
 - description and source-code
 ```javascript
-BigInt = function () {
-  return {
-    type: TYPES.BigInt
-  };
+BigInt() {
+  return {type: TYPES.BigInt}
 }
 ```
 - example usage
@@ -5537,11 +3054,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Binary"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Binary (length)](#apidoc.element.mssql.TYPES.Binary)
 - description and source-code
 ```javascript
-Binary = function (length) {
-  return {
-    type: TYPES.Binary,
-    length: length
-  };
+Binary(length) {
+  return {type: TYPES.Binary, length}
 }
 ```
 - example usage
@@ -5552,10 +3066,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Bit"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Bit ()](#apidoc.element.mssql.TYPES.Bit)
 - description and source-code
 ```javascript
-Bit = function () {
-  return {
-    type: TYPES.Bit
-  };
+Bit() {
+  return {type: TYPES.Bit}
 }
 ```
 - example usage
@@ -5566,11 +3078,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Char"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Char (length)](#apidoc.element.mssql.TYPES.Char)
 - description and source-code
 ```javascript
-Char = function (length) {
-  return {
-    type: TYPES.Char,
-    length: length
-  };
+Char(length) {
+  return {type: TYPES.Char, length}
 }
 ```
 - example usage
@@ -5581,10 +3090,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Date"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Date ()](#apidoc.element.mssql.TYPES.Date)
 - description and source-code
 ```javascript
-Date = function () {
-  return {
-    type: TYPES.Date
-  };
+Date() {
+  return {type: TYPES.Date}
 }
 ```
 - example usage
@@ -5595,10 +3102,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.DateTime"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>DateTime ()](#apidoc.element.mssql.TYPES.DateTime)
 - description and source-code
 ```javascript
-DateTime = function () {
-  return {
-    type: TYPES.DateTime
-  };
+DateTime() {
+  return {type: TYPES.DateTime}
 }
 ```
 - example usage
@@ -5609,24 +3114,21 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.DateTime2"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>DateTime2 (scale)](#apidoc.element.mssql.TYPES.DateTime2)
 - description and source-code
 ```javascript
-DateTime2 = function (scale) {
-  return {
-    type: TYPES.DateTime2,
-    scale: scale
-  };
+DateTime2(scale) {
+  return {type: TYPES.DateTime2, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -5640,11 +3142,8 @@ sql.BigInt
 #### <a name="apidoc.element.mssql.TYPES.DateTimeOffset"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>DateTimeOffset (scale)](#apidoc.element.mssql.TYPES.DateTimeOffset)
 - description and source-code
 ```javascript
-DateTimeOffset = function (scale) {
-  return {
-    type: TYPES.DateTimeOffset,
-    scale: scale
-  };
+DateTimeOffset(scale) {
+  return {type: TYPES.DateTimeOffset, scale}
 }
 ```
 - example usage
@@ -5655,29 +3154,25 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Decimal"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Decimal (precision, scale)](#apidoc.element.mssql.TYPES.Decimal)
 - description and source-code
 ```javascript
-Decimal = function (precision, scale) {
-  return {
-    type: TYPES.Decimal,
-    precision: precision,
-    scale: scale
-  };
+Decimal(precision, scale) {
+  return {type: TYPES.Decimal, precision, scale}
 }
 ```
 - example usage
 ```shell
 ...
-request.input("name", sql.VarChar, "abc");               // varchar(3)
-request.input("name", sql.VarChar(50), "abc");           // varchar(50)
-request.input("name", sql.VarChar(sql.MAX), "abc");      // varchar(MAX)
-request.output("name", sql.VarChar);                     // varchar(8000)
-request.output("name", sql.VarChar, "abc");              // varchar(3)
+request.input("name", sql.VarChar, "abc")               // varchar(3)
+request.input("name", sql.VarChar(50), "abc")           // varchar(50)
+request.input("name", sql.VarChar(sql.MAX), "abc")      // varchar(MAX)
+request.output("name", sql.VarChar)                     // varchar(8000)
+request.output("name", sql.VarChar, "abc")              // varchar(3)
 
-request.input("name", sql.Decimal, 155.33);              // decimal(18, 0)
-request.input("name", sql.Decimal(10), 155.33);          // decimal(10, 0)
-request.input("name", sql.Decimal(10, 2), 155.33);       // decimal(10, 2)
+request.input("name", sql.Decimal, 155.33)              // decimal(18, 0)
+request.input("name", sql.Decimal(10), 155.33)          // decimal(10, 0)
+request.input("name", sql.Decimal(10, 2), 155.33)       // decimal(10, 2)
 
-request.input("name", sql.DateTime2, new Date());        // datetime2(7)
-request.input("name", sql.DateTime2(5), new Date());     // datetime2(5)
+request.input("name", sql.DateTime2, new Date())        // datetime2(7)
+request.input("name", sql.DateTime2(5), new Date())     // datetime2(5)
 '''
 
 List of supported data types:
@@ -5687,10 +3182,8 @@ List of supported data types:
 #### <a name="apidoc.element.mssql.TYPES.Float"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Float ()](#apidoc.element.mssql.TYPES.Float)
 - description and source-code
 ```javascript
-Float = function () {
-  return {
-    type: TYPES.Float
-  };
+Float() {
+  return {type: TYPES.Float}
 }
 ```
 - example usage
@@ -5701,10 +3194,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Geography"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Geography ()](#apidoc.element.mssql.TYPES.Geography)
 - description and source-code
 ```javascript
-Geography = function () {
-  return {
-    type: TYPES.Geography
-  };
+Geography() {
+  return {type: TYPES.Geography}
 }
 ```
 - example usage
@@ -5715,10 +3206,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Geometry"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Geometry ()](#apidoc.element.mssql.TYPES.Geometry)
 - description and source-code
 ```javascript
-Geometry = function () {
-  return {
-    type: TYPES.Geometry
-  };
+Geometry() {
+  return {type: TYPES.Geometry}
 }
 ```
 - example usage
@@ -5729,10 +3218,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Image"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Image ()](#apidoc.element.mssql.TYPES.Image)
 - description and source-code
 ```javascript
-Image = function () {
-  return {
-    type: TYPES.Image
-  };
+Image() {
+  return {type: TYPES.Image}
 }
 ```
 - example usage
@@ -5743,10 +3230,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Int"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Int ()](#apidoc.element.mssql.TYPES.Int)
 - description and source-code
 ```javascript
-Int = function () {
-  return {
-    type: TYPES.Int
-  };
+Int() {
+  return {type: TYPES.Int}
 }
 ```
 - example usage
@@ -5757,10 +3242,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Money"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Money ()](#apidoc.element.mssql.TYPES.Money)
 - description and source-code
 ```javascript
-Money = function () {
-  return {
-    type: TYPES.Money
-  };
+Money() {
+  return {type: TYPES.Money}
 }
 ```
 - example usage
@@ -5771,11 +3254,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.NChar"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>NChar (length)](#apidoc.element.mssql.TYPES.NChar)
 - description and source-code
 ```javascript
-NChar = function (length) {
-  return {
-    type: TYPES.NChar,
-    length: length
-  };
+NChar(length) {
+  return {type: TYPES.NChar, length}
 }
 ```
 - example usage
@@ -5786,10 +3266,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.NText"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>NText ()](#apidoc.element.mssql.TYPES.NText)
 - description and source-code
 ```javascript
-NText = function () {
-  return {
-    type: TYPES.NText
-  };
+NText() {
+  return {type: TYPES.NText}
 }
 ```
 - example usage
@@ -5800,11 +3278,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.NVarChar"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>NVarChar (length)](#apidoc.element.mssql.TYPES.NVarChar)
 - description and source-code
 ```javascript
-NVarChar = function (length) {
-  return {
-    type: TYPES.NVarChar,
-    length: length
-  };
+NVarChar(length) {
+  return {type: TYPES.NVarChar, length}
 }
 ```
 - example usage
@@ -5815,12 +3290,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Numeric"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Numeric (precision, scale)](#apidoc.element.mssql.TYPES.Numeric)
 - description and source-code
 ```javascript
-Numeric = function (precision, scale) {
-  return {
-    type: TYPES.Numeric,
-    precision: precision,
-    scale: scale
-  };
+Numeric(precision, scale) {
+  return {type: TYPES.Numeric, precision, scale}
 }
 ```
 - example usage
@@ -5831,10 +3302,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Real"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Real ()](#apidoc.element.mssql.TYPES.Real)
 - description and source-code
 ```javascript
-Real = function () {
-  return {
-    type: TYPES.Real
-  };
+Real() {
+  return {type: TYPES.Real}
 }
 ```
 - example usage
@@ -5845,10 +3314,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.SmallDateTime"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>SmallDateTime ()](#apidoc.element.mssql.TYPES.SmallDateTime)
 - description and source-code
 ```javascript
-SmallDateTime = function () {
-  return {
-    type: TYPES.SmallDateTime
-  };
+SmallDateTime() {
+  return {type: TYPES.SmallDateTime}
 }
 ```
 - example usage
@@ -5859,10 +3326,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.SmallInt"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>SmallInt ()](#apidoc.element.mssql.TYPES.SmallInt)
 - description and source-code
 ```javascript
-SmallInt = function () {
-  return {
-    type: TYPES.SmallInt
-  };
+SmallInt() {
+  return {type: TYPES.SmallInt}
 }
 ```
 - example usage
@@ -5873,10 +3338,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.SmallMoney"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>SmallMoney ()](#apidoc.element.mssql.TYPES.SmallMoney)
 - description and source-code
 ```javascript
-SmallMoney = function () {
-  return {
-    type: TYPES.SmallMoney
-  };
+SmallMoney() {
+  return {type: TYPES.SmallMoney}
 }
 ```
 - example usage
@@ -5887,11 +3350,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.TVP"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>TVP (tvpType)](#apidoc.element.mssql.TYPES.TVP)
 - description and source-code
 ```javascript
-TVP = function (tvpType) {
-  return {
-    type: TYPES.TVP,
-    tvpType: tvpType
-  };
+TVP(tvpType) {
+  return {type: TYPES.TVP, tvpType}
 }
 ```
 - example usage
@@ -5902,10 +3362,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Text"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Text ()](#apidoc.element.mssql.TYPES.Text)
 - description and source-code
 ```javascript
-Text = function () {
-  return {
-    type: TYPES.Text
-  };
+Text() {
+  return {type: TYPES.Text}
 }
 ```
 - example usage
@@ -5916,11 +3374,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Time"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Time (scale)](#apidoc.element.mssql.TYPES.Time)
 - description and source-code
 ```javascript
-Time = function (scale) {
-  return {
-    type: TYPES.Time,
-    scale: scale
-  };
+Time(scale) {
+  return {type: TYPES.Time, scale}
 }
 ```
 - example usage
@@ -5931,10 +3386,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.TinyInt"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>TinyInt ()](#apidoc.element.mssql.TYPES.TinyInt)
 - description and source-code
 ```javascript
-TinyInt = function () {
-  return {
-    type: TYPES.TinyInt
-  };
+TinyInt() {
+  return {type: TYPES.TinyInt}
 }
 ```
 - example usage
@@ -5945,10 +3398,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.UDT"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>UDT ()](#apidoc.element.mssql.TYPES.UDT)
 - description and source-code
 ```javascript
-UDT = function () {
-  return {
-    type: TYPES.UDT
-  };
+UDT() {
+  return {type: TYPES.UDT}
 }
 ```
 - example usage
@@ -5959,10 +3410,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.UniqueIdentifier"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>UniqueIdentifier ()](#apidoc.element.mssql.TYPES.UniqueIdentifier)
 - description and source-code
 ```javascript
-UniqueIdentifier = function () {
-  return {
-    type: TYPES.UniqueIdentifier
-  };
+UniqueIdentifier() {
+  return {type: TYPES.UniqueIdentifier}
 }
 ```
 - example usage
@@ -5973,11 +3422,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.VarBinary"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>VarBinary (length)](#apidoc.element.mssql.TYPES.VarBinary)
 - description and source-code
 ```javascript
-VarBinary = function (length) {
-  return {
-    type: TYPES.VarBinary,
-    length: length
-  };
+VarBinary(length) {
+  return {type: TYPES.VarBinary, length}
 }
 ```
 - example usage
@@ -5988,41 +3434,36 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.VarChar"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>VarChar (length)](#apidoc.element.mssql.TYPES.VarChar)
 - description and source-code
 ```javascript
-VarChar = function (length) {
-  return {
-    type: TYPES.VarChar,
-    length: length
-  };
+VarChar(length) {
+  return {type: TYPES.VarChar, length}
 }
 ```
 - example usage
 ```shell
 ...
-		// ... query error checks
-	});
 
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
+        console.dir(result1)
+
+        // Stored procedure
+
+        let result2 = await pool.request()
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.VarChar(50))
+            .execute('procedure_name')
+
+        console.dir(result2)
+    } catch (err) {
+        // ... error checks
+    }
+})()
 ...
 ```
 
 #### <a name="apidoc.element.mssql.TYPES.Variant"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Variant ()](#apidoc.element.mssql.TYPES.Variant)
 - description and source-code
 ```javascript
-Variant = function () {
-  return {
-    type: TYPES.Variant
-  };
+Variant() {
+  return {type: TYPES.Variant}
 }
 ```
 - example usage
@@ -6033,10 +3474,8 @@ n/a
 #### <a name="apidoc.element.mssql.TYPES.Xml"></a>[function <span class="apidocSignatureSpan">mssql.TYPES.</span>Xml ()](#apidoc.element.mssql.TYPES.Xml)
 - description and source-code
 ```javascript
-Xml = function () {
-  return {
-    type: TYPES.Xml
-  };
+Xml() {
+  return {type: TYPES.Xml}
 }
 ```
 - example usage
@@ -6052,39 +3491,43 @@ n/a
 - description and source-code
 ```javascript
 function Table(name) {
-  var ref1;
   if (name) {
-    ref1 = Table.parseName(name), this.name = ref1.name, this.schema = ref1.schema, this.database = ref1.database;
-    this.path = "" + (this.database ? "[" + this.database + "]." : "") + (this.schema ? "[" + this.schema + "]." : "") + "[" + this
-.name + "]";
-    this.temporary = this.name.charAt(0) === '#';
+    const parsed = Table.parseName(name)
+    this.name = parsed.name
+    this.schema = parsed.schema
+    this.database = parsed.database
+    this.path = (this.database ? '[${this.database}].' : '') + (this.schema ? '[${this.schema}].' : '') + '[${this.name}]'
+    this.temporary = this.name.charAt(0) === '#'
   }
-  this.columns = [];
-  this.rows = [];
-  Object.defineProperty(this.columns, "add", {
-    value: function(name, column, options) {
-      if (options == null) {
-        options = {};
-      }
+
+  this.columns = []
+  this.rows = []
+
+  Object.defineProperty(this.columns, 'add', {
+    value (name, column, options) {
       if (column == null) {
-        throw new Error("Column data type is not defined.");
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
-        column = column();
+        column = column()
       }
-      column.name = name;
-      column.nullable = options.nullable;
-      column.primary = options.primary;
-      return this.push(column);
+
+      options = options || {}
+      column.name = name
+      column.nullable = options.nullable
+      column.primary = options.primary
+
+      return this.push(column)
     }
-  });
-  Object.defineProperty(this.rows, "add", {
-    value: function() {
-      var values;
-      values = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      return this.push(values);
+  }
+  )
+
+  Object.defineProperty(this.rows, 'add', {
+    value () {
+      return this.push(Array.prototype.slice.call(arguments))
     }
-  });
+  }
+  )
 }
 ```
 - example usage
@@ -6098,138 +3541,120 @@ If omitted, returns [Promise](#promises).
 __Example__
 
 '''javascript
-var table = new sql.Table('table_name'); // or temporary table, e.g. #temptable
-table.create = true;
-table.columns.add('a', sql.Int, {nullable: true, primary: true});
-table.columns.add('b', sql.VarChar(50), {nullable: false});
-table.rows.add(777, 'test');
+const table = new sql.Table('table_name') // or temporary table, e.g. #temptable
+table.create = true
+table.columns.add('a', sql.Int, {nullable: true, primary: true})
+table.columns.add('b', sql.VarChar(50), {nullable: false})
+table.rows.add(777, 'test')
 
-var request = new sql.Request();
-request.bulk(table, function(err, rowCount) {
+const request = new sql.Request()
+request.bulk(table, (err, result) => {
 ...
 ```
 
 #### <a name="apidoc.element.mssql.Table.fromRecordset"></a>[function <span class="apidocSignatureSpan">mssql.Table.</span>fromRecordset (recordset, name)](#apidoc.element.mssql.Table.fromRecordset)
 - description and source-code
 ```javascript
-fromRecordset = function (recordset, name) {
-  var col, i, j, len, len1, ref1, ref2, row, t;
-  t = new this(name);
-  ref1 = recordset.columns;
-  for (name in ref1) {
-    col = ref1[name];
-    t.columns.add(name, {
-      type: col.type,
-      length: col.length,
-      scale: col.scale,
-      precision: col.precision
-    }, {
-      nullable: col.nullable
-    });
+function fromRecordset(recordset, name) {
+  const t = new this(name)
+
+  for (const colName in recordset.columns) {
+    if (Object.prototype.hasOwnProperty.call(recordset.columns, colName)) {
+      const col = recordset.columns[colName]
+
+      t.columns.add(colName, {
+        type: col.type,
+        length: col.length,
+        scale: col.scale,
+        precision: col.precision
+      }, {
+        nullable: col.nullable
+      })
+    }
   }
+
   if (t.columns.length === 1 && t.columns[0].name === JSON_COLUMN_ID) {
-    for (i = 0, len = recordset.length; i < len; i++) {
-      row = recordset[i];
-      t.rows.add(JSON.stringify(row));
+    for (let i = 0; i < recordset.length; i++) {
+      t.rows.add(JSON.stringify(recordset[i]))
     }
   } else {
-    for (j = 0, len1 = recordset.length; j < len1; j++) {
-      row = recordset[j];
-      (ref2 = t.rows).add.apply(ref2, (function() {
-        var k, len2, ref2, results;
-        ref2 = t.columns;
-        results = [];
-        for (k = 0, len2 = ref2.length; k < len2; k++) {
-          col = ref2[k];
-          results.push(row[col.name]);
-        }
-        return results;
-      })());
+    for (let i = 0; i < recordset.length; i++) {
+      t.rows.add.apply(t.rows, t.columns.map(col => recordset[i][col.name]))
     }
   }
-  return t;
+
+  return t
 }
 ```
 - example usage
 ```shell
-...
-    Object.defineProperty(recordset, 'columns', {
-      enumerable: false,
-      value: columns
-    });
-    Object.defineProperty(recordset, 'toTable', {
-      enumerable: false,
-      value: function() {
-        return Table.fromRecordset(this);
-      }
-    });
-    recordsets.push(recordset);
-  }
-  recordset = [];
-  return columns = {};
-};
-...
+n/a
 ```
 
 #### <a name="apidoc.element.mssql.Table.parseName"></a>[function <span class="apidocSignatureSpan">mssql.Table.</span>parseName (name)](#apidoc.element.mssql.Table.parseName)
 - description and source-code
 ```javascript
-parseName = function (name) {
-  var buffer, char, cursor, escaped, length, path;
-  length = name.length;
-  cursor = -1;
-  buffer = '';
-  escaped = false;
-  path = [];
+function parseName(name) {
+  const length = name.length
+  let cursor = -1
+  let buffer = ''
+  let escaped = false
+  const path = []
+
   while (++cursor < length) {
-    char = name.charAt(cursor);
+    const char = name.charAt(cursor)
     if (char === '[') {
       if (escaped) {
-        buffer += char;
+        buffer += char
       } else {
-        escaped = true;
+        escaped = true
       }
     } else if (char === ']') {
       if (escaped) {
-        escaped = false;
+        escaped = false
       } else {
-        throw new Error("Invalid table name.");
+        throw new Error('Invalid table name.')
       }
     } else if (char === '.') {
       if (escaped) {
-        buffer += char;
+        buffer += char
       } else {
-        path.push(buffer);
-        buffer = '';
+        path.push(buffer)
+        buffer = ''
       }
     } else {
-      buffer += char;
+      buffer += char
     }
   }
+
   if (buffer) {
-    path.push(buffer);
+    path.push(buffer)
   }
+
   switch (path.length) {
     case 1:
       return {
         name: path[0],
         schema: null,
         database: null
-      };
+      }
+
     case 2:
       return {
         name: path[1],
         schema: path[0],
         database: null
-      };
+      }
+
     case 3:
       return {
         name: path[2],
         schema: path[1],
         database: path[0]
-      };
+      }
+
     default:
-      throw new Error("Invalid table name.");
+      throw new Error('Invalid table name.')
   }
 }
 ```
@@ -6245,91 +3670,62 @@ n/a
 #### <a name="apidoc.element.mssql.Table.prototype._makeBulk"></a>[function <span class="apidocSignatureSpan">mssql.Table.prototype.</span>_makeBulk ()](#apidoc.element.mssql.Table.prototype._makeBulk)
 - description and source-code
 ```javascript
-_makeBulk = function () {
-  var col, i, len, ref1;
-  ref1 = this.columns;
-  for (i = 0, len = ref1.length; i < len; i++) {
-    col = ref1[i];
+function _makeBulk() {
+  for (let i = 0; i < this.columns.length; i++) {
+    const col = this.columns[i]
     switch (col.type) {
       case TYPES.Xml:
-        col.type = TYPES.NVarChar(MAX).type;
-        break;
+        col.type = TYPES.NVarChar(MAX).type
+        break
+
       case TYPES.UDT:
       case TYPES.Geography:
       case TYPES.Geometry:
-        col.type = TYPES.VarBinary(MAX).type;
+        col.type = TYPES.VarBinary(MAX).type
+        break
+
+      default:
+        break
     }
   }
-  return this;
+
+  return this
 }
 ```
 - example usage
 ```shell
-...
-
-/*
-		Bulk load.
- */
-
-TediousRequest.prototype.bulk = function(table, callback) {
-  var errorHandlers, errors, handleError, handleInfo, hasReturned, started;
-  table._makeBulk();
-  if (!table.name) {
-    process.nextTick(function() {
-      return callback(RequestError("Table name must be specified for bulk insert.", "ENAME"));
-    });
-  }
-  if (table.name.charAt(0) === '@') {
-    process.nextTick(function() {
-...
+n/a
 ```
 
 #### <a name="apidoc.element.mssql.Table.prototype.declare"></a>[function <span class="apidocSignatureSpan">mssql.Table.prototype.</span>declare ()](#apidoc.element.mssql.Table.prototype.declare)
 - description and source-code
 ```javascript
-declare = function () {
-  var cols, pkey;
-  pkey = this.columns.filter(function(col) {
-    return col.primary === true;
-  }).map(function(col) {
-    return col.name;
-  });
-  cols = this.columns.map(function(col) {
-    var def;
-    def = ["[" + col.name + "] " + (declare(col.type, col))];
+function declare() {
+  const pkey = this.columns.filter(col => col.primary === true).map(col => col.name)
+  const cols = this.columns.map(col => {
+    const def = ['[${col.name}] ${declareType(col.type, col)}']
+
     if (col.nullable === true) {
-      def.push("null");
+      def.push('null')
     } else if (col.nullable === false) {
-      def.push("not null");
+      def.push('not null')
     }
+
     if (col.primary === true && pkey.length === 1) {
-      def.push("primary key");
+      def.push('primary key')
     }
-    return def.join(' ');
-  });
-  return "create table " + this.path + " (" + (cols.join(', ')) + (pkey.length > 1 ? ", constraint PK_" + (this.temporary ? this
-.name.substr(1) : this.name) + " primary key (" + (pkey.join(', ')) + ")" : "") + ")";
+
+    return def.join(' ')
+  })
+
+  const constraint = pkey.length > 1 ? ', constraint PK_${this.temporary ? this.name.substr(1) : this.name} primary key (${pkey.
+join(', ')})' : ''
+  return 'create table ${this.path} (${cols.join(', ')}${constraint})'
 }
 ```
 - example usage
 ```shell
-...
-}
-if (table.create) {
-  if (table.temporary) {
-    objectid = "tempdb..[" + table.name + "]";
-  } else {
-    objectid = table.path;
-  }
-  req = new tds.Request("if object_id('" + (objectid.replace(/'/g, '\'\'')) + "') is null " + (table.declare()), function(err) {
-    if (err) {
-      return done(err);
-    }
-    return connection.execBulkLoad(bulk);
-  });
-  return connection.execSqlBatch(req);
-} else {
-...
+n/a
 ```
 
 
@@ -6339,10 +3735,8 @@ if (table.create) {
 #### <a name="apidoc.element.mssql.Text.Text"></a>[function <span class="apidocSignatureSpan">mssql.</span>Text ()](#apidoc.element.mssql.Text.Text)
 - description and source-code
 ```javascript
-Text = function () {
-  return {
-    type: TYPES.Text
-  };
+Text() {
+  return {type: TYPES.Text}
 }
 ```
 - example usage
@@ -6353,29 +3747,11 @@ n/a
 #### <a name="apidoc.element.mssql.Text.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Text.</span>inspect ()](#apidoc.element.mssql.Text.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -6385,11 +3761,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Time.Time"></a>[function <span class="apidocSignatureSpan">mssql.</span>Time (scale)](#apidoc.element.mssql.Time.Time)
 - description and source-code
 ```javascript
-Time = function (scale) {
-  return {
-    type: TYPES.Time,
-    scale: scale
-  };
+Time(scale) {
+  return {type: TYPES.Time, scale}
 }
 ```
 - example usage
@@ -6400,29 +3773,11 @@ n/a
 #### <a name="apidoc.element.mssql.Time.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Time.</span>inspect ()](#apidoc.element.mssql.Time.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -6432,10 +3787,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.TinyInt.TinyInt"></a>[function <span class="apidocSignatureSpan">mssql.</span>TinyInt ()](#apidoc.element.mssql.TinyInt.TinyInt)
 - description and source-code
 ```javascript
-TinyInt = function () {
-  return {
-    type: TYPES.TinyInt
-  };
+TinyInt() {
+  return {type: TYPES.TinyInt}
 }
 ```
 - example usage
@@ -6446,537 +3799,7 @@ n/a
 #### <a name="apidoc.element.mssql.TinyInt.inspect"></a>[function <span class="apidocSignatureSpan">mssql.TinyInt.</span>inspect ()](#apidoc.element.mssql.TinyInt.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
-```
-- example usage
-```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.Transaction"></a>[module mssql.Transaction](#apidoc.module.mssql.Transaction)
-
-#### <a name="apidoc.element.mssql.Transaction.Transaction"></a>[function <span class="apidocSignatureSpan">mssql.</span>Transaction (connection)](#apidoc.element.mssql.Transaction.Transaction)
-- description and source-code
-```javascript
-function Transaction(connection) {
-  this._abort = bind(this._abort, this);
-  this.connection = connection != null ? connection : global_connection;
-  this._queue = [];
-}
-```
-- example usage
-```shell
-...
-'''
-
-## Transaction
-
-**IMPORTANT:** always use 'Transaction' class to create transactions - it ensures that all your requests are executed on one connection
-. Once you call 'begin', a single connection is acquired from the connection pool and all subsequent requests (initialized with
-the 'Transaction' object) are executed exclusively on this connection. Transaction also contains a queue to make sure your requests
- are executed in series. After you call 'commit' or 'rollback', connection is then released back to the connection pool.
-
-'''javascript
-var transaction = new sql.Transaction(/* [connection] */);
-'''
-
-If you omit connection argument, global connection is used instead.
-
-__Example__
-
-'''javascript
-...
-```
-
-#### <a name="apidoc.element.mssql.Transaction.EventEmitter"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.</span>EventEmitter ()](#apidoc.element.mssql.Transaction.EventEmitter)
-- description and source-code
-```javascript
-function EventEmitter() {
-  EventEmitter.init.call(this);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.init"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.</span>init ()](#apidoc.element.mssql.Transaction.init)
-- description and source-code
-```javascript
-init = function () {
-  this.domain = null;
-  if (EventEmitter.usingDomains) {
-    // if there is an active domain, then attach to it.
-    domain = domain || require('domain');
-    if (domain.active && !(this instanceof domain.Domain)) {
-      this.domain = domain.active;
-    }
-  }
-
-  if (!this._events || this._events === Object.getPrototypeOf(this)._events) {
-    this._events = new EventHandlers();
-    this._eventsCount = 0;
-  }
-
-  this._maxListeners = this._maxListeners || undefined;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.listenerCount"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.</span>listenerCount (emitter, type)](#apidoc.element.mssql.Transaction.listenerCount)
-- description and source-code
-```javascript
-listenerCount = function (emitter, type) {
-  if (typeof emitter.listenerCount === 'function') {
-    return emitter.listenerCount(type);
-  } else {
-    return listenerCount.call(emitter, type);
-  }
-}
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.Transaction.prototype"></a>[module mssql.Transaction.prototype](#apidoc.module.mssql.Transaction.prototype)
-
-#### <a name="apidoc.element.mssql.Transaction.prototype._abort"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_abort ()](#apidoc.element.mssql.Transaction.prototype._abort)
-- description and source-code
-```javascript
-_abort = function () {
-  return this.connection.driver.Transaction.prototype._abort.call(this);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype._begin"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_begin (isolationLevel, callback)](#apidoc.element.mssql.Transaction.prototype._begin)
-- description and source-code
-```javascript
-_begin = function (isolationLevel, callback) {
-  if (isolationLevel != null) {
-    this.isolationLevel = isolationLevel;
-  }
-  if (this._pooledConnection) {
-    callback(new TransactionError("Transaction has already begun.", 'EALREADYBEGUN'));
-    return this;
-  }
-  this.connection.driver.Transaction.prototype.begin.call(this, (function(_this) {
-    return function(err) {
-      if (!err) {
-        _this.emit('begin');
-      }
-      return callback(err);
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype._commit"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_commit (callback)](#apidoc.element.mssql.Transaction.prototype._commit)
-- description and source-code
-```javascript
-_commit = function (callback) {
-  if (!this._pooledConnection) {
-    callback(new TransactionError("Transaction has not begun. Call begin() first.", 'ENOTBEGUN'));
-    return this;
-  }
-  if (this._working) {
-    callback(new TransactionError("Can't commit transaction. There is a request in progress.", 'EREQINPROG'));
-    return this;
-  }
-  if (this._queue.length) {
-    callback(new TransactionError("Can't commit transaction. There are request in queue.", 'EREQINPROG'));
-    return this;
-  }
-  this.connection.driver.Transaction.prototype.commit.call(this, (function(_this) {
-    return function(err) {
-      if (!err) {
-        _this.emit('commit');
-      }
-      return callback(err);
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype._rollback"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>_rollback (callback)](#apidoc.element.mssql.Transaction.prototype._rollback)
-- description and source-code
-```javascript
-_rollback = function (callback) {
-  if (this._aborted) {
-    callback(new TransactionError("Transaction has been aborted.", 'EABORT'));
-    return this;
-  }
-  if (!this._pooledConnection) {
-    callback(new TransactionError("Transaction has not begun. Call begin() first.", 'ENOTBEGUN'));
-    return this;
-  }
-  if (this._working) {
-    callback(new TransactionError("Can't rollback transaction. There is a request in progress.", 'EREQINPROG'));
-    return this;
-  }
-  if (this._queue.length) {
-    this._aborted = true;
-  }
-  this.connection.driver.Transaction.prototype.rollback.call(this, (function(_this) {
-    return function(err) {
-      if (!err) {
-        _this.emit('rollback', _this._aborted);
-      }
-      return callback(err);
-    };
-  })(this));
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.begin"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>begin (isolationLevel, callback)](#apidoc.element.mssql.Transaction.prototype.begin)
-- description and source-code
-```javascript
-begin = function (isolationLevel, callback) {
-  if (isolationLevel instanceof Function) {
-    callback = isolationLevel;
-    isolationLevel = void 0;
-  }
-  if (callback != null) {
-    return this._begin(isolationLevel, callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._begin(isolationLevel, function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve(_this);
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-
-If you omit connection argument, global connection is used instead.
-
-__Example__
-
-'''javascript
-var transaction = new sql.Transaction(/* [connection] */);
-transaction.begin(function(err) {
-    // ... error checks
-
-    var request = new sql.Request(transaction);
-    request.query('insert into mytable (mycolumn) values (12345)', function(err, recordset) {
-// ... error checks
-
-transaction.commit(function(err, recordset) {
-...
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.commit"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>commit (callback)](#apidoc.element.mssql.Transaction.prototype.commit)
-- description and source-code
-```javascript
-commit = function (callback) {
-  if (callback != null) {
-    return this._commit(callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._commit(function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve();
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-transaction.begin(function(err) {
-    // ... error checks
-
-    var request = new sql.Request(transaction);
-    request.query('insert into mytable (mycolumn) values (12345)', function(err, recordset) {
-        // ... error checks
-
-        transaction.commit(function(err, recordset) {
-            // ... error checks
-
-            console.log("Transaction committed.");
-        });
-    });
-});
-'''
-...
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>constructor (connection)](#apidoc.element.mssql.Transaction.prototype.constructor)
-- description and source-code
-```javascript
-function Transaction(connection) {
-  this._abort = bind(this._abort, this);
-  this.connection = connection != null ? connection : global_connection;
-  this._queue = [];
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.next"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>next ()](#apidoc.element.mssql.Transaction.prototype.next)
-- description and source-code
-```javascript
-next = function () {
-  var toAbort;
-  if (this._aborted) {
-    toAbort = this._queue;
-    this._queue = [];
-    process.nextTick((function(_this) {
-      return function() {
-        var results;
-        results = [];
-        while (toAbort.length) {
-          results.push(toAbort.shift()(new TransactionError("Transaction aborted.", "EABORT")));
-        }
-        return results;
-      };
-    })(this));
-  }
-  this._working = false;
-  if (this._queue.length) {
-    process.nextTick((function(_this) {
-      return function() {
-        if (_this._aborted) {
-          return _this.next();
-        }
-        _this._working = true;
-        return _this._queue.shift()(null, _this._pooledConnection);
-      };
-    })(this));
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.queue"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>queue (callback)](#apidoc.element.mssql.Transaction.prototype.queue)
-- description and source-code
-```javascript
-queue = function (callback) {
-  if (!this._pooledConnection) {
-    callback(new TransactionError("Transaction has not begun. Call begin() first.", 'ENOTBEGUN'));
-    return this;
-  }
-  if (this._working || this._queue.length) {
-    this._queue.push(callback);
-  } else {
-    this._working = true;
-    callback(null, this._pooledConnection);
-  }
-  return this;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.request"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>request ()](#apidoc.element.mssql.Transaction.prototype.request)
-- description and source-code
-```javascript
-request = function () {
-  return new Request(this);
-}
-```
-- example usage
-```shell
-...
-}
-
-var connection1 = new sql.Connection(config, function(err) {
-    // ... error checks
-
-    // Query
-
-    var request = new sql.Request(connection1); // or: var request = connection1.request();
-    request.query('select 1 as number', function(err, recordset) {
-        // ... error checks
-
-        console.dir(recordset);
-    });
-
-});
-...
-```
-
-#### <a name="apidoc.element.mssql.Transaction.prototype.rollback"></a>[function <span class="apidocSignatureSpan">mssql.Transaction.prototype.</span>rollback (callback)](#apidoc.element.mssql.Transaction.prototype.rollback)
-- description and source-code
-```javascript
-rollback = function (callback) {
-  if (callback != null) {
-    return this._rollback(callback);
-  }
-  return new module.exports.Promise((function(_this) {
-    return function(resolve, reject) {
-      return _this._rollback(function(err) {
-        if (err) {
-          return reject(err);
-        }
-        return resolve();
-      });
-    };
-  })(this));
-}
-```
-- example usage
-```shell
-...
-
-    var request = new sql.Request(transaction);
-    request.query('insert into mytable (bitcolumn) values (2)', function(err, recordset) {
-        // insert should fail because of invalid value
-
-		if (err) {
-			if (!rolledBack) {
-		        transaction.rollback(function(err) {
-		            // ... error checks
-		        });
-		    }
-		} else {
-			transaction.commit(function(err) {
-	            // ... error checks
-	        });
-...
-```
-
-
-
-# <a name="apidoc.module.mssql.TransactionError"></a>[module mssql.TransactionError](#apidoc.module.mssql.TransactionError)
-
-#### <a name="apidoc.element.mssql.TransactionError.TransactionError"></a>[function <span class="apidocSignatureSpan">mssql.</span>TransactionError (message, code)](#apidoc.element.mssql.TransactionError.TransactionError)
-- description and source-code
-```javascript
-function TransactionError(message, code) {
-  var err;
-  if (!(this instanceof TransactionError)) {
-    if (message instanceof Error) {
-      err = new TransactionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new TransactionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  TransactionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.mssql.TransactionError.captureStackTrace"></a>[function <span class="apidocSignatureSpan">mssql.TransactionError.</span>captureStackTrace ()](#apidoc.element.mssql.TransactionError.captureStackTrace)
-- description and source-code
-```javascript
-function captureStackTrace() { [native code] }
-```
-- example usage
-```shell
-n/a
-```
-
-
-
-# <a name="apidoc.module.mssql.TransactionError.prototype"></a>[module mssql.TransactionError.prototype](#apidoc.module.mssql.TransactionError.prototype)
-
-#### <a name="apidoc.element.mssql.TransactionError.prototype.constructor"></a>[function <span class="apidocSignatureSpan">mssql.TransactionError.prototype.</span>constructor (message, code)](#apidoc.element.mssql.TransactionError.prototype.constructor)
-- description and source-code
-```javascript
-function TransactionError(message, code) {
-  var err;
-  if (!(this instanceof TransactionError)) {
-    if (message instanceof Error) {
-      err = new TransactionError(message.message, message.code);
-      Object.defineProperty(err, 'originalError', {
-        value: message
-      });
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    } else {
-      err = new TransactionError(message);
-      Error.captureStackTrace(err, arguments.callee);
-      return err;
-    }
-  }
-  this.name = this.constructor.name;
-  this.message = message;
-  if (code != null) {
-    this.code = code;
-  }
-  TransactionError.__super__.constructor.call(this);
-  Error.captureStackTrace(this, this.constructor);
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
@@ -6990,10 +3813,8 @@ n/a
 #### <a name="apidoc.element.mssql.UDT.UDT"></a>[function <span class="apidocSignatureSpan">mssql.</span>UDT ()](#apidoc.element.mssql.UDT.UDT)
 - description and source-code
 ```javascript
-UDT = function () {
-  return {
-    type: TYPES.UDT
-  };
+UDT() {
+  return {type: TYPES.UDT}
 }
 ```
 - example usage
@@ -7004,29 +3825,11 @@ n/a
 #### <a name="apidoc.element.mssql.UDT.inspect"></a>[function <span class="apidocSignatureSpan">mssql.UDT.</span>inspect ()](#apidoc.element.mssql.UDT.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -7036,10 +3839,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.UniqueIdentifier.UniqueIdentifier"></a>[function <span class="apidocSignatureSpan">mssql.</span>UniqueIdentifier ()](#apidoc.element.mssql.UniqueIdentifier.UniqueIdentifier)
 - description and source-code
 ```javascript
-UniqueIdentifier = function () {
-  return {
-    type: TYPES.UniqueIdentifier
-  };
+UniqueIdentifier() {
+  return {type: TYPES.UniqueIdentifier}
 }
 ```
 - example usage
@@ -7050,29 +3851,11 @@ n/a
 #### <a name="apidoc.element.mssql.UniqueIdentifier.inspect"></a>[function <span class="apidocSignatureSpan">mssql.UniqueIdentifier.</span>inspect ()](#apidoc.element.mssql.UniqueIdentifier.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -7082,11 +3865,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.VarBinary.VarBinary"></a>[function <span class="apidocSignatureSpan">mssql.</span>VarBinary (length)](#apidoc.element.mssql.VarBinary.VarBinary)
 - description and source-code
 ```javascript
-VarBinary = function (length) {
-  return {
-    type: TYPES.VarBinary,
-    length: length
-  };
+VarBinary(length) {
+  return {type: TYPES.VarBinary, length}
 }
 ```
 - example usage
@@ -7097,29 +3877,11 @@ n/a
 #### <a name="apidoc.element.mssql.VarBinary.inspect"></a>[function <span class="apidocSignatureSpan">mssql.VarBinary.</span>inspect ()](#apidoc.element.mssql.VarBinary.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -7129,60 +3891,39 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.VarChar.VarChar"></a>[function <span class="apidocSignatureSpan">mssql.</span>VarChar (length)](#apidoc.element.mssql.VarChar.VarChar)
 - description and source-code
 ```javascript
-VarChar = function (length) {
-  return {
-    type: TYPES.VarChar,
-    length: length
-  };
+VarChar(length) {
+  return {type: TYPES.VarChar, length}
 }
 ```
 - example usage
 ```shell
 ...
-		// ... query error checks
-	});
 
-    // Stored Procedure
-	
-	new sql.Request()
-	.input('input_parameter', sql.Int, value)
-    .output('output_parameter', sql.VarChar(50))
-	.execute('procedure_name').then(function(recordsets) {
-		console.dir(recordsets);
-	}).catch(function(err) {
-		// ... execute error checks
-	});
-	
-	// ES6 Tagged template literals (experimental)
+        console.dir(result1)
+
+        // Stored procedure
+
+        let result2 = await pool.request()
+            .input('input_parameter', sql.Int, value)
+            .output('output_parameter', sql.VarChar(50))
+            .execute('procedure_name')
+
+        console.dir(result2)
+    } catch (err) {
+        // ... error checks
+    }
+})()
 ...
 ```
 
 #### <a name="apidoc.element.mssql.VarChar.inspect"></a>[function <span class="apidocSignatureSpan">mssql.VarChar.</span>inspect ()](#apidoc.element.mssql.VarChar.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -7192,10 +3933,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Variant.Variant"></a>[function <span class="apidocSignatureSpan">mssql.</span>Variant ()](#apidoc.element.mssql.Variant.Variant)
 - description and source-code
 ```javascript
-Variant = function () {
-  return {
-    type: TYPES.Variant
-  };
+Variant() {
+  return {type: TYPES.Variant}
 }
 ```
 - example usage
@@ -7206,29 +3945,11 @@ n/a
 #### <a name="apidoc.element.mssql.Variant.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Variant.</span>inspect ()](#apidoc.element.mssql.Variant.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
-}
+() => '[sql.${key}]'
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 
@@ -7238,10 +3959,8 @@ if (_this.stream) {
 #### <a name="apidoc.element.mssql.Xml.Xml"></a>[function <span class="apidocSignatureSpan">mssql.</span>Xml ()](#apidoc.element.mssql.Xml.Xml)
 - description and source-code
 ```javascript
-Xml = function () {
-  return {
-    type: TYPES.Xml
-  };
+Xml() {
+  return {type: TYPES.Xml}
 }
 ```
 - example usage
@@ -7252,29 +3971,881 @@ n/a
 #### <a name="apidoc.element.mssql.Xml.inspect"></a>[function <span class="apidocSignatureSpan">mssql.Xml.</span>inspect ()](#apidoc.element.mssql.Xml.inspect)
 - description and source-code
 ```javascript
-inspect = function () {
-  return "[sql." + key + "]";
+() => '[sql.${key}]'
+```
+- example usage
+```shell
+n/a
+```
+
+
+
+# <a name="apidoc.module.mssql.base"></a>[module mssql.base](#apidoc.module.mssql.base)
+
+#### <a name="apidoc.element.mssql.base.ConnectionError"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>ConnectionError (message, code)](#apidoc.element.mssql.base.ConnectionError)
+- description and source-code
+```javascript
+class ConnectionError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new ConnectionError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
+    if (message instanceof Error) {
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
+    } else {
+      super(message)
+      this.code = code
+    }
+
+    this.name = 'ConnectionError'
+  }
 }
 ```
 - example usage
 ```shell
-...
+n/a
+```
+
+#### <a name="apidoc.element.mssql.base.ConnectionPool"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>ConnectionPool (config, callback)](#apidoc.element.mssql.base.ConnectionPool)
+- description and source-code
+```javascript
+class ConnectionPool extends EventEmitter {
+<span class="apidocCodeCommentSpan">  /**
+   * Create new Connection.
+   *
+   * @param {Object|String} config Connection configuration object or connection string.
+   * @param {basicCallback} [callback] A callback which is called after connection has established, or an error has occurred.
+   */
+</span>
+  constructor (config, callback) {
+    super()
+
+    this.config = config
+    this._connected = false
+    this._connecting = false
+
+    if (typeof this.config === 'string') {
+      try {
+        this.config = ConnectionString.resolve(this.config, driver.name)
+      } catch (ex) {
+        if (typeof callback === 'function') {
+          return callback(ex)
+        }
+        throw ex
+      }
+    }
+
+    // set defaults
+    this.config.port = this.config.port || 1433
+    this.config.options = this.config.options || {}
+    this.config.stream = this.config.stream || false
+    this.config.parseJSON = this.config.parseJSON || false
+
+    if (/^(.*)\\(.*)$/.exec(this.config.server)) {
+      this.config.server = RegExp.$1
+      this.config.options.instanceName = RegExp.$2
+    }
+
+    if (typeof callback === 'function') {
+      this.connect(callback)
+    }
   }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
+
+  get connected () {
+    return this._connected
+  }
+
+  get connecting () {
+    return this._connecting
+  }
+
+  /**
+   * Acquire connection from this connection pool.
+   *
+   * @param {ConnectionPool|Transaction|PreparedStatement} requester Requester.
+   * @param {acquireCallback} [callback] A callback which is called after connection has been acquired, or an error has occurred
+. If omited, method returns Promise.
+   * @return {ConnectionPool|Promise}
+   */
+
+  acquire (requester, callback) {
+    debug('conn: acquire')
+
+    if (typeof callback === 'function') {
+      this._acquire().then(connection => callback(null, connection)).catch(callback)
+      return this
+    }
+
+    return this._acquire()
+  }
+
+  _acquire () {
+    if (!this.pool) {
+      return Promise.reject(new ConnectionError('Connection not yet open.', 'ENOTOPEN'))
+    }
+
+    return this.pool.acquire()
+  }
+
+  /**
+   * Release connection back to the pool.
+   *
+   * @param {Connection} connection Previously acquired connection.
+   * @return {ConnectionPool}
+   */
+
+  release (connection) {
+    debug('conn: release')
+
+    this.pool.release(connection)
+    return this
+  }
+
+  /**
+   * Creates a new connection pool with one active connection. This one initial connection serves as a probe to find out whether
+ the configuration is valid.
+   *
+   * @param {basicCallback} [callback] A callback which is called after connection has established, or an error has occurred. If
+ omited, method returns Promise.
+   * @return {ConnectionPool|Promise}
+   */
+
+  connect (callback) {
+    if (typeof callback === 'function') {
+      this._connect(callback)
+      return this
+    }
+
+    return new PromiseLibrary((resolve, reject) => {
+      return this._connect(err => {
+        if (err) return reject(err)
+        resolve(this)
+      })
+    })
+  }
+
+  /**
+   * @private
+   * @param {basicCallback} callback
+   */
+
+  _connect (callback) {
+    if (this._connected) {
+      return callback(new ConnectionError('Database is already connected! Call close before connecting to different database.', '
+EALREADYCONNECTED'))
+    }
+
+    if (this._connecting) {
+      return callback(new ConnectionError('Already connecting to database! Call close before connecting to different database.', '
+EALREADYCONNECTING'))
+    }
+
+    this._connecting = true
+
+    // create one testing connection to check if everything is ok
+    this._poolCreate().then((connection) => {
+      this._poolDestroy(connection)
+      if (!this._connecting) {
+        // close was called before connection was established
+        return // exit silently
+      }
+
+      // prepare pool
+      this.pool = gp.createPool({
+        create: this._poolCreate.bind(this),
+        validate: this._poolValidate.bind(this),
+        destroy: this._poolDestroy.bind(this)
+      }, Object.assign({
+        max: 10,
+        min: 0,
+        idleTimeoutMillis: 30000,
+        testOnBorrow: true,
+        autostart: false
+      }, thi ...
+```
+- example usage
+```shell
 ...
+'''
+
+## Connection Pools
+
+'''javascript
+const sql = require('mssql')
+
+const pool1 = new sql.ConnectionPool(config, err => {
+// ... error checks
+
+// Query
+
+pool1.request() // or: new sql.Request(pool1)
+.query('select 1 as number', (err, result) => {
+    // ... error checks
+...
+```
+
+#### <a name="apidoc.element.mssql.base.PreparedStatement"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>PreparedStatement (parent)](#apidoc.element.mssql.base.PreparedStatement)
+- description and source-code
+```javascript
+class PreparedStatement extends EventEmitter {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new Prepared Statement.
+   *
+   * @param {ConnectionPool|Transaction} [holder]
+   */
+</span>
+  constructor (parent) {
+    super()
+
+    this.parent = parent || globalConnection
+    this._handle = 0
+    this.prepared = false
+    this.parameters = {}
+  }
+
+  get connected () {
+    return this.parent.connected
+  }
+
+  /**
+   * Acquire connection from connection pool.
+   *
+   * @param {Request} request Request.
+   * @param {ConnectionPool~acquireCallback} [callback] A callback which is called after connection has established, or an error
+ has occurred. If omited, method returns Promise.
+   * @return {PreparedStatement|Promise}
+   */
+
+  acquire (request, callback) {
+    debug('ps: acquire')
+
+    if (!this._acquiredConnection) {
+      setImmediate(callback, new PreparedStatementError('Statement is not prepared. Call prepare() first.', 'ENOTPREPARED'))
+      return this
+    }
+
+    if (this._activeRequest) {
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
+      return this
+    }
+
+    debug('ps: acquire ok')
+
+    this._activeRequest = request
+    setImmediate(callback, null, this._acquiredConnection)
+    return this
+  }
+
+  /**
+   * Release connection back to the pool.
+   *
+   * @param {Connection} connection Previously acquired connection.
+   * @return {PreparedStatement}
+   */
+
+  release (connection) {
+    debug('ps: release')
+
+    if (connection === this._acquiredConnection) {
+      this._activeRequest = null
+      debug('ps: release ok')
+    }
+
+    return this
+  }
+
+  /**
+   * Add an input parameter to the prepared statement.
+   *
+   * @param {String} name Name of the input parameter without @ char.
+   * @param {*} type SQL data type of input parameter.
+   * @return {PreparedStatement}
+   */
+
+  input (name, type) {
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new PreparedStatementError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if (arguments.length < 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
+    }
+
+    if (type instanceof Function) {
+      type = type()
+    }
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 1,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision,
+      tvpType: type.tvpType
+    }
+
+    return this
+  }
+
+  /**
+   * Add an output parameter to the prepared statement.
+   *
+   * @param {String} name Name of the output parameter without @ char.
+   * @param {*} type SQL data type of output parameter.
+   * @return {PreparedStatement}
+   */
+
+  output (name, type) {
+    if (/(--| |\/\*|\*\/|')/.test(name)) {
+      throw new PreparedStatementError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if (arguments.length < 2) {
+      throw new PreparedStatementError('Invalid number of arguments. 2 arguments expected.', 'EARGS')
+    }
+
+    if (type instanceof Function) type = type()
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 2,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision
+    }
+
+    return this
+  }
+
+  /**
+   * Prepare a statement.
+   *
+   * @param {String} statement SQL statement to prepare.
+   * @param {basicCallback} [callback] A callback which is called after preparation has completed, or an error has occurred. If
+omited, method returns Promise.
+   * @return {PreparedStatement|Promise}
+   */
+
+  prepare (statement, callback) {
+    if (typeof callback === 'function') {
+      this._prepare(statement, callback)
+      return this
+    }
+
+    return new PromiseLibrary((resolve, reject) => {
+      this._prepare(statement, err => {
+        if (err) return reject(err)
+        resolve(this)
+      })
+    })
+  }
+
+  /**
+   * @private
+   * @param {String} statement
+   * @param {basicCallback} callback
+   */
+
+  _prepare (statement, callback) {
+    debug('ps: prepare')
+
+    if (typeof statement === 'function') {
+      callback = statement ...
+```
+- example usage
+```shell
+...
+- EREQINPROG ('TransactionError') - Can't rollback transaction. There is a request in progress.
+
+## Prepared Statement
+
+**IMPORTANT:** always use 'PreparedStatement' class to create prepared statements - it ensures that all your executions of prepared
+ statement are executed on one connection. Once you call 'prepare', a single connection is acquired from the connection pool and
+ all subsequent executions are executed exclusively on this connection. After you call 'unprepare', the connection is then released
+ back to the connection pool.
+
+'''javascript
+const ps = new sql.PreparedStatement(/* [pool] */)
+'''
+
+If you omit the connection argument, the global connection is used instead.
+
+__Example__
+
+'''javascript
+...
+```
+
+#### <a name="apidoc.element.mssql.base.PreparedStatementError"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>PreparedStatementError (message, code)](#apidoc.element.mssql.base.PreparedStatementError)
+- description and source-code
+```javascript
+class PreparedStatementError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new PreparedStatementError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
+    if (message instanceof Error) {
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
+    } else {
+      super(message)
+      this.code = code
+    }
+
+    this.name = 'PreparedStatementError'
+  }
+}
+```
+- example usage
+```shell
+n/a
+```
+
+#### <a name="apidoc.element.mssql.base.Request"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>Request (parent)](#apidoc.element.mssql.base.Request)
+- description and source-code
+```javascript
+class Request extends EventEmitter {
+<span class="apidocCodeCommentSpan">  /**
+   * Create new Request.
+   *
+   * @param {Connection|ConnectionPool|Transaction|PreparedStatement} parent If ommited, global connection is used instead.
+   */
+</span>
+  constructor (parent) {
+    super()
+
+    this.canceled = false
+    this.parent = parent || globalConnection
+    this.parameters = {}
+  }
+
+  /**
+   * Fetch request from tagged template string.
+   *
+   * @private
+   * @param {String} method
+   * @param {Array} strings
+   * @param {Array} values
+   * @return {Request}
+   */
+
+  _template (method, strings, values) {
+    let command = [strings[0]]
+
+    for (let index = 0; index < values.length; index++) {
+      let value = values[index]
+      this.input('param${index + 1}', value)
+      command.push('@param${index + 1}', strings[index + 1])
+    }
+
+    return this[method](command.join(''))
+  }
+
+  /**
+   * Add an input parameter to the request.
+   *
+   * @param {String} name Name of the input parameter without @ char.
+   * @param {*} [type] SQL data type of input parameter. If you omit type, module automaticaly decide which SQL data type should
+ be used based on JS data type.
+   * @param {*} value Input parameter value. 'undefined' and 'NaN' values are automatically converted to 'null' values.
+   * @return {Request}
+   */
+
+  input (name, type, value) {
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new RequestError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if (arguments.length === 1) {
+      throw new RequestError('Invalid number of arguments. At least 2 arguments expected.', 'EARGS')
+    } else if (arguments.length === 2) {
+      value = type
+      type = getTypeByValue(value)
+    }
+
+    // support for custom data types
+    if (value && typeof value.valueOf === 'function' && !(value instanceof Date)) value = value.valueOf()
+
+    if (value === undefined) value = null // undefined to null
+    if (typeof value === 'number' && isNaN(value)) value = null // NaN to null
+    if (type instanceof Function) type = type()
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 1,
+      value,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision,
+      tvpType: type.tvpType
+    }
+
+    return this
+  }
+
+  /**
+   * Add an output parameter to the request.
+   *
+   * @param {String} name Name of the output parameter without @ char.
+   * @param {*} type SQL data type of output parameter.
+   * @param {*} [value] Output parameter value initial value. 'undefined' and 'NaN' values are automatically converted to 'null'
+values. Optional.
+   * @return {Request}
+   */
+
+  output (name, type, value) {
+    if (!type) { type = TYPES.NVarChar }
+
+    if ((/(--| |\/\*|\*\/|')/).test(name)) {
+      throw new RequestError('SQL injection warning for param '${name}'', 'EINJECT')
+    }
+
+    if ((type === TYPES.Text) || (type === TYPES.NText) || (type === TYPES.Image)) {
+      throw new RequestError('Deprecated types (Text, NText, Image) are not supported as OUTPUT parameters.', 'EDEPRECATED')
+    }
+
+    // support for custom data types
+    if (value && typeof value.valueOf === 'function' && !(value instanceof Date)) value = value.valueOf()
+
+    if (value === undefined) value = null // undefined to null
+    if (typeof value === 'number' && isNaN(value)) value = null // NaN to null
+    if (type instanceof Function) type = type()
+
+    this.parameters[name] = {
+      name,
+      type: type.type,
+      io: 2,
+      value,
+      length: type.length,
+      scale: type.scale,
+      precision: type.precision
+    }
+
+    return this
+  }
+
+  /**
+   * Execute the SQL batch.
+   *
+   * @param {String} batch T-SQL batch to be executed.
+   * @param {Request~requestCallback} [callback] A callback which is called after execution has completed, or an error has occurred
+. If omited, method returns Promise.
+   * @return {Request|Promise}
+   */
+
+  batch (batch, callback) {
+    if (this.stream == null && this.connection) this.stream = this.connection.config.stream
+    this.rowsAffected = 0
+
+    if (typeof callback === 'function') {
+      this._batch(batc ...
+```
+- example usage
+```shell
+...
+const sql = require('mssql')
+
+sql.connect(config, err => {
+// ... error checks
+
+// Query
+
+new sql.Request().query('select 1 as number', (err, result) => {
+    // ... error checks
+
+    console.dir(result)
+})
+
+// Stored Procedure
+...
+```
+
+#### <a name="apidoc.element.mssql.base.RequestError"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>RequestError (message, code)](#apidoc.element.mssql.base.RequestError)
+- description and source-code
+```javascript
+class RequestError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new RequestError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
+    if (message instanceof Error) {
+      super(message.message)
+      this.code = message.code || code
+
+      if (message.info) {
+        this.number = message.info.number || message.code // err.code is returned by msnodesql driver
+        this.lineNumber = message.info.lineNumber
+        this.state = message.info.state || message.sqlstate // err.sqlstate is returned by msnodesql driver
+        this.class = message.info.class
+        this.serverName = message.info.serverName
+        this.procName = message.info.procName
+      } else {
+        this.number = message.code // err.code is returned by msnodesql driver
+        this.state = message.sqlstate // err.sqlstate is returned by msnodesql driver
+      }
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
+    } else {
+      super(message)
+      this.code = code
+    }
+
+    this.name = 'RequestError'
+    if ((/^\[Microsoft\]\[SQL Server Native Client 11\.0\](?:\[SQL Server\])?([\s\S]*)$/).exec(this.message)) {
+      this.message = RegExp.$1
+    }
+  }
+}
+```
+- example usage
+```shell
+n/a
+```
+
+#### <a name="apidoc.element.mssql.base.Transaction"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>Transaction (parent)](#apidoc.element.mssql.base.Transaction)
+- description and source-code
+```javascript
+class Transaction extends EventEmitter {
+<span class="apidocCodeCommentSpan">  /**
+   * Create new Transaction.
+   *
+   * @param {Connection} [holder] If ommited, global connection is used instead.
+   */
+</span>
+  constructor (parent) {
+    super()
+
+    this.parent = parent || globalConnection
+    this.isolationLevel = ISOLATION_LEVEL.READ_COMMITTED
+    this.name = ''
+  }
+
+  get connected () {
+    return this.parent.connected
+  }
+
+  /**
+   * Acquire connection from connection pool.
+   *
+   * @param {Request} request Request.
+   * @param {ConnectionPool~acquireCallback} [callback] A callback which is called after connection has established, or an error
+ has occurred. If omited, method returns Promise.
+   * @return {Transaction|Promise}
+   */
+
+  acquire (request, callback) {
+    debug('tran: acquire')
+
+    if (!this._acquiredConnection) {
+      setImmediate(callback, new TransactionError('Transaction has not begun. Call begin() first.', 'ENOTBEGUN'))
+      return this
+    }
+
+    if (this._activeRequest) {
+      setImmediate(callback, new TransactionError("Can't acquire connection for the request. There is another request in progress
+.", 'EREQINPROG'))
+      return this
+    }
+
+    debug('tran: acquire ok')
+
+    this._activeRequest = request
+    setImmediate(callback, null, this._acquiredConnection)
+    return this
+  }
+
+  /**
+   * Release connection back to the pool.
+   *
+   * @param {Connection} connection Previously acquired connection.
+   * @return {Transaction}
+   */
+
+  release (connection) {
+    debug('tran: release')
+
+    if (connection === this._acquiredConnection) {
+      this._activeRequest = null
+      debug('tran: release ok')
+    }
+
+    return this
+  }
+
+  /**
+   * Begin a transaction.
+   *
+   * @param {Number} [isolationLevel] Controls the locking and row versioning behavior of TSQL statements issued by a connection
+.
+   * @param {basicCallback} [callback] A callback which is called after transaction has began, or an error has occurred. If omited
+, method returns Promise.
+   * @return {Transaction|Promise}
+   */
+
+  begin (isolationLevel, callback) {
+    if (isolationLevel instanceof Function) {
+      callback = isolationLevel
+      isolationLevel = undefined
+    }
+
+    if (typeof callback === 'function') {
+      this._begin(isolationLevel, err => {
+        if (!err) {
+          this.emit('begin')
+          debug('tran: begin ok')
+        }
+        callback(err)
+      })
+      return this
+    }
+
+    return new PromiseLibrary((resolve, reject) => {
+      this._begin(isolationLevel, err => {
+        if (err) return reject(err)
+        this.emit('begin')
+        debug('tran: begin ok')
+        resolve(this)
+      })
+    })
+  }
+
+  /**
+   * @private
+   * @param {Number} [isolationLevel]
+   * @param {basicCallback} [callback]
+   * @return {Transaction}
+   */
+
+  _begin (isolationLevel, callback) {
+    debug('tran: begin')
+
+    if (this._acquiredConnection) {
+      return setImmediate(callback, new TransactionError('Transaction has already begun.', 'EALREADYBEGUN'))
+    }
+
+    this._aborted = false
+    this._rollbackRequested = false
+    this.isolationLevel = isolationLevel || this.isolationLevel
+
+    setImmediate(callback)
+  }
+
+  /**
+   * Commit a transaction.
+   *
+   * @param {basicCallback} [callback] A callback which is called after transaction has commited, or an error has occurred. If omited
+, method returns Promise.
+   * @return {Transaction|Promise}
+   */
+
+  commit (callback) {
+    if (typeof callback === 'function') {
+      this._commit(err => {
+        if (!err) {
+          this.emit('commit')
+          debug('tran: commit')
+        }
+        callback(err)
+      })
+      return this
+    }
+
+    return new PromiseLibrary((resolve, reject) => {
+      this._commit(err => {
+        if (err) return reject(err)
+        this.emit('commit')
+        debug('tran: commit')
+        resolve()
+      })
+    })
+  }
+
+  /**
+   * @private
+   * @param {basicCallback} [callback]
+   * @return {Transaction}
+   */
+
+  _commit (callback) {
+    debug('tran: commit')
+
+    if (this._aborted) {
+      return setImmediate(callback, new TransactionError('Transaction has been aborted.', ' ...
+```
+- example usage
+```shell
+...
+'''
+
+## Transaction
+
+**IMPORTANT:** always use 'Transaction' class to create transactions - it ensures that all your requests are executed on one connection
+. Once you call 'begin', a single connection is acquired from the connection pool and all subsequent requests (initialized with
+the 'Transaction' object) are executed exclusively on this connection. After you call 'commit' or 'rollback', connection is then
+ released back to the connection pool.
+
+'''javascript
+const transaction = new sql.Transaction(/* [pool] */)
+'''
+
+If you omit connection argument, global connection is used instead.
+
+__Example__
+
+'''javascript
+...
+```
+
+#### <a name="apidoc.element.mssql.base.TransactionError"></a>[function <span class="apidocSignatureSpan">mssql.base.</span>TransactionError (message, code)](#apidoc.element.mssql.base.TransactionError)
+- description and source-code
+```javascript
+class TransactionError extends Error {
+<span class="apidocCodeCommentSpan">  /**
+   * Creates a new TransactionError.
+   *
+   * @param {String} message Error message.
+   * @param {String} [code] Error code.
+   */
+</span>
+  constructor (message, code) {
+    if (message instanceof Error) {
+      super(message.message)
+      this.code = message.code || code
+
+      Object.defineProperty(this, 'originalError', {enumerable: true, value: message})
+    } else {
+      super(message)
+      this.code = code
+    }
+
+    this.name = 'TransactionError'
+  }
+}
+```
+- example usage
+```shell
+n/a
 ```
 
 
@@ -7285,253 +4856,259 @@ if (_this.stream) {
 - description and source-code
 ```javascript
 parse = function (string) {
-  var buffer, char, cursor, original, param, parsed, parsing, quotes;
-  cursor = 0;
-  parsing = 'name';
-  param = null;
-  buffer = '';
-  quotes = null;
-  parsed = {};
-  original = {};
-  Object.defineProperty(parsed, '__original__', {
-    value: original
-  });
+  let cursor = 0
+  let parsing = 'name'
+  let param = null
+  let buffer = ''
+  let quotes = null
+  const parsed = {}
+  const original = {}
+
+  Object.defineProperty(parsed, '__original__', {value: original})
   Object.defineProperty(parsed, 'toString', {
-    value: function() {
-      var key, value;
-      return ((function() {
-        var ref, ref1, ref2, ref3, results;
-        results = [];
-        for (key in this) {
-          value = this[key];
-          if (indexOf.call(IGNORE_KEYS, key) < 0) {
-            results.push(original[key].name + "=" + ((ref = (ref1 = original[key].escape) != null ? ref1[0] : void 0) != null ?
-ref : '') + value + ((ref2 = (ref3 = original[key].escape) != null ? ref3[1] : void 0) != null ? ref2 : ''));
-          }
+    value () {
+      const out = []
+      for (const key in this) {
+        if (IGNORE_KEYS.indexOf(key) === -1) {
+          const esc = original[key].escape || ['', '']
+          out.push('${original[key].name}=${esc[0] || ''}${this[key]}${esc[1] || ''}')
         }
-        return results;
-      }).call(this)).join(';');
+      }
+      return out.join(';')
     }
-  });
+  })
+
   while (cursor < string.length) {
-    char = string.charAt(cursor);
+    const char = string.charAt(cursor)
     switch (char) {
       case '=':
         if (parsing === 'name') {
-          buffer = buffer.trim();
-          param = buffer.toLowerCase();
-          original[param] = {
-            name: buffer
-          };
-          parsing = 'value';
-          buffer = '';
+          buffer = buffer.trim()
+          param = buffer.toLowerCase()
+          original[param] = {name: buffer}
+          parsing = 'value'
+          buffer = ''
         } else {
-          buffer += char;
+          buffer += char
         }
-        break;
-      case '\'':
-      case '"':
+        break
+
+      case '\'': case '"':
         if (parsing === 'value') {
           if (!buffer.trim().length) {
-            original[param].escape = [char, char];
-            quotes = char;
-            buffer = '';
-          } else {
-            if (quotes) {
-              if (char === quotes) {
-                if (char === string.charAt(cursor + 1)) {
-                  buffer += char;
-                  cursor++;
-                } else {
-                  parsed[param] = buffer;
-                  param = null;
-                  parsing = null;
-                  buffer = '';
-                  quotes = null;
-                }
+            // value is wrapped in qotes
+            original[param].escape = [char, char]
+            quotes = char
+            buffer = ''
+          } else if (quotes) {
+            if (char === quotes) {
+              // found same char as used for wrapping quotes
+              if (char === string.charAt(cursor + 1)) {
+                // escaped quote
+                buffer += char
+                cursor++
               } else {
-                buffer += char;
+                // end of value
+                parsed[param] = buffer
+                param = null
+                parsing = null
+                buffer = ''
+                quotes = null
               }
             } else {
-              buffer += char;
+              buffer += char
             }
+          } else {
+            buffer += char
           }
         } else {
-          throw new Error("Invalid connection string.");
+          throw new Error('Invalid connection string.')
         }
-        break;
+        break
+
       case '{':
         if (parsing === 'value') {
-          if (!buffer.trim().length) {
-            original[param].escape = ['{', '}'];
-            quotes = '{}';
-            buffer = '';
+          if (buffer.trim().length === 0) {
+            // value is wrapped in qotes
+            original[param].escape = ['{', '}']
+            quotes = '{}'
+            buffer = ''
           } else {
-            buffer += char;
+            buffer += char
           }
         } else {
-          throw new Error("Invalid connection string.");
+          throw new Error('Invalid connection string.')
         }
-        break;
+        break
+
       case '}':
         if (parsing === 'value') {
           if (quotes === '{}') {
-            parsed[param] = buffer;
-            param = null;
-            parsing = null;
-            buffer = '';
-            quotes = null;
+            // end of value
+            parsed[param] = buffer
+            param = null
+            parsing = null
+            buffer = ''
+            quotes = null
           } else {
-            buffer += char;
+            buffer += char
           }
         } else {
-          throw new Error("Invalid connection string.");
+          throw new Error('Invalid connection string.')
         }
-        break;
+        break
+
       case ';':
         if (parsing === 'value') {
           if (quotes) {
-            buffer += char;
+            buffer += char
           } else {
-            parsed[param] = buffer;
-            param = null;
-            parsing = 'name';
-            buffer = '';
+            // end of value
+            parsed[param] = buffer
+            param = null
+            parsing = 'name'
+            buffer = ''
           }
         } else {
-          buffer = '';
-          parsing = 'name';
+          buffer = ''
+          parsing = 'name'
         }
-        break;
+        break
+
       default:
-        buffer += char;
+        buffer += char
     }
-    cursor++;
+
+    cursor++
   }
+
   if (parsing === 'value') {
-    parsed[param] = buffer;
+    // end of value
+    parsed[param] = buffer
   }
-  return parsed;
+
+  return parsed
 }
 ```
 - example usage
 ```shell
 ...
-} catch (error) {
-  ex = error;
-  console.error("Failed to load config file. " + ex.message);
-  process.exit(1);
+  if (arguments[i] !== null && arguments[i] !== undefined) {
+    return arguments[i]
+  }
+}
 }
 
-try {
-  config = JSON.parse(config);
-} catch (error1) {
-  ex = error1;
-  console.error("Failed to parse config file. " + ex.message);
-  process.exit(1);
-}
+const parseConnectionURI = function (uri) {
+const parsed = url.parse(uri)
+let instance
+let user
+let password
 
-buffer = [];
+const path = parsed.pathname.substr(1).split('/')
+if (path.length > 1) {
+  instance = path.shift()
 ...
 ```
 
-#### <a name="apidoc.element.mssql.connectionstring.resolve"></a>[function <span class="apidocSignatureSpan">mssql.connectionstring.</span>resolve (string)](#apidoc.element.mssql.connectionstring.resolve)
+#### <a name="apidoc.element.mssql.connectionstring.resolve"></a>[function <span class="apidocSignatureSpan">mssql.connectionstring.</span>resolve (string, driver)](#apidoc.element.mssql.connectionstring.resolve)
 - description and source-code
 ```javascript
-resolve = function (string) {
-  var config, parsed, ref, ref1, ref10, ref11, ref12, ref13, ref14, ref15, ref16, ref17, ref2, ref3, ref4, ref5, ref6, ref7, ref8
-, ref9, server, user;
-  if (/^(mssql|tedious|msnodesql|tds)\:\/\//i.test(string)) {
-    parsed = parseConnectionURI(string);
-  } else {
-    parsed = parseConnectionString(string);
-  }
-  if (parsed.driver === 'msnodesql') {
-    parsed.driver = 'SQL Server Native Client 11.0';
-    if ((ref = parsed.__original__) != null) {
-      ref.driver = {
-        name: 'Driver',
-        escape: ['{', '}']
-      };
+resolve = function (string, driver) {
+  const parsed = /^(mssql|tedious|msnodesql|tds):\/\//i.test(string) ? parseConnectionURI(string) : parseConnectionString(string
+)
+  const stream = (parsed.stream || '').toLowerCase()
+  const encrypt = (parsed.encrypt || '').toLowerCase()
+
+  if (driver === 'msnodesqlv8') {
+    parsed.driver = 'SQL Server Native Client 11.0'
+
+    if (parsed.__original__) {
+      parsed.__original__.driver = {name: 'Driver', escape: ['{', '}']}
     }
-    return {
-      driver: 'msnodesql',
-      connectionString: parsed.toString()
-    };
+
+    return {connectionString: parsed.toString()}
   }
-  user = (ref1 = parsed.uid) != null ? ref1 : parsed['user id'];
-  server = (ref2 = (ref3 = (ref4 = (ref5 = parsed.server) != null ? ref5 : parsed.address) != null ? ref4 : parsed.addr) != null
- ? ref3 : parsed['data source']) != null ? ref2 : parsed['network address'];
-  config = {
-    driver: parsed.driver,
-    password: (ref6 = parsed.pwd) != null ? ref6 : parsed.password,
-    database: (ref7 = parsed.database) != null ? ref7 : parsed['initial catalog'],
-    connectionTimeout: (ref8 = (ref9 = (ref10 = parsed.connectionTimeout) != null ? ref10 : parsed.timeout) != null ? ref9 : parsed
-['connect timeout']) != null ? ref8 : parsed['connection timeout'],
-    requestTimeout: (ref11 = parsed.requestTimeout) != null ? ref11 : parsed['request timeout'],
-    stream: (ref12 = (ref13 = parsed.stream) != null ? ref13.toLowerCase() : void 0) === 'true' || ref12 === 'yes' || ref12 === '
-1',
+
+  let user = parsed.uid || parsed.uid || parsed['user id']
+  let server = parsed.server || parsed.address || parsed.addr || parsed['data source'] || parsed['network address']
+
+  const config = {
+    password: oror(parsed.pwd, parsed.password),
+    database: oror(parsed.database, parsed['initial catalog']),
+    connectionTimeout: oror(parsed.connectionTimeout, parsed.timeout, parsed['connect timeout'], parsed['connection timeout']),
+    requestTimeout: oror(parsed.requestTimeout, parsed['request timeout']),
+    stream: stream === 'true' || stream === 'yes' || stream === '1',
     options: {
-      encrypt: (ref14 = (ref15 = parsed.encrypt) != null ? ref15.toLowerCase() : void 0) === 'true' || ref14 === 'yes' || ref14 === '
-1'
+      encrypt: encrypt === 'true' || encrypt === 'yes' || encrypt === '1'
     }
-  };
+  }
+
   if (parsed.useUTC != null) {
-    config.options.useUTC = (ref16 = parsed.useUTC.toLowerCase()) === 'true' || ref16 === 'yes' || ref16 === '1';
+    const utc = parsed.useUTC.toLowerCase()
+    config.options.useUTC = utc === 'true' || utc === 'yes' || utc === '1'
   }
   if (config.connectionTimeout != null) {
-    config.connectionTimeout = parseInt(config.connectionTimeout);
+    config.connectionTimeout = parseInt(config.connectionTimeout, 10)
   }
   if (config.requestTimeout != null) {
-    config.requestTimeout = parseInt(config.requestTimeout);
+    config.requestTimeout = parseInt(config.requestTimeout, 10)
   }
+
   if (/^(.*)\\(.*)$/.exec(user)) {
-    config.domain = RegExp.$1;
-    user = RegExp.$2;
+    config.domain = RegExp.$1
+    user = RegExp.$2
   }
+
   if (server) {
-    server = server.trim();
-    if (/^np\:/i.test(server)) {
-      throw new Error("Connection via Named Pipes is not supported.");
+    server = server.trim()
+
+    if (/^np:/i.test(server)) {
+      throw new Error('Connection via Named Pipes is not supported.')
     }
-    if (/^tcp\:/i.test(server)) {
-      server = server.substr(4);
+
+    if (/^tcp:/i.test(server)) {
+      server = server.substr(4)
     }
+
     if (/^(.*)\\(.*)$/.exec(server)) {
-      server = RegExp.$1;
-      config.options.instanceName = RegExp.$2;
+      server = RegExp.$1
+      config.options.instanceName = RegExp.$2
     }
+
     if (/^(.*),(.*)$/.exec(server)) {
-      server = RegExp.$1.trim();
-      config.port = parseInt(RegExp.$2.trim());
+      server = RegExp.$1.trim()
+      config.port = parseInt(RegExp.$2.trim(), 10)
     }
-    if ((ref17 = server.toLowerCase()) === '.' || ref17 === '(.)' || ref17 === '(localdb)' || ref17 === '(local)') {
-      server = 'localhost';
+
+    if (server === '.' || server === '(.)' || server.toLowerCase() === '(localdb)' || server.toLowerCase() === '(local)') {
+      server = 'localhost'
     }
   }
-  config.user = user;
-  config.server = server;
-  return config;
+
+  config.user = user
+  config.server = server
+  return config
 }
 ```
 - example usage
 ```shell
 ...
 
-cfgPath = process.argv[2];
+this.config = config
+this._connected = false
+this._connecting = false
 
-if (!cfgPath) {
-  cfgPath = process.cwd();
+if (typeof this.config === 'string') {
+  try {
+    this.config = ConnectionString.resolve(this.config, driver.name)
+  } catch (ex) {
+    if (typeof callback === 'function') {
+      return callback(ex)
+    }
+    throw ex
+  }
 }
-
-cfgPath = path.resolve(cfgPath);
-
-if (fs.lstatSync(cfgPath).isDirectory()) {
-  cfgPath = path.resolve(cfgPath, './.mssql.json');
-}
-
-if (!fs.existsSync(cfgPath)) {
-  console.error("Config file not found.");
 ...
 ```
 
@@ -7542,44 +5119,45 @@ if (!fs.existsSync(cfgPath)) {
 #### <a name="apidoc.element.mssql.datatypes.cast"></a>[function <span class="apidocSignatureSpan">mssql.datatypes.</span>cast (value, type, options)](#apidoc.element.mssql.datatypes.cast)
 - description and source-code
 ```javascript
-cast = function (value, type, options) {
-  var ns, ref, scale;
+(value, type, options) => {
   if (value == null) {
-    return null;
+    return null
   }
+
   switch (typeof value) {
     case 'string':
-      return "N'" + (value.replace(/'/g, '\'\'')) + "'";
+      return 'N'${value.replace(/'/g, '\'\'')}''
+
     case 'number':
-      return value;
+      return value
+
     case 'boolean':
-      if (value) {
-        return 1;
-      } else {
-        return 0;
-      }
+      return value ? 1 : 0
+
     case 'object':
       if (value instanceof Date) {
-        ns = value.getUTCMilliseconds() / 1000;
+        let ns = value.getUTCMilliseconds() / 1000
         if (value.nanosecondDelta != null) {
-          ns += value.nanosecondDelta;
+          ns += value.nanosecondDelta
         }
-        scale = (ref = options.scale) != null ? ref : 7;
+        const scale = options.scale == null ? 7 : options.scale
+
         if (scale > 0) {
-          ns = String(ns).substr(1, scale + 1);
+          ns = String(ns).substr(1, scale + 1)
         } else {
-          ns = "";
+          ns = ''
         }
-        return "N'" + (value.getUTCFullYear()) + "-" + (zero(value.getUTCMonth() + 1)) + "-" + (zero(value.getUTCDate())) + " " + (
-zero(value.getUTCHours())) + ":" + (zero(value.getUTCMinutes())) + ":" + (zero(value.getUTCSeconds())) + ns + "'";
+
+        return 'N'${value.getUTCFullYear()}-${zero(value.getUTCMonth() + 1)}-${zero(value.getUTCDate())} ${zero(value.getUTCHours
+())}:${zero(value.getUTCMinutes())}:${zero(value.getUTCSeconds())}${ns}''
       } else if (Buffer.isBuffer(value)) {
-        return "0x" + (value.toString('hex'));
-      } else {
-        return null;
+        return '0x${value.toString('hex')}'
       }
-      break;
+
+      return null
+
     default:
-      return null;
+      return null
   }
 }
 ```
@@ -7591,53 +5169,29 @@ n/a
 #### <a name="apidoc.element.mssql.datatypes.declare"></a>[function <span class="apidocSignatureSpan">mssql.datatypes.</span>declare (type, options)](#apidoc.element.mssql.datatypes.declare)
 - description and source-code
 ```javascript
-declare = function (type, options) {
-  var ref, ref1, ref2, ref3, ref4, ref5;
+(type, options) => {
   switch (type) {
-    case TYPES.VarChar:
+    case TYPES.VarChar: case TYPES.VarBinary:
+      return '${type.declaration} (${options.length > 8000 ? 'MAX' : (options.length == null ? 'MAX' : options.length)})'
     case TYPES.NVarChar:
-    case TYPES.VarBinary:
-      return type.declaration + " (" + (options.length > 8000 ? 'MAX' : (ref = options.length) != null ? ref : 'MAX') + ")";
-    case TYPES.NVarChar:
-      return type.declaration + " (" + (options.length > 4000 ? 'MAX' : (ref1 = options.length) != null ? ref1 : 'MAX') + ")";
-    case TYPES.Char:
-    case TYPES.NChar:
-    case TYPES.Binary:
-      return type.declaration + " (" + ((ref2 = options.length) != null ? ref2 : 1) + ")";
-    case TYPES.Decimal:
-    case TYPES.Numeric:
-      return type.declaration + " (" + ((ref3 = options.precision) != null ? ref3 : 18) + ", " + ((ref4 = options.scale) != null
- ? ref4 : 0) + ")";
-    case TYPES.Time:
-    case TYPES.DateTime2:
-    case TYPES.DateTimeOffset:
-      return type.declaration + " (" + ((ref5 = options.scale) != null ? ref5 : 7) + ")";
+      return '${type.declaration} (${options.length > 4000 ? 'MAX' : (options.length == null ? 'MAX' : options.length)})'
+    case TYPES.Char: case TYPES.NChar: case TYPES.Binary:
+      return '${type.declaration} (${options.length == null ? 1 : options.length})'
+    case TYPES.Decimal: case TYPES.Numeric:
+      return '${type.declaration} (${options.precision == null ? 18 : options.precision}, ${options.scale == null ? 0 : options.
+scale})'
+    case TYPES.Time: case TYPES.DateTime2: case TYPES.DateTimeOffset:
+      return '${type.declaration} (${options.scale == null ? 7 : options.scale})'
     case TYPES.TVP:
-      return options.tvpType + " readonly";
+      return '${options.tvpType} readonly'
     default:
-      return type.declaration;
+      return type.declaration
   }
 }
 ```
 - example usage
 ```shell
-...
-}
-if (table.create) {
-  if (table.temporary) {
-    objectid = "tempdb..[" + table.name + "]";
-  } else {
-    objectid = table.path;
-  }
-  req = new tds.Request("if object_id('" + (objectid.replace(/'/g, '\'\'')) + "') is null " + (table.declare()), function(err) {
-    if (err) {
-      return done(err);
-    }
-    return connection.execBulkLoad(bulk);
-  });
-  return connection.execSqlBatch(req);
-} else {
-...
+n/a
 ```
 
 
@@ -7648,20 +5202,20 @@ if (table.create) {
 - description and source-code
 ```javascript
 register = function (jstype, sqltype) {
-  var i, index, item, len;
-  for (index = i = 0, len = this.length; i < len; index = ++i) {
-    item = this[index];
-    if (!(item.js === jstype)) {
-      continue;
+  for (let index = 0; index < this.length; index++) {
+    let item = this[index]
+    if (item.js === jstype) {
+      this.splice(index, 1)
+      break
     }
-    this.splice(index, 1);
-    break;
   }
+
   this.push({
     js: jstype,
     sql: sqltype
-  });
-  return null;
+  })
+
+  return null
 }
 ```
 - example usage
@@ -7674,13 +5228,13 @@ Default data type for unknown object is 'sql.NVarChar'.
 You can define your own type map.
 
 '''javascript
-sql.map.register(MyClass, sql.Text);
+sql.map.register(MyClass, sql.Text)
 '''
 
 You can also overwrite the default type map.
 
 '''javascript
-sql.map.register(Number, sql.BigInt);
+sql.map.register(Number, sql.BigInt)
 '''
 ...
 ```
@@ -7702,11 +5256,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.0.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.0.</span>sql (length)](#apidoc.element.mssql.map.0.sql)
 - description and source-code
 ```javascript
-sql = function (length) {
-  return {
-    type: TYPES.NVarChar,
-    length: length
-  };
+NVarChar(length) {
+  return {type: TYPES.NVarChar, length}
 }
 ```
 - example usage
@@ -7778,10 +5329,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.1.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.1.</span>sql ()](#apidoc.element.mssql.map.1.sql)
 - description and source-code
 ```javascript
-sql = function () {
-  return {
-    type: TYPES.Int
-  };
+Int() {
+  return {type: TYPES.Int}
 }
 ```
 - example usage
@@ -7806,10 +5355,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.2.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.2.</span>sql ()](#apidoc.element.mssql.map.2.sql)
 - description and source-code
 ```javascript
-sql = function () {
-  return {
-    type: TYPES.Bit
-  };
+Bit() {
+  return {type: TYPES.Bit}
 }
 ```
 - example usage
@@ -7834,10 +5381,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.3.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.3.</span>sql ()](#apidoc.element.mssql.map.3.sql)
 - description and source-code
 ```javascript
-sql = function () {
-  return {
-    type: TYPES.DateTime
-  };
+DateTime() {
+  return {type: TYPES.DateTime}
 }
 ```
 - example usage
@@ -7873,11 +5418,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.4.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.4.</span>sql (length)](#apidoc.element.mssql.map.4.sql)
 - description and source-code
 ```javascript
-sql = function (length) {
-  return {
-    type: TYPES.VarBinary,
-    length: length
-  };
+VarBinary(length) {
+  return {type: TYPES.VarBinary, length}
 }
 ```
 - example usage
@@ -7990,21 +5532,17 @@ function copy() { [native code] }
 n/a
 ```
 
-#### <a name="apidoc.element.mssql.map.4.js.prototype.equals"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>equals (other)](#apidoc.element.mssql.map.4.js.prototype.equals)
+#### <a name="apidoc.element.mssql.map.4.js.prototype.equals"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>equals (b)](#apidoc.element.mssql.map.4.js.prototype.equals)
 - description and source-code
 ```javascript
-equals = function (other) {
-  if (this.length !== other.length) {
-    return false;
-  }
+function equals(b) {
+  if (!(b instanceof Buffer))
+    throw new TypeError('Argument must be a Buffer');
 
-  for (var i = 0, len = this.length; i < len; i++) {
-    if (this[i] !== other[i]) {
-      return false;
-    }
-  }
+  if (this === b)
+    return true;
 
-  return true;
+  return binding.compare(this, b) === 0;
 }
 ```
 - example usage
@@ -8112,7 +5650,23 @@ function indexOf(val, byteOffset, encoding) {
 ```
 - example usage
 ```shell
-n/a
+...
+ * @param {String} event Event name.
+ * @param {Function} handler Event handler.
+ * @return {ConnectionPool}
+ */
+
+module.exports.exports.removeListener = module.exports.exports.off = function removeListener (event, handler) {
+  if (!globalConnectionHandlers[event]) return globalConnection
+  const index = globalConnectionHandlers[event].indexOf(handler)
+  if (index === -1) return globalConnection
+  globalConnectionHandlers[event].splice(index, 1)
+  if (globalConnectionHandlers[event].length === 0) globalConnectionHandlers[event] = undefined
+
+  if (globalConnection) globalConnection.removeListener(event, handler)
+  return globalConnection
+}
+...
 ```
 
 #### <a name="apidoc.element.mssql.map.4.js.prototype.inspect"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>inspect ()](#apidoc.element.mssql.map.4.js.prototype.inspect)
@@ -8131,23 +5685,7 @@ function inspect() {
 ```
 - example usage
 ```shell
-...
-  }
-} else {
-  row = {};
-  row[Object.keys(columns)[0]] = chunksBuffer.join('');
-}
-chunksBuffer = null;
-if (_this.verbose) {
-  _this._log(util.inspect(row));
-  _this._log("---------- --------------------");
-}
-if (_this.stream) {
-  _this.emit('row', row);
-} else {
-  recordset.push(row);
-}
-...
+n/a
 ```
 
 #### <a name="apidoc.element.mssql.map.4.js.prototype.lastIndexOf"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>lastIndexOf (val, byteOffset, encoding)](#apidoc.element.mssql.map.4.js.prototype.lastIndexOf)
@@ -8210,21 +5748,20 @@ function readDoubleLE(offset, noAssert) {
 - example usage
 ```shell
 ...
-  var i, j, point, points, ref;
-  points = [];
   if (count < 1) {
-    return points;
+    return points
   }
-  for (i = j = 1, ref = count; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
-    points.push((point = new Point));
-    point.x = buffer.readDoubleLE(buffer.position);
-    point.y = buffer.readDoubleLE(buffer.position + 8);
-    buffer.position += 16;
-  }
-  return points;
-};
 
-parseZ = function(buffer, points) {
+  for (let i = 1; i <= count; i++) {
+    const point = new Point()
+    points.push(point)
+    point.x = buffer.readDoubleLE(buffer.position)
+    point.y = buffer.readDoubleLE(buffer.position + 8)
+    buffer.position += 16
+  }
+
+  return points
+}
 ...
 ```
 
@@ -8326,21 +5863,21 @@ readInt32LE = function (offset, noAssert) {
 - example usage
 ```shell
 ...
-})();
+    attribute: 0x01,
+    pointOffset: 0
+  })
+} else {
+  for (let i = 1; i <= count; i++) {
+    figures.push({
+      attribute: buffer.readUInt8(buffer.position),
+      pointOffset: buffer.readInt32LE(buffer.position + 1)
+    })
 
-parseGeography = function(buffer, geometry) {
-  var flags, numberOfFigures, numberOfPoints, numberOfSegments, numberOfShapes, properties, srid, value;
-  if (geometry == null) {
-    geometry = false;
+    buffer.position += 5
   }
-  srid = buffer.readInt32LE(0);
-  if (srid === -1) {
-    return null;
-  }
-  value = {
-    srid: srid,
-    version: buffer.readUInt8(4)
-  };
+}
+
+return figures
 ...
 ```
 
@@ -8480,21 +6017,20 @@ readUInt32LE = function (offset, noAssert) {
 - example usage
 ```shell
 ...
-  properties.H = flags & (1 << 3) ? true : false;
-}
+
+let numberOfPoints
 if (properties.P) {
-  numberOfPoints = 1;
+  numberOfPoints = 1
 } else if (properties.L) {
-  numberOfPoints = 2;
+  numberOfPoints = 2
 } else {
-  numberOfPoints = buffer.readUInt32LE(buffer.position);
-  buffer.position += 4;
+  numberOfPoints = buffer.readUInt32LE(buffer.position)
+  buffer.position += 4
 }
-value.points = parsePoints(buffer, numberOfPoints);
-if (properties.Z) {
-  parseZ(buffer, value.points);
-}
-if (properties.M) {
+
+// console.log("numberOfPoints", numberOfPoints)
+
+value.points = parsePoints(buffer, numberOfPoints)
 ...
 ```
 
@@ -8511,21 +6047,20 @@ readUInt8 = function (offset, noAssert) {
 - example usage
 ```shell
 ...
+  figures.push({
+    attribute: 0x01,
+    pointOffset: 0
+  })
+} else {
+  for (let i = 1; i <= count; i++) {
+    figures.push({
+      attribute: buffer.readUInt8(buffer.position),
+      pointOffset: buffer.readInt32LE(buffer.position + 1)
+    })
+
+    buffer.position += 5
+  }
 }
-srid = buffer.readInt32LE(0);
-if (srid === -1) {
-  return null;
-}
-value = {
-  srid: srid,
-  version: buffer.readUInt8(4)
-};
-flags = buffer.readUInt8(5);
-buffer.position = 6;
-properties = {
-  Z: flags & (1 << 0) ? true : false,
-  M: flags & (1 << 1) ? true : false,
-  V: flags & (1 << 2) ? true : false,
 ...
 ```
 
@@ -8665,23 +6200,18 @@ function swap64() {
 n/a
 ```
 
-#### <a name="apidoc.element.mssql.map.4.js.prototype.toByteArray"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>toByteArray ()](#apidoc.element.mssql.map.4.js.prototype.toByteArray)
-- description and source-code
-```javascript
-toByteArray = function () {
-  return Array.prototype.slice.call(this, 0);
-}
-```
-- example usage
-```shell
-n/a
-```
-
 #### <a name="apidoc.element.mssql.map.4.js.prototype.toJSON"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>toJSON ()](#apidoc.element.mssql.map.4.js.prototype.toJSON)
 - description and source-code
 ```javascript
 toJSON = function () {
-  return "0x" + (this.toString('hex'));
+  if (this.length) {
+    const data = [];
+    for (var i = 0; i < this.length; ++i)
+      data[i] = this[i];
+    return { type: 'Buffer', data };
+  } else {
+    return { type: 'Buffer', data: [] };
+  }
 }
 ```
 - example usage
@@ -8707,21 +6237,21 @@ toString = function () {
 - example usage
 ```shell
 ...
-sql = require('./main');
+if (driver === 'msnodesqlv8') {
+  parsed.driver = 'SQL Server Native Client 11.0'
 
-write = function(text) {
-  return process.stdout.write(text);
-};
+  if (parsed.__original__) {
+    parsed.__original__.driver = {name: 'Driver', escape: ['{', '}']}
+  }
 
-Buffer.prototype.toJSON = function() {
-  return "0x" + (this.toString('hex'));
-};
-
-cfgPath = process.argv[2];
-
-if (!cfgPath) {
-  cfgPath = process.cwd();
+  return {connectionString: parsed.toString()}
 }
+
+let user = parsed.uid || parsed.uid || parsed['user id']
+let server = parsed.server || parsed.address || parsed.addr || parsed['data source'] || parsed['network address']
+
+const config = {
+  password: oror(parsed.pwd, parsed.password),
 ...
 ```
 
@@ -8848,23 +6378,7 @@ write = function (string, offset, length, encoding) {
 ```
 - example usage
 ```shell
-...
-fs = require('fs');
-
-path = require('path');
-
-sql = require('./main');
-
-write = function(text) {
-  return process.stdout.write(text);
-};
-
-Buffer.prototype.toJSON = function() {
-  return "0x" + (this.toString('hex'));
-};
-
-cfgPath = process.argv[2];
-...
+n/a
 ```
 
 #### <a name="apidoc.element.mssql.map.4.js.prototype.writeDoubleBE"></a>[function <span class="apidocSignatureSpan">mssql.map.4.js.prototype.</span>writeDoubleBE (val, offset, noAssert)](#apidoc.element.mssql.map.4.js.prototype.writeDoubleBE)
@@ -9251,39 +6765,43 @@ n/a
 - description and source-code
 ```javascript
 function Table(name) {
-  var ref1;
   if (name) {
-    ref1 = Table.parseName(name), this.name = ref1.name, this.schema = ref1.schema, this.database = ref1.database;
-    this.path = "" + (this.database ? "[" + this.database + "]." : "") + (this.schema ? "[" + this.schema + "]." : "") + "[" + this
-.name + "]";
-    this.temporary = this.name.charAt(0) === '#';
+    const parsed = Table.parseName(name)
+    this.name = parsed.name
+    this.schema = parsed.schema
+    this.database = parsed.database
+    this.path = (this.database ? '[${this.database}].' : '') + (this.schema ? '[${this.schema}].' : '') + '[${this.name}]'
+    this.temporary = this.name.charAt(0) === '#'
   }
-  this.columns = [];
-  this.rows = [];
-  Object.defineProperty(this.columns, "add", {
-    value: function(name, column, options) {
-      if (options == null) {
-        options = {};
-      }
+
+  this.columns = []
+  this.rows = []
+
+  Object.defineProperty(this.columns, 'add', {
+    value (name, column, options) {
       if (column == null) {
-        throw new Error("Column data type is not defined.");
+        throw new Error('Column data type is not defined.')
       }
       if (column instanceof Function) {
-        column = column();
+        column = column()
       }
-      column.name = name;
-      column.nullable = options.nullable;
-      column.primary = options.primary;
-      return this.push(column);
+
+      options = options || {}
+      column.name = name
+      column.nullable = options.nullable
+      column.primary = options.primary
+
+      return this.push(column)
     }
-  });
-  Object.defineProperty(this.rows, "add", {
-    value: function() {
-      var values;
-      values = 1 <= arguments.length ? slice.call(arguments, 0) : [];
-      return this.push(values);
+  }
+  )
+
+  Object.defineProperty(this.rows, 'add', {
+    value () {
+      return this.push(Array.prototype.slice.call(arguments))
     }
-  });
+  }
+  )
 }
 ```
 - example usage
@@ -9294,11 +6812,8 @@ n/a
 #### <a name="apidoc.element.mssql.map.5.sql"></a>[function <span class="apidocSignatureSpan">mssql.map.5.</span>sql (tvpType)](#apidoc.element.mssql.map.5.sql)
 - description and source-code
 ```javascript
-sql = function (tvpType) {
-  return {
-    type: TYPES.TVP,
-    tvpType: tvpType
-  };
+TVP(tvpType) {
+  return {type: TYPES.TVP, tvpType}
 }
 ```
 - example usage
